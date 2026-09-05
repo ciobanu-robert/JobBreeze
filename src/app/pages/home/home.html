@@ -1,0 +1,89 @@
+<div id="top" class="home-container" [class.dark-theme]="isDarkTheme()">
+    <div class="home-content">
+        <header class="home-header">
+            <div class="header-logo">
+                <img
+                    class="logo-icon"
+                        [src]="
+                        isDarkTheme() ? 
+                        '/assets/brand/logo-mark-dark.svg' :
+                        '/assets/brand/logo-mark-light.svg'"
+                >
+                <h3>JobBreeze</h3>
+            </div>
+
+            <nav class="header-options" aria-label="Site options">
+                <button class="icon-button" type="button" aria-label="Choose language">
+                    <img src="/assets/navigation/globe.svg">
+                </button>
+                <button 
+                    class="icon-button" 
+                    type="button" 
+                    aria-label="Toggle theme" (click)="toggleTheme()"
+                >
+                    <img 
+                        [src]="isDarkTheme() ? 
+                        '/assets/theme/sun.svg' : 
+                        '/assets/theme/moon.svg'">
+                </button>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero-section">
+                <div class="hero-copy">
+                    <h1>Find the dream job more <strong>easily</strong>.</h1>
+                    <p class="hero-description">
+                        Looking for a new job takes time and energy. 
+                        JobBreeze helps you find roles that fit your skills,
+                        your interests, and the life you want to build.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="primary-button">
+                            <img src="/assets/jobs/heart.svg" alt="">
+                            Start swiping
+                        </button>
+                        <button class="secondary-button">
+                            <img src="/assets/jobs/building-2.svg" alt="">
+                            I'm hiring
+                        </button>
+                    </div>
+                </div>
+
+                <div class="job-stack" aria-label="Example job card">
+                    <div class="job-card-back back-one"></div>
+                    <div class="job-card-back back-two"></div>
+
+                    <article class="job-card">
+                        <div class="job-card-top">
+                            <div class="company-mark">C</div>
+                            <div>
+                                <h2>Product Designer</h2>
+                                <p>JobBreeze</p>
+                            </div>
+                        </div>
+                        <p class="job-description">
+                            Join a small team building tools people use every 
+                            day. You will have room to do thoughtful work and 
+                            make a visible difference.
+                        </p>
+                        <div class="job-tags">
+                            <span>Remote</span>
+                            <span>€60-80k</span>
+                            <span>Full-time</span>
+                        </div>
+                        <div class="job-controls">
+                            <button class="reject-button" type="button" aria-label="Skip job">
+                                <img src="/assets/ui/x.svg" alt="">
+                            </button>
+                            <button class="like-button" type="button" aria-label="Like job">
+                                <img src="/assets/jobs/heart.svg" alt="">
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</div>
