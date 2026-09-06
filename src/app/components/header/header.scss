@@ -1,0 +1,63 @@
+:host {
+    display: block;
+}
+
+.app-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: min(100%, 1120px);
+    margin: 0 auto;
+    min-height: 78px;
+}
+
+.header-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.header-logo h3 {
+    margin: 0;
+    color: inherit;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 19px;
+    letter-spacing: -0.3px;
+}
+
+.logo-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.header-options {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.icon-button {
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.icon-button img {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(1) invert(0.07) sepia(0.18) saturate(10.52)
+        hue-rotate(194deg) brightness(0.92) contrast(0.96);
+}
+
+.app-header.dark-theme .icon-button img {
+    filter: brightness(0) invert(1);
+}

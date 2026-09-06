@@ -1,0 +1,77 @@
+:host {
+    display: block;
+}
+
+.page-shell {
+    --background: #fbfaf6;
+    --foreground: #0e111b;
+    --card: #ffffff;
+    --card-foreground: #0e111b;
+    --primary: #00afb8;
+    --primary-foreground: #f8fdfd;
+    --secondary: #e8f0f3;
+    --secondary-foreground: #0b181c;
+    --muted: #ebeff4;
+    --muted-foreground: #5f636f;
+    --accent: #00b9e5;
+    --accent-foreground: #030d11;
+    --gradient-primary: linear-gradient(135deg, #00afb8, #00b9e5);
+    --gradient-accent: linear-gradient(135deg, #00c9c1, #0099e6);
+    --destructive: #f52027;
+    --border: #d7e0e3;
+    --panel-border: var(--border);
+    --cyan: var(--primary);
+    --radius-sm: 12px;
+    --radius-md: 14px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-2xl: 24px;
+    --radius-3xl: 28px;
+    --shadow-soft: 0 8px 30px -12px rgb(24 32 38 / 15%);
+    --shadow-glow: 0 20px 60px -20px rgb(0 175 184 / 40%);
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 16px 32px 48px;
+    background:
+        radial-gradient(circle at 20% 10%, rgb(0 175 184 / 16%), transparent 38%),
+        radial-gradient(circle at 80% 90%, rgb(0 185 229 / 14%), transparent 42%),
+        var(--background);
+    color: var(--foreground);
+    font-family: "Inter", sans-serif;
+}
+
+.page-shell h1,
+.page-shell h2,
+.page-shell h3,
+.page-shell h4 {
+    color: var(--foreground);
+    font-family: "Space Grotesk", sans-serif;
+}
+
+.page-shell.dark-theme {
+    --background: #06090f;
+    --foreground: #f6f5f1;
+    --card: #0f141d;
+    --card-foreground: #f6f5f1;
+    --primary: #00c9d3;
+    --primary-foreground: #000407;
+    --secondary: #142226;
+    --secondary-foreground: #f1f6f6;
+    --muted: #131c1f;
+    --muted-foreground: #8b9ba1;
+    --accent: #00ccf9;
+    --accent-foreground: #000407;
+    --gradient-primary: linear-gradient(135deg, #00c9d3, #00aff3);
+    --gradient-accent: linear-gradient(135deg, #00c9c1, #0099e6);
+    --destructive: #ff3f3c;
+    --border: rgb(255 255 255 / 8%);
+    --panel-border: var(--border);
+    --cyan: var(--primary);
+    --shadow-soft: 0 8px 30px -12px rgb(0 0 0 / 30%);
+    --shadow-glow: 0 25px 80px -20px rgb(34 211 232 / 45%);
+    background:
+        radial-gradient(circle at 20% 10%, rgb(34 211 232 / 18%), transparent 38%),
+        radial-gradient(circle at 80% 90%, rgb(0 153 230 / 18%), transparent 42%),
+        var(--background);
+}

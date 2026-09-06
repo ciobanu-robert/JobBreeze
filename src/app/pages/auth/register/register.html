@@ -1,0 +1,35 @@
+<app-page-shell>
+    <main class="auth-main">
+        <app-auth-card>
+            <h1 class="auth-title">Welcome to JobBreeze</h1>
+            <p class="auth-subtitle">The future of job hunting.</p>
+
+            <form class="auth-form">
+                <div class="auth-field">
+                    <label for="register-name">Full name</label>
+                    <input id="register-name" type="text" autocomplete="name">
+                </div>
+
+                <span class="auth-role-label">I am a</span>
+                <div class="role-options">
+                    <button class="role-option" type="button" [class.active]="role() === 'seeker'" (click)="role.set('seeker')">Job seeker</button>
+                    <button class="role-option" type="button" [class.active]="role() === 'company'" (click)="role.set('company')">Hiring company</button>
+                </div>
+
+                <div class="auth-field">
+                    <label for="register-email">Email</label>
+                    <input id="register-email" type="email" autocomplete="email">
+                </div>
+
+                <div class="auth-field">
+                    <label for="register-password">Password</label>
+                    <input id="register-password" type="password" autocomplete="new-password">
+                </div>
+
+                <button class="auth-submit" type="button">Create account</button>
+                <p class="auth-switch">Already have an account? <a class="auth-link" routerLink="/login">Sign in</a></p>
+                <app-social-login-buttons></app-social-login-buttons>
+            </form>
+        </app-auth-card>
+    </main>
+</app-page-shell>

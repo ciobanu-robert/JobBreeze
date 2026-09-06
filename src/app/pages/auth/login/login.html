@@ -1,0 +1,27 @@
+<app-page-shell>
+    <main class="auth-main">
+        <app-auth-card>
+            <h1 class="auth-title">Nice to see you back</h1>
+            <p class="auth-subtitle">We are glad to see you return.</p>
+
+            <form class="auth-form">
+                <div class="auth-field">
+                    <label for="login-email">Email</label>
+                    <input id="login-email" type="email" autocomplete="email">
+                </div>
+
+                <div class="auth-field">
+                    <label class="password-label" for="login-password">
+                        <span>Password</span>
+                        <a class="auth-link" routerLink="/forgot-password">Forgot password?</a>
+                    </label>
+                    <input id="login-password" type="password" autocomplete="current-password">
+                </div>
+
+                <button class="auth-submit" type="button">Sign in</button>
+                <p class="auth-switch">Don't have an account? <a class="auth-link" routerLink="/register">Sign up</a></p>
+                <app-social-login-buttons></app-social-login-buttons>
+            </form>
+        </app-auth-card>
+    </main>
+</app-page-shell>
