@@ -1,68 +1,68 @@
 :host {
-    display: block;
-    margin-top: 8px;
+  display: block;
+  margin-top: 8px;
 }
 
 .auth-divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--muted-foreground);
-    font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted-foreground);
+  font-size: 12px;
 }
 
 .auth-divider::before,
 .auth-divider::after {
-    height: 1px;
-    flex: 1;
-    background: var(--border);
-    content: "";
+  height: 1px;
+  flex: 1;
+  background: var(--border);
+  content: '';
 }
 
 .social-buttons {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
 }
 
 .social-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    min-height: 36px;
-    padding: 0 10px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: var(--card);
-    color: var(--foreground);
-    cursor: pointer;
-    font: inherit;
-    font-size: 12px;
-    font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--foreground);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .social-button img {
-    width: 16px;
-    height: 16px;
-    object-fit: contain;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
 }
 
 .social-button img:not(.brand-color) {
-    filter: brightness(0) saturate(100%) invert(7%) sepia(18%) saturate(1052%)
-        hue-rotate(194deg) brightness(92%) contrast(96%);
+  filter: brightness(0) saturate(100%) invert(7%) sepia(18%) saturate(1052%) hue-rotate(194deg)
+    brightness(92%) contrast(96%);
 }
 
 .dark-theme .social-button {
-    background: #080d14;
+  background: #080d14;
 }
 
 .dark-theme .social-button img:not(.brand-color) {
-    filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
 }
 
 @media (max-width: 520px) {
-    .social-buttons {
-        grid-template-columns: 1fr;
-    }
+  .social-buttons {
+    grid-template-columns: 1fr;
+  }
 }

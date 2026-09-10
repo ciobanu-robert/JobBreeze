@@ -1,29 +1,8 @@
-<header class="app-header" [class.dark-theme]="theme.isDarkTheme()">
-    <a class="header-logo" routerLink="/">
-        <img
-            class="logo-icon"
-            [src]="
-                theme.isDarkTheme()
-                    ? '/assets/brand/logo-mark-dark.svg'
-                    : '/assets/brand/logo-mark-light.svg'"
-        >
-        <h3>JobBreeze</h3>
-    </a>
+<header class="app-header">
+  <app-brand-logo></app-brand-logo>
 
-    <nav class="header-options" aria-label="Site options">
-        <app-language-picker></app-language-picker>
-        <button
-            class="icon-button"
-            type="button"
-            [attr.aria-label]="language.t('header.toggleTheme')"
-            (click)="theme.toggleTheme()"
-        >
-            <img
-                [src]="theme.isDarkTheme()
-                    ? '/assets/theme/sun.svg'
-                    : '/assets/theme/moon.svg'"
-                alt=""
-            >
-        </button>
-    </nav>
+  <nav class="header-options" aria-label="Site options">
+    <app-language-picker></app-language-picker>
+    <app-theme-toggle></app-theme-toggle>
+  </nav>
 </header>

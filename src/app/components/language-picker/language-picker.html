@@ -1,32 +1,37 @@
 <div class="language-picker" [class.dark-theme]="theme.isDarkTheme()">
-    <button
-        class="icon-button"
-        type="button"
-        [attr.aria-label]="language.t('header.chooseLanguage')"
-        aria-haspopup="listbox"
-        [attr.aria-expanded]="isOpen()"
-        (click)="toggle()"
-    >
-        <img src="/assets/navigation/globe.svg" alt="">
-    </button>
+  <button
+    class="icon-button"
+    type="button"
+    [attr.aria-label]="language.t('header.chooseLanguage')"
+    aria-haspopup="listbox"
+    [attr.aria-expanded]="isOpen()"
+    (click)="toggle()"
+  >
+    <img src="/assets/navigation/globe.svg" alt="" />
+  </button>
 
-    @if (isOpen()) {
-        <ul class="language-menu" role="listbox">
-            @for (lang of language.languages; track lang.code) {
-                <li>
-                    <button
-                        class="language-option"
-                        type="button"
-                        role="option"
-                        [class.active]="lang.code === language.currentLanguage()"
-                        [attr.aria-selected]="lang.code === language.currentLanguage()"
-                        (click)="select(lang.code)"
-                    >
-                        <img class="language-flag" [src]="lang.flag" [alt]="lang.flagCode">
-                        <span class="language-label">{{ lang.label }}</span>
-                    </button>
-                </li>
-            }
-        </ul>
-    }
+  @if (isOpen()) {
+    <ul
+      class="language-menu"
+      role="listbox"
+      [class.open-upward]="openUpward()"
+      [class.align-left]="alignLeft()"
+    >
+      @for (lang of language.languages; track lang.code) {
+        <li>
+          <button
+            class="language-option"
+            type="button"
+            role="option"
+            [class.active]="lang.code === language.currentLanguage()"
+            [attr.aria-selected]="lang.code === language.currentLanguage()"
+            (click)="select(lang.code)"
+          >
+            <img class="language-flag" [src]="lang.flag" [alt]="lang.flagCode" />
+            <span class="language-label">{{ lang.label }}</span>
+          </button>
+        </li>
+      }
+    </ul>
+  }
 </div>

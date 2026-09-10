@@ -14,4 +14,3 @@ import { LanguageService } from '../../../services/language.service';
 export class ResetPassword {
   protected readonly language = inject(LanguageService);
 }
-

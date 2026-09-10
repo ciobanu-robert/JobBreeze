@@ -1,0 +1,146 @@
+:host {
+  display: block;
+}
+
+.dashboard-shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', sans-serif;
+}
+
+.sidebar {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  width: 260px;
+  flex-shrink: 0;
+  flex-direction: column;
+  padding: 20px 16px;
+  background: var(--sidebar);
+  color: var(--sidebar-foreground);
+  border-right: 1px solid var(--sidebar-border);
+}
+
+.sidebar-brand {
+  margin-bottom: 28px;
+  padding: 0 6px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--sidebar-foreground);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.85;
+  text-decoration: none;
+}
+
+.nav-item img {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18) saturate(10.52) hue-rotate(194deg)
+    brightness(0.92) contrast(0.96);
+}
+
+.dark-theme .nav-item img {
+  filter: brightness(0) invert(1);
+}
+
+.nav-item:not(.nav-item-inert):hover {
+  background: var(--sidebar-accent);
+  opacity: 1;
+}
+
+.nav-item.active {
+  background: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+  opacity: 1;
+}
+
+.nav-item-inert {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.sidebar-spacer {
+  flex: 1;
+}
+
+.sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 6px 0;
+  border-top: 1px solid var(--sidebar-border);
+}
+
+.sidebar-user {
+  overflow: hidden;
+  margin: 0;
+  color: var(--sidebar-foreground);
+  font-size: 13px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar-footer-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sign-out {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sign-out img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18) saturate(10.52) hue-rotate(194deg)
+    brightness(0.92) contrast(0.96);
+  opacity: 0.7;
+}
+
+.dark-theme .sign-out img {
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+.dashboard-main {
+  box-sizing: border-box;
+  min-width: 0;
+  flex: 1;
+  padding: 32px 40px;
+  /* Clip here (not tighter, around the swipe card) so drag/fly-out
+       animations have the full page to travel across without ever
+       growing the document's scrollable area. */
+  overflow: hidden;
+}

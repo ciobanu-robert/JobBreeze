@@ -1,0 +1,57 @@
+<div class="swipe-deck" [class.dark-theme]="theme.isDarkTheme()">
+  @if (!isEmpty()) {
+    <div class="card-stack">
+      @for (job of visibleJobs(); track job.id; let i = $index) {
+        <app-job-swipe-card
+          class="stack-item"
+          [style.zIndex]="10 - i"
+          [style.--depth]="i"
+          [job]="job"
+          [interactive]="i === 0"
+          (swiped)="onSwiped()"
+        ></app-job-swipe-card>
+      }
+    </div>
+
+    <div class="swipe-actions">
+      <button
+        class="action-button reject"
+        type="button"
+        [attr.aria-label]="language.t('swipeCard.rejectAria')"
+        (click)="topCard()?.triggerSwipe('reject')"
+      >
+        <img src="/assets/ui/x.svg" alt="" />
+      </button>
+      <button
+        class="action-button bookmark"
+        type="button"
+        [attr.aria-label]="language.t('swipeCard.bookmarkAria')"
+        (click)="topCard()?.triggerSwipe('save')"
+      >
+        <img src="/assets/jobs/bookmark.svg" alt="" />
+      </button>
+      <button
+        class="action-button like"
+        type="button"
+        [attr.aria-label]="language.t('swipeCard.likeAria')"
+        (click)="topCard()?.triggerSwipe('like')"
+      >
+        <img src="/assets/jobs/heart.svg" alt="" />
+      </button>
+      <button
+        class="action-button flag"
+        type="button"
+        [attr.aria-label]="language.t('swipeCard.flagAria')"
+      >
+        <img src="/assets/ui/flag.svg" alt="" />
+      </button>
+    </div>
+  } @else {
+    <div class="swipe-empty">
+      <p>{{ language.t('browse.emptyTitle') }}</p>
+      <button class="refresh-button" type="button" (click)="refresh()">
+        {{ language.t('browse.refresh') }}
+      </button>
+    </div>
+  }
+</div>

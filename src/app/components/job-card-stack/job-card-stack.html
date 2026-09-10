@@ -1,30 +1,34 @@
 <div class="job-stack" [attr.aria-label]="language.t('jobCard.ariaLabel')">
-    <div class="job-card-back back-one"></div>
-    <div class="job-card-back back-two"></div>
+  <div class="job-card-back back-one"></div>
+  <div class="job-card-back back-two"></div>
 
-    <article class="job-card">
-        <div class="job-card-top">
-            <div class="company-mark">J</div>
-            <div>
-                <h2>{{ language.t('jobCard.title') }}</h2>
-                <p>JobBreeze</p>
-            </div>
-        </div>
-        <p class="job-description">
-            {{ language.t('jobCard.description') }}
-        </p>
-        <div class="job-tags">
-            <span>{{ language.t('jobCard.tagRemote') }}</span>
-            <span>€60-80k</span>
-            <span>{{ language.t('jobCard.tagFullTime') }}</span>
-        </div>
-        <div class="job-controls">
-            <button class="reject-button" type="button" [attr.aria-label]="language.t('jobCard.skipAria')">
-                <img src="/assets/ui/x.svg" alt="">
-            </button>
-            <button class="like-button" type="button" [attr.aria-label]="language.t('jobCard.likeAria')">
-                <img src="/assets/jobs/heart.svg" alt="">
-            </button>
-        </div>
-    </article>
+  <article class="job-card">
+    <div class="job-card-top">
+      <div class="company-mark">J</div>
+      <div>
+        <h2>{{ language.t('jobCard.title') }}</h2>
+        <p>JobBreeze</p>
+      </div>
+    </div>
+    <p class="job-description">
+      {{ language.t('jobCard.description') }}
+    </p>
+    <div class="job-tags">
+      <span>{{ language.t('jobCard.tagRemote') }}</span>
+      <span>€60-80k</span>
+      <span>{{ language.t('jobCard.tagFullTime') }}</span>
+    </div>
+    <div class="job-controls">
+      <button
+        class="reject-button"
+        type="button"
+        [attr.aria-label]="language.t('jobCard.skipAria')"
+      >
+        <img src="/assets/ui/x.svg" alt="" />
+      </button>
+      <button class="like-button" type="button" [attr.aria-label]="language.t('jobCard.likeAria')">
+        <img src="/assets/jobs/heart.svg" alt="" />
+      </button>
+    </div>
+  </article>
 </div>

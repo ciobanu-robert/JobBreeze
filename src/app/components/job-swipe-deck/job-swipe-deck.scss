@@ -1,0 +1,114 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.swipe-deck {
+  --card-width: min(100%, 440px);
+  --card-height: 580px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+}
+
+.card-stack {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+}
+
+.stack-item {
+  position: absolute;
+  inset: 0;
+  transform: translateY(calc(var(--depth) * 10px)) scale(calc(1 - var(--depth) * 0.035));
+  transition: transform 0.25s ease;
+}
+
+.stack-item:not(:first-child) {
+  pointer-events: none;
+}
+
+.swipe-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--card);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+}
+
+.action-button img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18) saturate(10.52) hue-rotate(194deg)
+    brightness(0.92) contrast(0.96);
+}
+
+.dark-theme .action-button img {
+  filter: brightness(0) invert(1);
+}
+
+.action-button.reject:hover {
+  border-color: var(--destructive);
+}
+
+.action-button.like {
+  border-color: transparent;
+  background: var(--gradient-primary);
+  box-shadow: var(--shadow-glow);
+}
+
+.action-button.like img {
+  filter: brightness(0) invert(1);
+}
+
+.swipe-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: var(--card-width);
+  height: var(--card-height);
+  box-sizing: border-box;
+  padding: 32px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-2xl);
+  color: var(--muted-foreground);
+  text-align: center;
+}
+
+.swipe-empty p {
+  margin: 0 0 18px;
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.refresh-button {
+  padding: 10px 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--card);
+  color: var(--foreground);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}

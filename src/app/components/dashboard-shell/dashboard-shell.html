@@ -1,0 +1,39 @@
+<div class="dashboard-shell" [class.dark-theme]="theme.isDarkTheme()">
+  <aside class="sidebar">
+    <app-brand-logo class="sidebar-brand"></app-brand-logo>
+
+    <nav class="sidebar-nav" aria-label="Main navigation">
+      @for (item of navItems; track item.key) {
+        @if (item.route) {
+          <a class="nav-item" [class.active]="item.key === activeKey()" [routerLink]="item.route">
+            <img [src]="item.icon" alt="" />
+            <span>{{ language.t(item.labelKey) }}</span>
+          </a>
+        } @else {
+          <span class="nav-item nav-item-inert" [class.active]="item.key === activeKey()">
+            <img [src]="item.icon" alt="" />
+            <span>{{ language.t(item.labelKey) }}</span>
+          </span>
+        }
+      }
+    </nav>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="sidebar-footer">
+      <p class="sidebar-user">{{ userName() }}</p>
+      <div class="sidebar-footer-controls">
+        <app-theme-toggle></app-theme-toggle>
+        <app-language-picker></app-language-picker>
+      </div>
+      <button class="sign-out" type="button">
+        <img src="/assets/ui/log-out.svg" alt="" />
+        <span>{{ language.t('nav.signOut') }}</span>
+      </button>
+    </div>
+  </aside>
+
+  <main class="dashboard-main">
+    <ng-content></ng-content>
+  </main>
+</div>

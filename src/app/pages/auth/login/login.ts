@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthCard } from '../../../components/auth-card/auth-card';
 import { PageShell } from '../../../components/page-shell/page-shell';
 import { PasswordField } from '../../../components/password-field/password-field';
@@ -14,4 +14,10 @@ import { LanguageService } from '../../../services/language.service';
 })
 export class Login {
   protected readonly language = inject(LanguageService);
+  private readonly router = inject(Router);
+
+  // No auth backend yet — jump straight to the job-seeker home as a demo.
+  protected signIn(): void {
+    this.router.navigateByUrl('/browse');
+  }
 }

@@ -1,0 +1,173 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.swipe-card {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  height: 100%;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  background: var(--card);
+  color: var(--card-foreground);
+  box-shadow: var(--shadow-soft);
+  touch-action: none;
+  user-select: none;
+}
+
+.swipe-card.interactive {
+  cursor: grab;
+}
+
+.swipe-card.interactive.dragging {
+  cursor: grabbing;
+}
+
+.swipe-card:not(.dragging) {
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.stamp {
+  position: absolute;
+  top: 50%;
+  padding: 6px 14px;
+  border: 3px solid currentcolor;
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--success);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+.stamp-like {
+  left: 24px;
+  color: var(--success);
+  transform: translateY(-50%) rotate(-10deg);
+}
+
+.stamp-reject {
+  right: 24px;
+  color: var(--destructive);
+  transform: translateY(-50%) rotate(10deg);
+}
+
+.stamp-save {
+  left: 50%;
+  color: var(--accent);
+  transform: translate(-50%, -50%);
+}
+
+.swipe-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.company-mark {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-primary);
+  color: var(--primary-foreground);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.swipe-card-top h2 {
+  margin: 0;
+  color: var(--card-foreground);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 19px;
+}
+
+.swipe-card-top p {
+  margin: 2px 0 0;
+  color: var(--muted-foreground);
+  font-size: 13px;
+}
+
+.job-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.meta-pill img {
+  width: 12px;
+  height: 12px;
+  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18) saturate(10.52) hue-rotate(194deg)
+    brightness(0.92) contrast(0.96);
+  opacity: 0.7;
+}
+
+.dark-theme .meta-pill img {
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+.salary-pill {
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: rgb(0 175 184 / 12%);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.dark-theme .salary-pill {
+  background: rgb(0 201 211 / 16%);
+}
+
+.swipe-card-description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.swipe-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: auto;
+}
+
+.swipe-card-tags span {
+  padding: 5px 11px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  color: var(--foreground);
+  font-size: 12px;
+  font-weight: 600;
+}

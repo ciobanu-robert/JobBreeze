@@ -1,0 +1,68 @@
+:host {
+  display: block;
+}
+
+.browse-page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 64px);
+}
+
+.browse-content {
+  display: flex;
+  width: 100%;
+  max-width: 640px;
+  flex: 1;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.browse-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.browse-topbar h1 {
+  margin: 0;
+  color: var(--foreground);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+}
+
+.filters-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--card);
+  color: var(--foreground);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.filters-button img {
+  width: 15px;
+  height: 15px;
+  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18) saturate(10.52) hue-rotate(194deg)
+    brightness(0.92) contrast(0.96);
+}
+
+.dark-theme .filters-button img {
+  filter: brightness(0) invert(1);
+}
+
+.browse-deck {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}

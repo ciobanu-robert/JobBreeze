@@ -7,9 +7,6 @@ export interface LanguageDefinition {
   flag: string;
 }
 
-// Add a new language by appending its definition here (with its flag svg
-// under src/assets/flags/) and a matching dictionary entry in TRANSLATIONS
-// below — nothing else needs to change.
 export const LANGUAGES: LanguageDefinition[] = [
   { code: 'en', label: 'English', flagCode: 'GB', flag: '/assets/flags/gb.svg' },
   { code: 'ro', label: 'Română', flagCode: 'RO', flag: '/assets/flags/ro.svg' },
@@ -77,6 +74,29 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
     'social.google': 'Google',
     'social.apple': 'Apple',
     'social.facebook': 'Facebook',
+
+    'nav.browse': 'Browse',
+    'nav.applications': 'Applications',
+    'nav.messages': 'Messages',
+    'nav.jobbyAi': 'Jobby AI',
+    'nav.profile': 'Profile',
+    'nav.settings': 'Settings',
+    'nav.signOut': 'Sign out',
+    'nav.collapseSidebar': 'Collapse sidebar',
+    'nav.expandSidebar': 'Expand sidebar',
+
+    'browse.title': 'Browse jobs',
+    'browse.filters': 'Filters',
+    'browse.emptyTitle': 'No more jobs. Come back soon!',
+    'browse.refresh': 'Refresh',
+
+    'swipeCard.like': 'Like',
+    'swipeCard.nope': 'Nope',
+    'swipeCard.save': 'Saved',
+    'swipeCard.rejectAria': 'Skip this job',
+    'swipeCard.bookmarkAria': 'Save this job',
+    'swipeCard.likeAria': 'Like this job',
+    'swipeCard.flagAria': 'Report this job',
   },
   ro: {
     'header.chooseLanguage': 'Alege limba',
@@ -135,5 +155,28 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
     'social.google': 'Google',
     'social.apple': 'Apple',
     'social.facebook': 'Facebook',
+
+    'nav.browse': 'Explorează',
+    'nav.applications': 'Candidaturi',
+    'nav.messages': 'Mesaje',
+    'nav.jobbyAi': 'Jobby AI',
+    'nav.profile': 'Profil',
+    'nav.settings': 'Setări',
+    'nav.signOut': 'Deconectare',
+    'nav.collapseSidebar': 'Restrânge meniul',
+    'nav.expandSidebar': 'Extinde meniul',
+
+    'browse.title': 'Explorează joburi',
+    'browse.filters': 'Filtre',
+    'browse.emptyTitle': 'Nu mai sunt joburi. Revino curând!',
+    'browse.refresh': 'Reîncearcă',
+
+    'swipeCard.like': 'Îmi place',
+    'swipeCard.nope': 'Respins',
+    'swipeCard.save': 'Salvat',
+    'swipeCard.rejectAria': 'Respinge acest job',
+    'swipeCard.bookmarkAria': 'Salvează acest job',
+    'swipeCard.likeAria': 'Apreciază acest job',
+    'swipeCard.flagAria': 'Raportează acest job',
   },
 };

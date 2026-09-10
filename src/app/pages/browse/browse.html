@@ -1,0 +1,17 @@
+<app-dashboard-shell activeKey="browse">
+  <div class="browse-page" [class.dark-theme]="theme.isDarkTheme()">
+    <div class="browse-content">
+      <div class="browse-topbar">
+        <h1>{{ language.t('browse.title') }}</h1>
+        <button class="filters-button" type="button">
+          <img src="/assets/ui/filter.svg" alt="" />
+          {{ language.t('browse.filters') }}
+        </button>
+      </div>
+
+      <div class="browse-deck">
+        <app-job-swipe-deck></app-job-swipe-deck>
+      </div>
+    </div>
+  </div>
+</app-dashboard-shell>

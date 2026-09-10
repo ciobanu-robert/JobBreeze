@@ -19,7 +19,6 @@ export class LanguageService {
     this.persist(code);
   }
 
-  /** Translates a key for the currently selected language, falling back to the default language. */
   t(key: string): string {
     const dictionary = TRANSLATIONS[this.currentLanguage()];
     return dictionary[key] ?? TRANSLATIONS[DEFAULT_LANGUAGE][key] ?? key;
