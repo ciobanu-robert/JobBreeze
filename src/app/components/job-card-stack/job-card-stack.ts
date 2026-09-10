@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   imports: [],
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './job-card-stack.scss',
   templateUrl: './job-card-stack.html',
 })
-export class JobCardStack {}
+export class JobCardStack {
+  protected readonly language = inject(LanguageService);
+}

@@ -11,13 +11,11 @@
     </a>
 
     <nav class="header-options" aria-label="Site options">
-        <button class="icon-button" type="button" aria-label="Choose language">
-            <img src="/assets/navigation/globe.svg" alt="">
-        </button>
+        <app-language-picker></app-language-picker>
         <button
             class="icon-button"
             type="button"
-            aria-label="Toggle theme"
+            [attr.aria-label]="language.t('header.toggleTheme')"
             (click)="theme.toggleTheme()"
         >
             <img

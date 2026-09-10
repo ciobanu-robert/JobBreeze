@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   imports: [RouterLink],
@@ -7,4 +8,6 @@ import { RouterLink } from '@angular/router';
   styleUrl: './hero-cta-buttons.scss',
   templateUrl: './hero-cta-buttons.html',
 })
-export class HeroCtaButtons {}
+export class HeroCtaButtons {
+  protected readonly language = inject(LanguageService);
+}

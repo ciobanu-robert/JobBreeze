@@ -1,14 +1,14 @@
 <div class="social-login" [class.dark-theme]="theme.isDarkTheme()">
-    <div class="auth-divider"><span>or continue with</span></div>
+    <div class="auth-divider"><span>{{ language.t('social.orContinueWith') }}</span></div>
     <div class="social-buttons">
         <button class="social-button" type="button">
-            <img class="brand-color" src="/assets/social/google.svg" alt="">Google
+            <img class="brand-color" src="/assets/social/google.svg" alt="">{{ language.t('social.google') }}
         </button>
         <button class="social-button" type="button">
-            <img src="/assets/social/apple.svg" alt="">Apple
+            <img src="/assets/social/apple.svg" alt="">{{ language.t('social.apple') }}
         </button>
         <button class="social-button" type="button">
-            <img src="/assets/social/facebook.svg" alt="">Facebook
+            <img src="/assets/social/facebook.svg" alt="">{{ language.t('social.facebook') }}
         </button>
     </div>
 </div>
