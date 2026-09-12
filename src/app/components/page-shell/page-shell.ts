@@ -1,4 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { 
+  Component, 
+  inject 
+} from '@angular/core';
 import { Header } from '../header/header';
 import { ThemeService } from '../../services/theme.service';
 

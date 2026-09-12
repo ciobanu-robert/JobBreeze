@@ -10,18 +10,29 @@
   (pointerup)="onPointerUp($event)"
   (pointercancel)="onPointerUp($event)"
 >
-  <span class="stamp stamp-like" [style.opacity]="likeOpacity">{{
-    language.t('swipeCard.like')
-  }}</span>
-  <span class="stamp stamp-reject" [style.opacity]="rejectOpacity">{{
-    language.t('swipeCard.nope')
-  }}</span>
-  <span class="stamp stamp-save" [style.opacity]="saveOpacity">{{
-    language.t('swipeCard.save')
-  }}</span>
+  <span 
+    class="stamp stamp-like" 
+    [style.opacity]="likeOpacity"
+  >
+    {{ language.t('swipeCard.like') }}
+  </span>
+  <span 
+    class="stamp stamp-reject" 
+    [style.opacity]="rejectOpacity"
+  >
+    {{ language.t('swipeCard.nope') }}
+  </span>
+  <span 
+    class="stamp stamp-save" 
+    [style.opacity]="saveOpacity"
+  >
+    {{ language.t('swipeCard.save') }}
+  </span>
 
   <div class="swipe-card-top">
-    <div class="company-mark">{{ job().avatarInitial }}</div>
+    <div class="company-mark">
+      {{ job().avatarInitial }}
+    </div>
     <div>
       <h2>{{ job().title }}</h2>
       <p>{{ job().company }}</p>
@@ -37,11 +48,17 @@
       <img src="/assets/jobs/briefcase.svg" alt="" />
       {{ job().workType }}
     </span>
-    <span class="meta-pill">{{ job().seniority }}</span>
-    <span class="salary-pill">{{ job().salary }}</span>
+    <span class="meta-pill">
+      {{ job().seniority }}
+    </span>
+    <span class="salary-pill">
+      {{ job().salary }}
+    </span>
   </div>
 
-  <p class="swipe-card-description">{{ job().description }}</p>
+  <p class="swipe-card-description">
+    {{ job().description }}
+  </p>
 
   <div class="swipe-card-tags">
     @for (tag of job().tags; track tag) {

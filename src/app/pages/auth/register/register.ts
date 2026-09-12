@@ -1,4 +1,8 @@
-import { Component, inject, signal } from '@angular/core';
+import { 
+  Component, 
+  inject, 
+  signal 
+} from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthCard } from '../../../components/auth-card/auth-card';
 import { PageShell } from '../../../components/page-shell/page-shell';
@@ -17,7 +21,6 @@ export class Register {
   protected readonly role = signal<'seeker' | 'company'>('seeker');
   private readonly router = inject(Router);
 
-  // No auth backend yet — job seekers land on the demo browse page; hiring flow isn't built yet.
   protected createAccount(): void {
     if (this.role() === 'seeker') {
       this.router.navigateByUrl('/browse');

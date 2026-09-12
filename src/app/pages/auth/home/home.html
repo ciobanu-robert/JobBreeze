@@ -4,16 +4,19 @@
       <div class="hero-copy">
         <h1>
           {{ language.t('home.heroTitlePlain') }}
-          <strong>{{ language.t('home.heroTitleHighlight') }}</strong
-          >.
+          <strong>
+            {{ language.t('home.heroTitleHighlight') }}
+          </strong>
         </h1>
         <p class="hero-description">
           {{ language.t('home.heroDescription') }}
         </p>
-        <app-hero-cta-buttons></app-hero-cta-buttons>
+        <app-hero-cta-buttons>
+        </app-hero-cta-buttons>
       </div>
 
-      <app-job-card-stack></app-job-card-stack>
+      <app-job-card-stack>
+      </app-job-card-stack>
     </section>
   </main>
 </app-page-shell>

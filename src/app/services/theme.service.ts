@@ -1,4 +1,8 @@
-import { effect, Injectable, signal } from '@angular/core';
+import { 
+  effect, 
+  Injectable, 
+  signal 
+} from '@angular/core';
 
 const THEME_STORAGE_KEY = 'jobbreeze-theme';
 

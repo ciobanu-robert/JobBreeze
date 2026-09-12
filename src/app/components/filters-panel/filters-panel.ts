@@ -1,4 +1,12 @@
-import { Component, HostListener, effect, inject, input, output, signal } from '@angular/core';
+import { 
+  Component, 
+  HostListener, 
+  effect, 
+  inject, 
+  input, 
+  output, 
+  signal 
+} from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
 import { EMPTY_JOB_FILTERS, JobFilters } from '../../models/job-filters';
@@ -25,7 +33,6 @@ export class FiltersPanel {
   protected readonly salaryMin = signal<number | null>(null);
 
   constructor() {
-    // Re-seed the draft from the currently-applied filters every time the panel opens.
     effect(() => {
       if (!this.open()) {
         return;

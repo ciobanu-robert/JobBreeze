@@ -1,16 +1,27 @@
 <app-page-shell>
   <main class="auth-main">
     <app-auth-card>
-      <h1 class="auth-title">{{ language.t('auth.register.title') }}</h1>
-      <p class="auth-subtitle">{{ language.t('auth.register.subtitle') }}</p>
+      <h1 class="auth-title">
+        {{ language.t('auth.register.title') }}
+      </h1>
+      <p class="auth-subtitle">
+        {{ language.t('auth.register.subtitle') }}</p>
 
       <form class="auth-form">
         <div class="auth-field">
-          <label for="register-name">{{ language.t('auth.fullNameLabel') }}</label>
-          <input id="register-name" type="text" autocomplete="name" />
+          <label for="register-name">
+            {{ language.t('auth.fullNameLabel') }}
+          </label>
+          <input 
+            id="register-name" 
+            type="text" 
+            autocomplete="name" 
+          />
         </div>
 
-        <span class="auth-role-label">{{ language.t('auth.roleLabel') }}</span>
+        <span class="auth-role-label">
+          {{ language.t('auth.roleLabel') }}
+        </span>
         <div class="role-options">
           <button
             class="role-option"
@@ -31,26 +42,41 @@
         </div>
 
         <div class="auth-field">
-          <label for="register-email">{{ language.t('auth.emailLabel') }}</label>
-          <input id="register-email" type="email" autocomplete="email" />
+          <label for="register-email">
+            {{ language.t('auth.emailLabel') }}
+          </label>
+          <input 
+            id="register-email" 
+            type="email" 
+            autocomplete="email" 
+          />
         </div>
 
         <div class="auth-field">
-          <label for="register-password">{{ language.t('auth.passwordLabel') }}</label>
+          <label for="register-password">
+            {{ language.t('auth.passwordLabel') }}
+          </label>
           <app-password-field
             fieldId="register-password"
             autocomplete="new-password"
           ></app-password-field>
         </div>
 
-        <button class="auth-submit" type="button" (click)="createAccount()">
+        <button 
+          class="auth-submit" 
+          type="button" 
+          (click)="createAccount()"
+        >
           {{ language.t('auth.createAccount') }}
         </button>
         <p class="auth-switch">
           {{ language.t('auth.haveAccount') }}
-          <a class="auth-link" routerLink="/login">{{ language.t('auth.signIn') }}</a>
+          <a class="auth-link" routerLink="/login">
+            {{ language.t('auth.signIn') }}
+          </a>
         </p>
-        <app-social-login-buttons></app-social-login-buttons>
+        <app-social-login-buttons>
+        </app-social-login-buttons>
       </form>
     </app-auth-card>
   </main>

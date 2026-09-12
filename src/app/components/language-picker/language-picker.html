@@ -1,4 +1,7 @@
-<div class="language-picker" [class.dark-theme]="theme.isDarkTheme()">
+<div 
+  class="language-picker" 
+  [class.dark-theme]="theme.isDarkTheme()"
+>
   <button
     class="icon-button"
     type="button"
@@ -28,7 +31,9 @@
             (click)="select(lang.code)"
           >
             <img class="language-flag" [src]="lang.flag" [alt]="lang.flagCode" />
-            <span class="language-label">{{ lang.label }}</span>
+            <span class="language-label">
+              {{ lang.label }}
+            </span>
           </button>
         </li>
       }

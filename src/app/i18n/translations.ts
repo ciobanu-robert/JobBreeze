@@ -8,15 +8,26 @@ export interface LanguageDefinition {
 }
 
 export const LANGUAGES: LanguageDefinition[] = [
-  { code: 'en', label: 'English', flagCode: 'GB', flag: '/assets/flags/gb.svg' },
-  { code: 'ro', label: 'Română', flagCode: 'RO', flag: '/assets/flags/ro.svg' },
+  { 
+    code: 'en', 
+    label: 'English', 
+    flagCode: 'GB', 
+    flag: '/assets/flags/gb.svg' 
+  },
+  { 
+    code: 'ro', 
+    label: 'Română', 
+    flagCode: 'RO', 
+    flag: '/assets/flags/ro.svg' 
+  }
 ];
 
 export const DEFAULT_LANGUAGE: LanguageCode = 'en';
 
 type TranslationDictionary = Record<string, string>;
 
-export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
+export const TRANSLATIONS: 
+Record<LanguageCode, TranslationDictionary> = {
   en: {
     'header.chooseLanguage': 'Choose language',
     'header.toggleTheme': 'Toggle theme',
@@ -24,7 +35,10 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
     'home.heroTitlePlain': 'Find the dream job more',
     'home.heroTitleHighlight': 'easily',
     'home.heroDescription':
-      'Looking for a new job takes time and energy. JobBreeze helps you find roles that fit your skills, your interests, and the life you want to build.',
+      'Looking for a new job takes time and energy. ' +
+      'JobBreeze helps you find roles that fit your ' +
+      'skills, your interests, and the life you want ' +
+      'to build.',
 
     'cta.login': "Let's log in",
     'cta.register': 'Register',
@@ -32,7 +46,9 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
     'jobCard.ariaLabel': 'Example job card',
     'jobCard.title': 'Product Designer',
     'jobCard.description':
-      'Join a small team building tools people use every day. You will have room to do thoughtful work and make a visible difference.',
+      'Join a small team building tools people use ' +
+      'every day. You will have room to do thoughtful ' +
+      'work and make a visible difference.',
     'jobCard.tagRemote': 'Remote',
     'jobCard.tagFullTime': 'Full-time',
     'jobCard.skipAria': 'Skip job',
@@ -126,7 +142,10 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
     'home.heroTitlePlain': 'Găsește jobul de vis mai',
     'home.heroTitleHighlight': 'ușor',
     'home.heroDescription':
-      'Căutarea unui job nou necesită timp și energie. JobBreeze te ajută să găsești roluri potrivite abilităților, intereselor tale și vieții pe care vrei să o construiești.',
+      'Căutarea unui job nou necesită timp și energie. ' +
+      'JobBreeze te ajută să găsești roluri potrivite ' +
+      'abilităților, intereselor tale și vieții pe care ' +
+      'vrei să o construiești.',
 
     'cta.login': 'Autentificare',
     'cta.register': 'Înregistrare',
@@ -134,7 +153,10 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
     'jobCard.ariaLabel': 'Exemplu de anunț de job',
     'jobCard.title': 'Product Designer',
     'jobCard.description':
-      'Alătură-te unei echipe mici care construiește instrumente folosite zilnic. Vei avea spațiu pentru muncă atentă și pentru a face o diferență vizibilă.',
+      'Alătură-te unei echipe mici care construiește ' +
+      'instrumente folosite zilnic. Vei avea spațiu ' +
+      'pentru muncă atentă și pentru a face o diferență ' +
+      'vizibilă.',
     'jobCard.tagRemote': 'Remote',
     'jobCard.tagFullTime': 'Full-time',
     'jobCard.skipAria': 'Respinge jobul',

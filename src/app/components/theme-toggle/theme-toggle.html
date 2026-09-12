@@ -5,5 +5,9 @@
   [attr.aria-label]="language.t('header.toggleTheme')"
   (click)="theme.toggleTheme()"
 >
-  <img [src]="theme.isDarkTheme() ? '/assets/theme/sun.svg' : '/assets/theme/moon.svg'" alt="" />
+  <img 
+    [src]="theme.isDarkTheme() ? 
+    '/assets/theme/sun.svg' : 
+    '/assets/theme/moon.svg'" alt="" 
+  />
 </button>

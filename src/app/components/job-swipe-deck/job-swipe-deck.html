@@ -1,4 +1,7 @@
-<div class="swipe-deck" [class.dark-theme]="theme.isDarkTheme()">
+<div 
+  class="swipe-deck" 
+  [class.dark-theme]="theme.isDarkTheme()"
+>
   @if (!isEmpty()) {
     <div class="card-stack">
       @for (job of visibleJobs(); track job.id; let i = $index) {
@@ -48,8 +51,14 @@
     </div>
   } @else {
     <div class="swipe-empty">
-      <p>{{ language.t('browse.emptyTitle') }}</p>
-      <button class="refresh-button" type="button" (click)="refresh()">
+      <p>
+        {{ language.t('browse.emptyTitle') }}
+      </p>
+      <button 
+        class="refresh-button" 
+        type="button" 
+        (click)="refresh()"
+      >
         {{ language.t('browse.refresh') }}
       </button>
     </div>

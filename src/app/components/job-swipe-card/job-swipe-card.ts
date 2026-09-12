@@ -1,4 +1,10 @@
-import { Component, inject, input, output, signal } from '@angular/core';
+import { 
+  Component, 
+  inject, 
+  input, 
+  output, 
+  signal 
+} from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
 import { Job } from '../../models/job';
@@ -29,17 +35,19 @@ export class JobSwipeCard {
   protected readonly dragX = signal(0);
   protected readonly dragY = signal(0);
   protected readonly dragging = signal(false);
-  protected readonly exiting = signal<SwipeDirection | null>(null);
+  protected readonly exiting = 
+  signal<SwipeDirection | null>(null);
 
   private pointerId: number | null = null;
   private startX = 0;
   private startY = 0;
 
   protected get rotation(): number {
-    return Math.max(-MAX_ROTATION, Math.min(MAX_ROTATION, this.dragX() / 12));
+    return Math.max(-MAX_ROTATION, Math.min(
+      MAX_ROTATION, this.dragX() / 12
+    ));
   }
 
-  /** Only the most-likely outcome's stamp should ever be visible, never two at once. */
   private get dominantDirection(): SwipeDirection | null {
     const dx = this.dragX();
     const dy = this.dragY();
@@ -56,21 +64,27 @@ export class JobSwipeCard {
     if (this.dominantDirection !== 'like') {
       return 0;
     }
-    return Math.max(0, Math.min(1, this.dragX() / SWIPE_THRESHOLD));
+    return Math.max(
+      0, Math.min(1, this.dragX() / SWIPE_THRESHOLD
+    ));
   }
 
   protected get rejectOpacity(): number {
     if (this.dominantDirection !== 'reject') {
       return 0;
     }
-    return Math.max(0, Math.min(1, -this.dragX() / SWIPE_THRESHOLD));
+    return Math.max(
+      0, Math.min(1, -this.dragX() / SWIPE_THRESHOLD)
+    );
   }
 
   protected get saveOpacity(): number {
     if (this.dominantDirection !== 'save') {
       return 0;
     }
-    return Math.max(0, Math.min(1, -this.dragY() / SWIPE_UP_THRESHOLD));
+    return Math.max(
+      0, Math.min(1, -this.dragY() / SWIPE_UP_THRESHOLD
+    ));
   }
 
   protected onPointerDown(event: PointerEvent): void {
@@ -89,7 +103,6 @@ export class JobSwipeCard {
       return;
     }
     this.dragX.set(event.clientX - this.startX);
-    // Only upward movement drives the save gesture; dragging down is a no-op.
     this.dragY.set(Math.min(0, event.clientY - this.startY));
   }
 
@@ -115,7 +128,6 @@ export class JobSwipeCard {
     }
   }
 
-  /** Called by a parent action button to animate the swipe programmatically. */
   triggerSwipe(direction: SwipeDirection): void {
     if (this.exiting()) {
       return;
@@ -129,7 +141,9 @@ export class JobSwipeCard {
       this.dragX.set(0);
       this.dragY.set(-FLY_UP_DISTANCE);
     } else {
-      this.dragX.set(direction === 'like' ? FLY_OUT_DISTANCE : -FLY_OUT_DISTANCE);
+      this.dragX.set(
+        direction === 'like' ? FLY_OUT_DISTANCE : -FLY_OUT_DISTANCE
+      );
     }
     setTimeout(() => this.swiped.emit(direction), EXIT_DURATION_MS);
   }

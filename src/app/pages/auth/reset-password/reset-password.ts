@@ -1,4 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { 
+  Component, 
+  inject 
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthCard } from '../../../components/auth-card/auth-card';
 import { PageShell } from '../../../components/page-shell/page-shell';

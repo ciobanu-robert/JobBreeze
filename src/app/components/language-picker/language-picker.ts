@@ -1,4 +1,10 @@
-import { Component, ElementRef, HostListener, inject, signal } from '@angular/core';
+import { 
+  Component, 
+  ElementRef, 
+  HostListener, 
+  inject, 
+  signal 
+} from '@angular/core';
 import { LanguageCode } from '../../i18n/translations';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
@@ -38,10 +44,14 @@ export class LanguagePicker {
 
     const spaceBelow = window.innerHeight - rect.bottom;
     const spaceAbove = rect.top;
-    this.openUpward.set(spaceBelow < estimatedHeight + VIEWPORT_MARGIN && spaceAbove > spaceBelow);
+    this.openUpward.set(
+      spaceBelow < 
+      estimatedHeight + 
+      VIEWPORT_MARGIN && 
+      spaceAbove > 
+      spaceBelow
+    );
 
-    // Anchored right-aligned by default (menu extends left from the button's right edge).
-    // If there isn't enough room to the left, flip to anchor left-aligned instead.
     this.alignLeft.set(rect.right - ESTIMATED_MENU_WIDTH < VIEWPORT_MARGIN);
   }
 
@@ -52,7 +62,12 @@ export class LanguagePicker {
 
   @HostListener('document:click', ['$event'])
   protected onDocumentClick(event: MouseEvent): void {
-    if (this.isOpen() && !this.elementRef.nativeElement.contains(event.target as Node)) {
+    if (
+      this.isOpen() && 
+      !this.elementRef.nativeElement.contains(
+        event.target as Node
+      )
+      ) {
       this.isOpen.set(false);
     }
   }
