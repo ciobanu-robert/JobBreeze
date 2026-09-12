@@ -19,6 +19,7 @@
   box-shadow: var(--shadow-soft);
   touch-action: none;
   user-select: none;
+  overscroll-behavior: none;
 }
 
 .swipe-card.interactive {
@@ -30,7 +31,7 @@
 }
 
 .swipe-card:not(.dragging) {
-  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.38s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .stamp {
@@ -122,8 +123,9 @@
 .meta-pill img {
   width: 12px;
   height: 12px;
-  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18) saturate(10.52) hue-rotate(194deg)
-    brightness(0.92) contrast(0.96);
+  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18)
+    saturate(10.52) hue-rotate(194deg) brightness(0.92)
+    contrast(0.96);
   opacity: 0.7;
 }
 
@@ -150,6 +152,7 @@
   min-height: 0;
   margin: 0;
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding-right: 6px;
   color: var(--muted-foreground);
   font-size: 13px;

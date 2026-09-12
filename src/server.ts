@@ -7,7 +7,10 @@ import {
 import express from 'express';
 import { join } from 'node:path';
 
-const browserDistFolder = join(import.meta.dirname, '../browser');
+const browserDistFolder = join(
+  import.meta.dirname,
+  '../browser',
+);
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
@@ -42,7 +45,9 @@ app.use((req, res, next) => {
   angularApp
     .handle(req)
     .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
+      response
+        ? writeResponseToNodeResponse(response, res)
+        : next(),
     )
     .catch(next);
 });
@@ -58,11 +63,10 @@ if (isMainModule(import.meta.url) || process.env['pm_id']) {
       throw error;
     }
 
-    console.log(`Node Express server listening on http://localhost:${port}`);
+    console.log(
+      `Node Express server listening on http://localhost:${port}`,
+    );
   });
 }
 
-/**
- * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
- */
 export const reqHandler = createNodeRequestHandler(app);

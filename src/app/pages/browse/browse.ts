@@ -1,15 +1,18 @@
-import { 
-  Component, 
-  computed, 
-  inject, 
-  signal 
+import {
+  Component,
+  computed,
+  inject,
+  signal,
 } from '@angular/core';
 import { DashboardShell } from '../../components/dashboard-shell/dashboard-shell';
 import { JobSwipeDeck } from '../../components/job-swipe-deck/job-swipe-deck';
 import { FiltersPanel } from '../../components/filters-panel/filters-panel';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
-import { EMPTY_JOB_FILTERS, JobFilters } from '../../models/job-filters';
+import {
+  EMPTY_JOB_FILTERS,
+  JobFilters,
+} from '../../models/job-filters';
 import { DEMO_JOBS } from '../../components/job-swipe-deck/demo-jobs';
 
 function salaryUpperBound(salary: string): number {
@@ -19,11 +22,7 @@ function salaryUpperBound(salary: string): number {
 
 @Component({
   selector: 'app-browse',
-  imports: [
-    DashboardShell, 
-    JobSwipeDeck, 
-    FiltersPanel
-  ],
+  imports: [DashboardShell, JobSwipeDeck, FiltersPanel],
   styleUrl: './browse.scss',
   templateUrl: './browse.html',
 })
@@ -32,18 +31,19 @@ export class Browse {
   protected readonly theme = inject(ThemeService);
 
   protected readonly isFiltersOpen = signal(false);
-  protected readonly filters = signal<JobFilters>(EMPTY_JOB_FILTERS);
+  protected readonly filters = signal<JobFilters>(
+    EMPTY_JOB_FILTERS,
+  );
 
   protected readonly filteredJobs = computed(() => {
     const f = this.filters();
     return DEMO_JOBS.filter((job) => {
       if (
-          f.location && 
-          !job.location.toLowerCase().includes(
-            f.location.toLowerCase()
-          )
-        ) 
-      {
+        f.location &&
+        !job.location
+          .toLowerCase()
+          .includes(f.location.toLowerCase())
+      ) {
         return false;
       }
       if (f.remoteMode && job.workType !== f.remoteMode) {
@@ -56,11 +56,9 @@ export class Browse {
         return false;
       }
       if (
-        f.salaryMin !== null && 
-        salaryUpperBound(job.salary) < 
-        f.salaryMin
-        ) 
-      {
+        f.salaryMin !== null &&
+        salaryUpperBound(job.salary) < f.salaryMin
+      ) {
         return false;
       }
       return true;

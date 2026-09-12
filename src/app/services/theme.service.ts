@@ -1,8 +1,4 @@
-import { 
-  effect, 
-  Injectable, 
-  signal 
-} from '@angular/core';
+import { effect, Injectable, signal } from '@angular/core';
 
 const THEME_STORAGE_KEY = 'jobbreeze-theme';
 
@@ -14,7 +10,10 @@ export class ThemeService {
     effect(() => {
       const isDark = this.isDarkTheme();
       if (typeof document !== 'undefined') {
-        document.documentElement.classList.toggle('dark-theme', isDark);
+        document.documentElement.classList.toggle(
+          'dark-theme',
+          isDark,
+        );
       }
     });
   }
@@ -39,6 +38,9 @@ export class ThemeService {
     if (typeof localStorage === 'undefined') {
       return;
     }
-    localStorage.setItem(THEME_STORAGE_KEY, isDark ? 'dark' : 'light');
+    localStorage.setItem(
+      THEME_STORAGE_KEY,
+      isDark ? 'dark' : 'light',
+    );
   }
 }

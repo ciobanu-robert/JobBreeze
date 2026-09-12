@@ -1,24 +1,24 @@
 :host {
-    display: block;
+  display: block;
 }
 
 .auth-card {
-    width: min(100%, 410px);
-    box-sizing: border-box;
-    padding: 32px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-2xl);
-    background: var(--card);
-    color: var(--card-foreground);
-    box-shadow: 0 25px 80px -20px rgb(24 32 38 / 18%);
+  width: min(100%, 410px);
+  box-sizing: border-box;
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  background: var(--card);
+  color: var(--card-foreground);
+  box-shadow: 0 25px 80px -20px rgb(24 32 38 / 18%);
 }
 
 :host-context(.page-shell.dark-theme) .auth-card {
-    box-shadow: 0 25px 80px -20px rgb(0 0 0 / 45%);
+  box-shadow: 0 25px 80px -20px rgb(0 0 0 / 45%);
 }
 
 @media (max-width: 520px) {
-    .auth-card {
-        padding: 24px 20px;
-    }
+  .auth-card {
+    padding: 24px 20px;
+  }
 }

@@ -1,136 +1,150 @@
 :host {
-    display: block;
+  display: block;
 }
 
 .job-stack {
-    position: relative;
-    width: 360px;
-    height: 430px;
-    justify-self: center;
-    transform: rotate(-5deg);
+  position: relative;
+  width: 360px;
+  height: 430px;
+  margin: 0 auto;
+  transform: rotate(-5deg);
 }
 
 .job-card,
 .job-card-back {
-    position: absolute;
-    box-sizing: border-box;
-    width: 290px;
-    height: 380px;
-    border: 1px solid var(--panel-border);
-    border-radius: var(--radius-3xl);
+  position: absolute;
+  box-sizing: border-box;
+  width: 290px;
+  height: 380px;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-3xl);
 }
 
 .job-card-back {
-    right: 20px;
-    bottom: 22px;
-    background: var(--secondary);
+  right: 20px;
+  bottom: 22px;
+  background: var(--secondary);
 }
 
 .back-one {
-    transform: rotate(11deg) translate(9px, 4px);
+  transform: rotate(11deg) translate(9px, 4px);
 }
 
 .back-two {
-    transform: rotate(5deg) translate(5px, 2px);
+  transform: rotate(5deg) translate(5px, 2px);
 }
 
 .job-card {
-    right: 42px;
-    bottom: 26px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    padding: 27px 23px 21px;
-    background: var(--card);
-    color: var(--card-foreground);
-    box-shadow: var(--shadow-soft);
+  right: 42px;
+  bottom: 26px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 27px 23px 21px;
+  background: var(--card);
+  color: var(--card-foreground);
+  box-shadow: var(--shadow-soft);
 }
 
 .job-card-top {
-    display: flex;
-    align-items: center;
-    gap: 11px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
 }
 
 .company-mark {
-    display: grid;
-    place-items: center;
-    width: 47px;
-    height: 47px;
-    border-radius: 50%;
-    background: var(--gradient-primary);
-    color: var(--accent-foreground);
-    font-size: 11px;
-    font-weight: 700;
+  display: grid;
+  place-items: center;
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: var(--accent-foreground);
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .job-card h2 {
-    margin: 0;
-    font-size: 19px;
+  margin: 0;
+  font-size: 19px;
 }
 
 .job-card-top p {
-    margin-top: 4px;
-    color: var(--muted-foreground);
-    font-size: 13px;
+  margin-top: 4px;
+  color: var(--muted-foreground);
+  font-size: 13px;
 }
 
 .job-description {
-    margin-top: 31px;
-    color: var(--muted-foreground);
-    font-size: 14px;
-    line-height: 1.48;
+  margin-top: 31px;
+  color: var(--muted-foreground);
+  font-size: 14px;
+  line-height: 1.48;
 }
 
 .job-tags {
-    display: flex;
-    gap: 9px;
-    margin-top: 18px;
+  display: flex;
+  gap: 9px;
+  margin-top: 18px;
 }
 
 .job-tags span {
-    padding: 5px 8px;
-    border-radius: 7px;
-    background: var(--secondary);
-    color: var(--secondary-foreground);
-    font-size: 12px;
+  padding: 5px 8px;
+  border-radius: 7px;
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  font-size: 12px;
 }
 
 .job-controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
 }
 
 .reject-button,
 .like-button {
-    display: grid;
-    place-items: center;
-    width: 47px;
-    height: 47px;
-    border: 0;
-    border-radius: 50%;
-    cursor: pointer;
+  display: grid;
+  place-items: center;
+  width: 47px;
+  height: 47px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .reject-button {
-    background: var(--muted);
+  background: var(--muted);
 }
 
 .reject-button img {
-    width: 20px;
-    height: 20px;
-    filter: brightness(0) saturate(100%) invert(30%) sepia(97%) saturate(3830%)
-        hue-rotate(341deg) brightness(95%) contrast(93%);
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) saturate(100%) invert(30%)
+    sepia(97%) saturate(3830%) hue-rotate(341deg)
+    brightness(95%) contrast(93%);
 }
 
 .like-button {
-    background: var(--gradient-primary);
+  background: var(--gradient-primary);
 }
 
 .like-button img {
-    width: 21px;
-    height: 21px;
-    filter: brightness(0) saturate(100%);
+  width: 21px;
+  height: 21px;
+  filter: brightness(0) saturate(100%);
+}
+
+/* The whole composition is built from fixed pixel dimensions (needed for
+   the absolutely-positioned "fanned cards" look), so it doesn't shrink on
+   its own. `zoom` scales the box AND everything inside it (padding,
+   fonts, the absolutely-positioned children) together in one proportional
+   step — re-specifying each dimension by hand (an earlier attempt at
+   this) left the inner content sized for the original 360px card inside
+   a smaller box, which overflowed/looked broken. */
+@media (max-width: 480px) {
+  .job-stack {
+    zoom: 0.72;
+  }
 }

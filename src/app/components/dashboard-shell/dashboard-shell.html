@@ -1,17 +1,16 @@
-<div 
-  class="dashboard-shell" 
+<div
+  class="dashboard-shell"
   [class.dark-theme]="theme.isDarkTheme()"
 >
   <aside class="sidebar">
-    <app-brand-logo class="sidebar-brand">
-    </app-brand-logo>
+    <app-brand-logo class="sidebar-brand"> </app-brand-logo>
 
     <nav class="sidebar-nav" aria-label="Main navigation">
       @for (item of navItems; track item.key) {
         @if (item.route) {
-          <a 
-            class="nav-item" 
-            [class.active]="item.key === activeKey()" 
+          <a
+            class="nav-item"
+            [class.active]="item.key === activeKey()"
             [routerLink]="item.route"
           >
             <img [src]="item.icon" alt="" />
@@ -20,8 +19,8 @@
             </span>
           </a>
         } @else {
-          <span 
-            class="nav-item nav-item-inert" 
+          <span
+            class="nav-item nav-item-inert"
             [class.active]="item.key === activeKey()"
           >
             <img [src]="item.icon" alt="" />
@@ -50,7 +49,75 @@
     </div>
   </aside>
 
+  <header class="mobile-topbar">
+    <app-brand-logo></app-brand-logo>
+    <div class="mobile-topbar-controls">
+      <app-theme-toggle></app-theme-toggle>
+      <app-language-picker></app-language-picker>
+      <button
+        class="mobile-icon-button"
+        type="button"
+        [attr.aria-label]="language.t('nav.signOut')"
+      >
+        <img src="/assets/ui/log-out.svg" alt="" />
+      </button>
+    </div>
+  </header>
+
   <main class="dashboard-main">
     <ng-content></ng-content>
   </main>
+
+  <nav
+    class="mobile-bottom-nav"
+    aria-label="Main navigation"
+  >
+    @for (item of mobileNavItems; track item.key) {
+      @if (item.route) {
+        <a
+          class="mobile-nav-item"
+          [class.active]="item.key === activeKey()"
+          [routerLink]="item.route"
+        >
+          <span
+            class="mobile-nav-icon"
+            [style]="
+              'mask-image:url(' +
+              item.icon +
+              ');-webkit-mask-image:url(' +
+              item.icon +
+              ')'
+            "
+          ></span>
+          <span>{{ language.t(item.labelKey) }}</span>
+        </a>
+      } @else {
+        <span
+          class="mobile-nav-item mobile-nav-item-inert"
+          [class.active]="item.key === activeKey()"
+        >
+          <span
+            class="mobile-nav-icon"
+            [style]="
+              'mask-image:url(' +
+              item.icon +
+              ');-webkit-mask-image:url(' +
+              item.icon +
+              ')'
+            "
+          ></span>
+          <span>{{ language.t(item.labelKey) }}</span>
+        </span>
+      }
+    }
+  </nav>
+
+  <!-- Invisible marker: Safari has an (undocumented but well-observed)
+       heuristic where a fixed element within ~3-4px of the viewport edge,
+       at least 80% of the viewport width, and at least 3px tall makes it
+       shrink its own toolbar instead of letting it overlap that content.
+       Everything else here (dvh, safe-area-inset, the scroll lock) was
+       necessary but not sufficient on its own — this is what actually
+       stops Safari's bottom bar from covering .mobile-bottom-nav. -->
+  <div class="ios-toolbar-anchor" aria-hidden="true"></div>
 </div>

@@ -1,8 +1,4 @@
-import { 
-  Component, 
-  inject, 
-  input 
-} from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ThemeService } from '../../services/theme.service';
 

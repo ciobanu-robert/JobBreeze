@@ -1,7 +1,4 @@
-import { 
-  Component, 
-  inject 
-} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthCard } from '../../../components/auth-card/auth-card';
 import { PageShell } from '../../../components/page-shell/page-shell';
@@ -11,7 +8,13 @@ import { LanguageService } from '../../../services/language.service';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink, PageShell, AuthCard, SocialLoginButtons, PasswordField],
+  imports: [
+    RouterLink,
+    PageShell,
+    AuthCard,
+    SocialLoginButtons,
+    PasswordField,
+  ],
   styleUrls: ['../auth-forms.scss'],
   templateUrl: './login.html',
 })

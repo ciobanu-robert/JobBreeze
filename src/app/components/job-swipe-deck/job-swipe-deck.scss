@@ -19,11 +19,44 @@
   height: var(--card-height);
 }
 
+@media (max-width: 767px) {
+  :host {
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .swipe-deck {
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    gap: 14px;
+  }
+
+  /* On mobile the deck fills whatever height flexes down to it (see
+     dashboard-shell/browse) instead of a fixed --card-height, so the
+     page never needs to scroll. */
+  .card-stack {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .swipe-actions {
+    flex-shrink: 0;
+  }
+
+  .swipe-empty {
+    flex: 1;
+    min-height: 0;
+  }
+}
+
 .stack-item {
   position: absolute;
   inset: 0;
-  transform: translateY(calc(var(--depth) * 10px)) scale(calc(1 - var(--depth) * 0.035));
-  transition: transform 0.25s ease;
+  transform: translateY(calc(var(--depth) * 10px))
+    scale(calc(1 - var(--depth) * 0.035));
+  transition: transform 0.35s ease;
 }
 
 .stack-item:not(:first-child) {
@@ -59,8 +92,9 @@
 .action-button img {
   width: 20px;
   height: 20px;
-  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18) saturate(10.52) hue-rotate(194deg)
-    brightness(0.92) contrast(0.96);
+  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18)
+    saturate(10.52) hue-rotate(194deg) brightness(0.92)
+    contrast(0.96);
 }
 
 .dark-theme .action-button img {

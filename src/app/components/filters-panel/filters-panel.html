@@ -1,11 +1,11 @@
 @if (open()) {
-  <div 
-    class="filters-overlay" 
-    [class.dark-theme]="theme.isDarkTheme()" 
+  <div
+    class="filters-overlay"
+    [class.dark-theme]="theme.isDarkTheme()"
     (click)="close()"
   >
-    <aside 
-      class="filters-panel" 
+    <aside
+      class="filters-panel"
       (click)="$event.stopPropagation()"
     >
       <div class="filters-header">
@@ -15,7 +15,9 @@
         <button
           class="close-button"
           type="button"
-          [attr.aria-label]="language.t('browse.filtersCloseAria')"
+          [attr.aria-label]="
+            language.t('browse.filtersCloseAria')
+          "
           (click)="close()"
         >
           <img src="/assets/ui/x.svg" alt="" />
@@ -30,21 +32,31 @@
           <input
             id="filter-location"
             type="text"
-            [placeholder]="language.t('browse.filtersLocationPlaceholder')"
+            [placeholder]="
+              language.t(
+                'browse.filtersLocationPlaceholder'
+              )
+            "
             [value]="location()"
-            (input)="location.set($any($event.target).value)"
+            (input)="
+              location.set($any($event.target).value)
+            "
           />
         </div>
 
         <div class="filter-field">
           <label for="filter-remote-mode">
-            {{ language.t('browse.filtersRemoteModeLabel') }}
+            {{
+              language.t('browse.filtersRemoteModeLabel')
+            }}
           </label>
           <div class="select-wrapper">
             <select
               id="filter-remote-mode"
               [value]="remoteMode()"
-              (change)="remoteMode.set($any($event.target).value)"
+              (change)="
+                remoteMode.set($any($event.target).value)
+              "
             >
               <option value="">
                 {{ language.t('browse.filtersAny') }}
@@ -70,7 +82,9 @@
             <select
               id="filter-contract"
               [value]="contract()"
-              (change)="contract.set($any($event.target).value)"
+              (change)="
+                contract.set($any($event.target).value)
+              "
             >
               <option value="">
                 {{ language.t('browse.filtersAny') }}
@@ -85,7 +99,9 @@
                 {{ language.t('browse.contractContract') }}
               </option>
               <option value="Internship">
-                {{ language.t('browse.contractInternship') }}
+                {{
+                  language.t('browse.contractInternship')
+                }}
               </option>
             </select>
           </div>
@@ -99,7 +115,9 @@
             <select
               id="filter-seniority"
               [value]="seniority()"
-              (change)="seniority.set($any($event.target).value)"
+              (change)="
+                seniority.set($any($event.target).value)
+              "
             >
               <option value="">
                 {{ language.t('browse.filtersAny') }}
@@ -132,16 +150,26 @@
             inputmode="numeric"
             placeholder="0"
             [value]="salaryMin() ?? ''"
-            (input)="onSalaryMinInput($any($event.target).value)"
+            (input)="
+              onSalaryMinInput($any($event.target).value)
+            "
           />
         </div>
       </div>
 
       <div class="filters-footer">
-        <button class="clear-button" type="button" (click)="clear()">
+        <button
+          class="clear-button"
+          type="button"
+          (click)="clear()"
+        >
           {{ language.t('browse.filtersClear') }}
         </button>
-        <button class="apply-button" type="button" (click)="apply()">
+        <button
+          class="apply-button"
+          type="button"
+          (click)="apply()"
+        >
           {{ language.t('browse.filtersApply') }}
         </button>
       </div>

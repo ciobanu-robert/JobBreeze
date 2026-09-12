@@ -5,17 +5,18 @@
         {{ language.t('auth.register.title') }}
       </h1>
       <p class="auth-subtitle">
-        {{ language.t('auth.register.subtitle') }}</p>
+        {{ language.t('auth.register.subtitle') }}
+      </p>
 
       <form class="auth-form">
         <div class="auth-field">
           <label for="register-name">
             {{ language.t('auth.fullNameLabel') }}
           </label>
-          <input 
-            id="register-name" 
-            type="text" 
-            autocomplete="name" 
+          <input
+            id="register-name"
+            type="text"
+            autocomplete="name"
           />
         </div>
 
@@ -45,10 +46,10 @@
           <label for="register-email">
             {{ language.t('auth.emailLabel') }}
           </label>
-          <input 
-            id="register-email" 
-            type="email" 
-            autocomplete="email" 
+          <input
+            id="register-email"
+            type="email"
+            autocomplete="email"
           />
         </div>
 
@@ -62,9 +63,9 @@
           ></app-password-field>
         </div>
 
-        <button 
-          class="auth-submit" 
-          type="button" 
+        <button
+          class="auth-submit"
+          type="button"
           (click)="createAccount()"
         >
           {{ language.t('auth.createAccount') }}

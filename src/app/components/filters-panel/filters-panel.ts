@@ -1,15 +1,18 @@
-import { 
-  Component, 
-  HostListener, 
-  effect, 
-  inject, 
-  input, 
-  output, 
-  signal 
+import {
+  Component,
+  HostListener,
+  effect,
+  inject,
+  input,
+  output,
+  signal,
 } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
-import { EMPTY_JOB_FILTERS, JobFilters } from '../../models/job-filters';
+import {
+  EMPTY_JOB_FILTERS,
+  JobFilters,
+} from '../../models/job-filters';
 
 @Component({
   imports: [],
@@ -30,7 +33,9 @@ export class FiltersPanel {
   protected readonly remoteMode = signal('');
   protected readonly contract = signal('');
   protected readonly seniority = signal('');
-  protected readonly salaryMin = signal<number | null>(null);
+  protected readonly salaryMin = signal<number | null>(
+    null,
+  );
 
   constructor() {
     effect(() => {

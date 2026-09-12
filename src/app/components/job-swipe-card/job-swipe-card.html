@@ -4,26 +4,34 @@
   [class.dragging]="dragging()"
   [class.exiting]="!!exiting()"
   [class.interactive]="interactive()"
-  [style.transform]="'translate(' + dragX() + 'px, ' + dragY() + 'px) rotate(' + rotation + 'deg)'"
+  [style.transform]="
+    'translate(' +
+    dragX() +
+    'px, ' +
+    dragY() +
+    'px) rotate(' +
+    rotation +
+    'deg)'
+  "
   (pointerdown)="onPointerDown($event)"
   (pointermove)="onPointerMove($event)"
   (pointerup)="onPointerUp($event)"
   (pointercancel)="onPointerUp($event)"
 >
-  <span 
-    class="stamp stamp-like" 
+  <span
+    class="stamp stamp-like"
     [style.opacity]="likeOpacity"
   >
     {{ language.t('swipeCard.like') }}
   </span>
-  <span 
-    class="stamp stamp-reject" 
+  <span
+    class="stamp stamp-reject"
     [style.opacity]="rejectOpacity"
   >
     {{ language.t('swipeCard.nope') }}
   </span>
-  <span 
-    class="stamp stamp-save" 
+  <span
+    class="stamp stamp-save"
     [style.opacity]="saveOpacity"
   >
     {{ language.t('swipeCard.save') }}

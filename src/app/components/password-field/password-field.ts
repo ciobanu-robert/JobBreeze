@@ -1,8 +1,8 @@
-import { 
-  Component, 
-  inject, 
-  input, 
-  signal 
+import {
+  Component,
+  inject,
+  input,
+  signal,
 } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 

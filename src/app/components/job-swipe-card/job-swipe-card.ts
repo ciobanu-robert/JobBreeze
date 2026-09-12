@@ -1,9 +1,9 @@
-import { 
-  Component, 
-  inject, 
-  input, 
-  output, 
-  signal 
+import {
+  Component,
+  inject,
+  input,
+  output,
+  signal,
 } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
@@ -14,7 +14,7 @@ const SWIPE_UP_THRESHOLD = 100;
 const MAX_ROTATION = 12;
 const FLY_OUT_DISTANCE = 640;
 const FLY_UP_DISTANCE = 700;
-const EXIT_DURATION_MS = 260;
+const EXIT_DURATION_MS = 380;
 
 export type SwipeDirection = 'like' | 'reject' | 'save';
 
@@ -35,17 +35,18 @@ export class JobSwipeCard {
   protected readonly dragX = signal(0);
   protected readonly dragY = signal(0);
   protected readonly dragging = signal(false);
-  protected readonly exiting = 
-  signal<SwipeDirection | null>(null);
+  protected readonly exiting =
+    signal<SwipeDirection | null>(null);
 
   private pointerId: number | null = null;
   private startX = 0;
   private startY = 0;
 
   protected get rotation(): number {
-    return Math.max(-MAX_ROTATION, Math.min(
-      MAX_ROTATION, this.dragX() / 12
-    ));
+    return Math.max(
+      -MAX_ROTATION,
+      Math.min(MAX_ROTATION, this.dragX() / 12),
+    );
   }
 
   private get dominantDirection(): SwipeDirection | null {
@@ -65,8 +66,9 @@ export class JobSwipeCard {
       return 0;
     }
     return Math.max(
-      0, Math.min(1, this.dragX() / SWIPE_THRESHOLD
-    ));
+      0,
+      Math.min(1, this.dragX() / SWIPE_THRESHOLD),
+    );
   }
 
   protected get rejectOpacity(): number {
@@ -74,7 +76,8 @@ export class JobSwipeCard {
       return 0;
     }
     return Math.max(
-      0, Math.min(1, -this.dragX() / SWIPE_THRESHOLD)
+      0,
+      Math.min(1, -this.dragX() / SWIPE_THRESHOLD),
     );
   }
 
@@ -83,31 +86,50 @@ export class JobSwipeCard {
       return 0;
     }
     return Math.max(
-      0, Math.min(1, -this.dragY() / SWIPE_UP_THRESHOLD
-    ));
+      0,
+      Math.min(1, -this.dragY() / SWIPE_UP_THRESHOLD),
+    );
   }
 
   protected onPointerDown(event: PointerEvent): void {
     if (!this.interactive() || this.exiting()) {
       return;
     }
+    // Suppress native text-selection/drag so the swipe gesture works
+    // no matter where on the card (including over the description) the
+    // user presses down.
+    event.preventDefault();
     this.pointerId = event.pointerId;
     this.startX = event.clientX - this.dragX();
     this.startY = event.clientY - this.dragY();
     this.dragging.set(true);
-    (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
+    (event.currentTarget as HTMLElement).setPointerCapture(
+      event.pointerId,
+    );
   }
 
   protected onPointerMove(event: PointerEvent): void {
-    if (!this.dragging() || event.pointerId !== this.pointerId) {
+    if (
+      !this.dragging() ||
+      event.pointerId !== this.pointerId
+    ) {
       return;
     }
+    // Belt-and-suspenders alongside touch-action: none — some WebKit
+    // versions still try to interpret a moving touch as a scroll intent
+    // unless the move itself is also cancelled.
+    event.preventDefault();
     this.dragX.set(event.clientX - this.startX);
-    this.dragY.set(Math.min(0, event.clientY - this.startY));
+    this.dragY.set(
+      Math.min(0, event.clientY - this.startY),
+    );
   }
 
   protected onPointerUp(event: PointerEvent): void {
-    if (!this.dragging() || event.pointerId !== this.pointerId) {
+    if (
+      !this.dragging() ||
+      event.pointerId !== this.pointerId
+    ) {
       return;
     }
     this.dragging.set(false);
@@ -116,7 +138,10 @@ export class JobSwipeCard {
     const dx = this.dragX();
     const dy = this.dragY();
 
-    if (dy < -SWIPE_UP_THRESHOLD && Math.abs(dy) > Math.abs(dx)) {
+    if (
+      dy < -SWIPE_UP_THRESHOLD &&
+      Math.abs(dy) > Math.abs(dx)
+    ) {
       this.launch('save');
     } else if (dx > SWIPE_THRESHOLD) {
       this.launch('like');
@@ -142,9 +167,14 @@ export class JobSwipeCard {
       this.dragY.set(-FLY_UP_DISTANCE);
     } else {
       this.dragX.set(
-        direction === 'like' ? FLY_OUT_DISTANCE : -FLY_OUT_DISTANCE
+        direction === 'like'
+          ? FLY_OUT_DISTANCE
+          : -FLY_OUT_DISTANCE,
       );
     }
-    setTimeout(() => this.swiped.emit(direction), EXIT_DURATION_MS);
+    setTimeout(
+      () => this.swiped.emit(direction),
+      EXIT_DURATION_MS,
+    );
   }
 }

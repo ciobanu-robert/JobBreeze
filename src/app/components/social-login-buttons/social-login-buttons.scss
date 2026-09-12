@@ -49,8 +49,9 @@
 }
 
 .social-button img:not(.brand-color) {
-  filter: brightness(0) saturate(100%) invert(7%) sepia(18%) saturate(1052%) hue-rotate(194deg)
-    brightness(92%) contrast(96%);
+  filter: brightness(0) saturate(100%) invert(7%) sepia(18%)
+    saturate(1052%) hue-rotate(194deg) brightness(92%)
+    contrast(96%);
 }
 
 .dark-theme .social-button {

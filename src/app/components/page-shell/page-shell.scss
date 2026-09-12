@@ -8,8 +8,17 @@
   overflow: hidden;
   padding: 16px 32px 48px;
   background:
-    radial-gradient(circle at 20% 10%, var(--mesh-a), transparent 38%),
-    radial-gradient(circle at 80% 90%, var(--mesh-b), transparent 42%), var(--background);
+    radial-gradient(
+      circle at 20% 10%,
+      var(--mesh-a),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 80% 90%,
+      var(--mesh-b),
+      transparent 42%
+    ),
+    var(--background);
   color: var(--foreground);
   font-family: 'Inter', sans-serif;
 }
@@ -20,4 +29,10 @@
 .page-shell h4 {
   color: var(--foreground);
   font-family: 'Space Grotesk', sans-serif;
+}
+
+@media (max-width: 480px) {
+  .page-shell {
+    padding: 16px 16px 32px;
+  }
 }

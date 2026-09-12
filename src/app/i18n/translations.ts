@@ -8,26 +8,28 @@ export interface LanguageDefinition {
 }
 
 export const LANGUAGES: LanguageDefinition[] = [
-  { 
-    code: 'en', 
-    label: 'English', 
-    flagCode: 'GB', 
-    flag: '/assets/flags/gb.svg' 
+  {
+    code: 'en',
+    label: 'English',
+    flagCode: 'GB',
+    flag: '/assets/flags/gb.svg',
   },
-  { 
-    code: 'ro', 
-    label: 'Română', 
-    flagCode: 'RO', 
-    flag: '/assets/flags/ro.svg' 
-  }
+  {
+    code: 'ro',
+    label: 'Română',
+    flagCode: 'RO',
+    flag: '/assets/flags/ro.svg',
+  },
 ];
 
 export const DEFAULT_LANGUAGE: LanguageCode = 'en';
 
 type TranslationDictionary = Record<string, string>;
 
-export const TRANSLATIONS: 
-Record<LanguageCode, TranslationDictionary> = {
+export const TRANSLATIONS: Record<
+  LanguageCode,
+  TranslationDictionary
+> = {
   en: {
     'header.chooseLanguage': 'Choose language',
     'header.toggleTheme': 'Toggle theme',
@@ -81,7 +83,8 @@ Record<LanguageCode, TranslationDictionary> = {
     'auth.rememberPassword': 'Remember your password?',
 
     'auth.reset.title': 'Reset your password',
-    'auth.reset.subtitle': 'Choose a new password for your account.',
+    'auth.reset.subtitle':
+      'Choose a new password for your account.',
     'auth.newPasswordLabel': 'New password',
     'auth.updatePassword': 'Update password',
     'auth.backToSignIn': 'Back to sign in',
@@ -175,7 +178,8 @@ Record<LanguageCode, TranslationDictionary> = {
     'auth.signUp': 'Înregistrează-te',
 
     'auth.register.title': 'Bun venit pe JobBreeze',
-    'auth.register.subtitle': 'Viitorul căutării unui loc de muncă.',
+    'auth.register.subtitle':
+      'Viitorul căutării unui loc de muncă.',
     'auth.fullNameLabel': 'Nume complet',
     'auth.roleLabel': 'Sunt',
     'auth.roleSeeker': 'Căutător de job',
@@ -184,12 +188,14 @@ Record<LanguageCode, TranslationDictionary> = {
     'auth.haveAccount': 'Ai deja un cont?',
 
     'auth.forgot.title': 'Resetează-ți parola',
-    'auth.forgot.subtitle': 'Îți vom trimite un link de resetare pe email.',
+    'auth.forgot.subtitle':
+      'Îți vom trimite un link de resetare pe email.',
     'auth.sendResetLink': 'Trimite link de resetare',
     'auth.rememberPassword': 'Îți amintești parola?',
 
     'auth.reset.title': 'Resetează-ți parola',
-    'auth.reset.subtitle': 'Alege o parolă nouă pentru contul tău.',
+    'auth.reset.subtitle':
+      'Alege o parolă nouă pentru contul tău.',
     'auth.newPasswordLabel': 'Parolă nouă',
     'auth.updatePassword': 'Actualizează parola',
     'auth.backToSignIn': 'Înapoi la autentificare',
@@ -232,7 +238,8 @@ Record<LanguageCode, TranslationDictionary> = {
     'browse.seniorityMid': 'Mid-level',
     'browse.senioritySenior': 'Senior',
     'browse.seniorityLead': 'Lead',
-    'browse.emptyTitle': 'Nu mai sunt joburi. Revino curând!',
+    'browse.emptyTitle':
+      'Nu mai sunt joburi. Revino curând!',
     'browse.refresh': 'Reîncearcă',
 
     'swipeCard.like': 'Îmi place',

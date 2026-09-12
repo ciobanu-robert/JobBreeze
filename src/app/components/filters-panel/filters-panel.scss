@@ -55,8 +55,9 @@
 .close-button img {
   width: 14px;
   height: 14px;
-  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18) saturate(10.52) hue-rotate(194deg)
-    brightness(0.92) contrast(0.96);
+  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18)
+    saturate(10.52) hue-rotate(194deg) brightness(0.92)
+    contrast(0.96);
 }
 
 .filters-overlay.dark-theme .close-button img {
@@ -122,9 +123,11 @@
   right: 14px;
   width: 12px;
   height: 12px;
-  background: url('/assets/navigation/chevron-down.svg') center / contain no-repeat;
-  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18) saturate(10.52) hue-rotate(194deg)
-    brightness(0.92) contrast(0.96);
+  background: url('/assets/navigation/chevron-down.svg')
+    center / contain no-repeat;
+  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18)
+    saturate(10.52) hue-rotate(194deg) brightness(0.92)
+    contrast(0.96);
   opacity: 0.6;
   pointer-events: none;
   transform: translateY(-50%);
@@ -191,8 +194,36 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .filters-panel {
-    width: 100%;
+    width: min(76%, 340px);
+    padding: calc(24px + env(safe-area-inset-top))
+      calc(20px + env(safe-area-inset-right))
+      calc(24px + env(safe-area-inset-bottom)) 20px;
+  }
+
+  .filters-header {
+    position: relative;
+    justify-content: center;
+  }
+
+  .filters-header h2 {
+    font-size: 19px;
+    text-align: center;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    border: 0;
+    background: transparent;
+  }
+
+  .close-button img {
+    width: 16px;
+    height: 16px;
   }
 }

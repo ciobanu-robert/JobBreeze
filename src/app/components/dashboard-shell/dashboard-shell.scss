@@ -1,5 +1,6 @@
 :host {
   display: block;
+  height: 100%;
 }
 
 .dashboard-shell {
@@ -55,8 +56,9 @@
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18) saturate(10.52) hue-rotate(194deg)
-    brightness(0.92) contrast(0.96);
+  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18)
+    saturate(10.52) hue-rotate(194deg) brightness(0.92)
+    contrast(0.96);
 }
 
 .dark-theme .nav-item img {
@@ -124,8 +126,9 @@
 .sign-out img {
   width: 16px;
   height: 16px;
-  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18) saturate(10.52) hue-rotate(194deg)
-    brightness(0.92) contrast(0.96);
+  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18)
+    saturate(10.52) hue-rotate(194deg) brightness(0.92)
+    contrast(0.96);
   opacity: 0.7;
 }
 
@@ -143,4 +146,153 @@
        animations have the full page to travel across without ever
        growing the document's scrollable area. */
   overflow: hidden;
+}
+
+.mobile-topbar,
+.mobile-bottom-nav,
+.ios-toolbar-anchor {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .dashboard-shell {
+    /* html/body are locked (position: fixed + height: 100svh/100%) by
+       the .dashboard-shell-active class in styles.scss. This just fills
+       that already-locked-down space.
+       min-height: 100vh from the base (desktop) rule above is NEVER
+       overridden by height: 100% alone — min-height acts as a floor, and
+       classic vh is the *large* (toolbar-hidden) viewport, taller than
+       what's actually visible. That leftover floor was forcing this
+       shell taller than the real screen, pushing the bottom nav below
+       the fold, on every device state regardless of any dvh/svh/JS fix
+       further up the chain. min-height: 0 removes that floor. */
+    min-height: 0;
+    height: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .mobile-topbar {
+    z-index: 10;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: calc(14px + env(safe-area-inset-top))
+      calc(16px + env(safe-area-inset-right)) 14px
+      calc(16px + env(safe-area-inset-left));
+    background: var(--sidebar);
+    border-bottom: 1px solid var(--sidebar-border);
+  }
+
+  .mobile-topbar-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .mobile-icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .mobile-icon-button img {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(1) invert(0.07)
+      sepia(0.18) saturate(10.52) hue-rotate(194deg)
+      brightness(0.92) contrast(0.96);
+  }
+
+  .dark-theme .mobile-icon-button img {
+    filter: brightness(0) invert(1);
+  }
+
+  .dashboard-main {
+    display: flex;
+    overflow: hidden;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 16px calc(16px + env(safe-area-inset-right))
+      10px calc(16px + env(safe-area-inset-left));
+  }
+
+  .mobile-bottom-nav {
+    z-index: 10;
+    display: flex;
+    flex-shrink: 0;
+    align-items: stretch;
+    justify-content: space-around;
+    padding: 8px calc(4px + env(safe-area-inset-right))
+      calc(8px + env(safe-area-inset-bottom))
+      calc(4px + env(safe-area-inset-left));
+    background: var(--sidebar);
+    border-top: 1px solid var(--sidebar-border);
+  }
+
+  .mobile-nav-item {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 2px;
+    color: var(--sidebar-foreground);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .mobile-nav-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: var(--sidebar-foreground);
+    opacity: 0.55;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+  }
+
+  .mobile-nav-item-inert {
+    opacity: 0.45;
+  }
+
+  .mobile-nav-item.active {
+    color: var(--primary);
+  }
+
+  .mobile-nav-item.active .mobile-nav-icon {
+    background-color: var(--primary);
+    opacity: 1;
+  }
+
+  .ios-toolbar-anchor {
+    position: fixed;
+    z-index: -1;
+    bottom: 0;
+    left: 50%;
+    display: block;
+    width: 90%;
+    height: 4px;
+    background: transparent;
+    pointer-events: none;
+    transform: translateX(-50%);
+  }
 }

@@ -13,20 +13,26 @@
           <label for="login-email">
             {{ language.t('auth.emailLabel') }}
           </label>
-          <input 
-            id="login-email" 
-            type="email" 
-            autocomplete="email" 
+          <input
+            id="login-email"
+            type="email"
+            autocomplete="email"
           />
         </div>
 
         <div class="auth-field">
-          <label class="password-label" for="login-password">
+          <label
+            class="password-label"
+            for="login-password"
+          >
             <span>
               {{ language.t('auth.passwordLabel') }}
             </span>
-            <a class="auth-link" routerLink="/forgot-password">
-              {{language.t('auth.forgotPassword')}}
+            <a
+              class="auth-link"
+              routerLink="/forgot-password"
+            >
+              {{ language.t('auth.forgotPassword') }}
             </a>
           </label>
           <app-password-field
@@ -35,9 +41,9 @@
           ></app-password-field>
         </div>
 
-        <button 
-          class="auth-submit" 
-          type="button" 
+        <button
+          class="auth-submit"
+          type="button"
           (click)="signIn()"
         >
           {{ language.t('auth.signIn') }}

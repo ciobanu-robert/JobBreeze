@@ -1,5 +1,6 @@
 :host {
   display: block;
+  height: 100%;
 }
 
 .browse-page {
@@ -51,8 +52,9 @@
 .filters-button img {
   width: 15px;
   height: 15px;
-  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18) saturate(10.52) hue-rotate(194deg)
-    brightness(0.92) contrast(0.96);
+  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18)
+    saturate(10.52) hue-rotate(194deg) brightness(0.92)
+    contrast(0.96);
 }
 
 .dark-theme .filters-button img {
@@ -65,4 +67,33 @@
   align-items: center;
   justify-content: center;
   padding: 20px 0;
+}
+
+@media (max-width: 767px) {
+  .browse-page {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .browse-content {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .browse-topbar {
+    flex-shrink: 0;
+    margin-bottom: 14px;
+  }
+
+  .browse-topbar h1 {
+    font-size: 22px;
+  }
+
+  .browse-deck {
+    min-height: 0;
+    overflow: hidden;
+    align-items: stretch;
+    padding: 0;
+  }
 }
