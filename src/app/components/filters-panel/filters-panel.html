@@ -1,0 +1,103 @@
+@if (open()) {
+  <div class="filters-overlay" [class.dark-theme]="theme.isDarkTheme()" (click)="close()">
+    <aside class="filters-panel" (click)="$event.stopPropagation()">
+      <div class="filters-header">
+        <h2>{{ language.t('browse.filters') }}</h2>
+        <button
+          class="close-button"
+          type="button"
+          [attr.aria-label]="language.t('browse.filtersCloseAria')"
+          (click)="close()"
+        >
+          <img src="/assets/ui/x.svg" alt="" />
+        </button>
+      </div>
+
+      <div class="filters-body">
+        <div class="filter-field">
+          <label for="filter-location">{{ language.t('browse.filtersLocationLabel') }}</label>
+          <input
+            id="filter-location"
+            type="text"
+            [placeholder]="language.t('browse.filtersLocationPlaceholder')"
+            [value]="location()"
+            (input)="location.set($any($event.target).value)"
+          />
+        </div>
+
+        <div class="filter-field">
+          <label for="filter-remote-mode">{{ language.t('browse.filtersRemoteModeLabel') }}</label>
+          <div class="select-wrapper">
+            <select
+              id="filter-remote-mode"
+              [value]="remoteMode()"
+              (change)="remoteMode.set($any($event.target).value)"
+            >
+              <option value="">{{ language.t('browse.filtersAny') }}</option>
+              <option value="Remote">{{ language.t('browse.remoteModeRemote') }}</option>
+              <option value="Hybrid">{{ language.t('browse.remoteModeHybrid') }}</option>
+              <option value="On-site">{{ language.t('browse.remoteModeOnSite') }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-field">
+          <label for="filter-contract">{{ language.t('browse.filtersContractLabel') }}</label>
+          <div class="select-wrapper">
+            <select
+              id="filter-contract"
+              [value]="contract()"
+              (change)="contract.set($any($event.target).value)"
+            >
+              <option value="">{{ language.t('browse.filtersAny') }}</option>
+              <option value="Full-time">{{ language.t('browse.contractFullTime') }}</option>
+              <option value="Part-time">{{ language.t('browse.contractPartTime') }}</option>
+              <option value="Contract">{{ language.t('browse.contractContract') }}</option>
+              <option value="Internship">{{ language.t('browse.contractInternship') }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-field">
+          <label for="filter-seniority">{{ language.t('browse.filtersSeniorityLabel') }}</label>
+          <div class="select-wrapper">
+            <select
+              id="filter-seniority"
+              [value]="seniority()"
+              (change)="seniority.set($any($event.target).value)"
+            >
+              <option value="">{{ language.t('browse.filtersAny') }}</option>
+              <option value="Junior">{{ language.t('browse.seniorityJunior') }}</option>
+              <option value="Mid-level">{{ language.t('browse.seniorityMid') }}</option>
+              <option value="Senior">{{ language.t('browse.senioritySenior') }}</option>
+              <option value="Lead">{{ language.t('browse.seniorityLead') }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-field">
+          <label for="filter-salary-min">{{ language.t('browse.filtersSalaryMinLabel') }}</label>
+          <input
+            id="filter-salary-min"
+            type="number"
+            min="0"
+            step="100"
+            inputmode="numeric"
+            placeholder="0"
+            [value]="salaryMin() ?? ''"
+            (input)="onSalaryMinInput($any($event.target).value)"
+          />
+        </div>
+      </div>
+
+      <div class="filters-footer">
+        <button class="clear-button" type="button" (click)="clear()">
+          {{ language.t('browse.filtersClear') }}
+        </button>
+        <button class="apply-button" type="button" (click)="apply()">
+          {{ language.t('browse.filtersApply') }}
+        </button>
+      </div>
+    </aside>
+  </div>
+}

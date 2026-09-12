@@ -5,6 +5,7 @@ export interface Job {
   company: string;
   location: string;
   workType: string;
+  contract: string;
   seniority: string;
   salary: string;
   description: string;

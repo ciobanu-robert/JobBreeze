@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, signal, viewChildren } from '@angular/core';
+import { Component, computed, effect, inject, input, signal, viewChildren } from '@angular/core';
 import { JobSwipeCard } from '../job-swipe-card/job-swipe-card';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
@@ -27,6 +27,14 @@ export class JobSwipeDeck {
 
   private readonly cards = viewChildren(JobSwipeCard);
   protected readonly topCard = computed(() => this.cards()[0]);
+
+  constructor() {
+    // Jump back to the start of the deck whenever the job list itself changes (e.g. filters applied).
+    effect(() => {
+      this.allJobs();
+      this.deckIndex.set(0);
+    });
+  }
 
   protected onSwiped(): void {
     this.deckIndex.update((i) => i + 1);

@@ -3,15 +3,22 @@
     <div class="browse-content">
       <div class="browse-topbar">
         <h1>{{ language.t('browse.title') }}</h1>
-        <button class="filters-button" type="button">
+        <button class="filters-button" type="button" (click)="isFiltersOpen.set(true)">
           <img src="/assets/ui/filter.svg" alt="" />
           {{ language.t('browse.filters') }}
         </button>
       </div>
 
       <div class="browse-deck">
-        <app-job-swipe-deck></app-job-swipe-deck>
+        <app-job-swipe-deck [jobs]="filteredJobs()"></app-job-swipe-deck>
       </div>
     </div>
   </div>
+
+  <app-filters-panel
+    [open]="isFiltersOpen()"
+    [filters]="filters()"
+    (closed)="isFiltersOpen.set(false)"
+    (applied)="filters.set($event)"
+  ></app-filters-panel>
 </app-dashboard-shell>
