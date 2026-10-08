@@ -31,8 +31,16 @@
   font-family: 'Space Grotesk', sans-serif;
 }
 
+.page-shell.flush-bottom {
+  padding-bottom: 0;
+}
+
 @media (max-width: 480px) {
   .page-shell {
     padding: 16px 16px 32px;
+  }
+
+  .page-shell.flush-bottom {
+    padding-bottom: 0;
   }
 }

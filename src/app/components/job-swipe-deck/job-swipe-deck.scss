@@ -33,9 +33,6 @@
     gap: 14px;
   }
 
-  /* On mobile the deck fills whatever height flexes down to it (see
-     dashboard-shell/browse) instead of a fixed --card-height, so the
-     page never needs to scroll. */
   .card-stack {
     flex: 1;
     min-height: 0;

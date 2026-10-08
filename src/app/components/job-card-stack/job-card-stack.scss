@@ -136,13 +136,6 @@
   filter: brightness(0) saturate(100%);
 }
 
-/* The whole composition is built from fixed pixel dimensions (needed for
-   the absolutely-positioned "fanned cards" look), so it doesn't shrink on
-   its own. `zoom` scales the box AND everything inside it (padding,
-   fonts, the absolutely-positioned children) together in one proportional
-   step — re-specifying each dimension by hand (an earlier attempt at
-   this) left the inner content sized for the original 360px card inside
-   a smaller box, which overflowed/looked broken. */
 @media (max-width: 480px) {
   .job-stack {
     zoom: 0.72;

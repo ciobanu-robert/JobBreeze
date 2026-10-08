@@ -27,19 +27,6 @@
   filter: brightness(0) invert(1);
 }
 
-/* Positioning and stacking (a dedicated .cdk-overlay-container appended
-   straight to <body>) are handled by CDK Overlay — see
-   language-picker.ts. That's also what fixes the popup rendering
-   underneath the swipe cards on iOS Safari: the cards' `transform`
-   promotes them to their own compositing layer, and nothing nested
-   inside the mobile shell's `position: fixed` ancestor chain reliably
-   wins against that in WebKit, regardless of z-index. A truly separate
-   top-level container sidesteps the problem instead of fighting it.
-   The backdrop element itself is created by CDK (not from this
-   component's template), so it falls outside Angular's view
-   encapsulation here — its styling lives in styles.scss as
-   `.language-backdrop` instead. */
-
 .language-menu {
   display: flex;
   flex-direction: column;

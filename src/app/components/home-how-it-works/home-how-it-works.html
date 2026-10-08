@@ -1,0 +1,66 @@
+<section class="how-it-works-section">
+  <div class="section-heading">
+    <h2>{{ language.t('home.howItWorksTitle') }}</h2>
+    <p>{{ language.t('home.howItWorksSubtitle') }}</p>
+  </div>
+
+  <div class="how-columns">
+    <div class="how-column">
+      <div class="how-column-header">
+        <div class="how-column-icon">
+          <img src="/assets/jobs/user.svg" alt="" />
+        </div>
+        <h3>
+          {{ language.t('home.howItWorks.seekersLabel') }}
+        </h3>
+      </div>
+
+      <ol class="how-steps">
+        @for (
+          step of seekerSteps;
+          track step.titleKey;
+          let i = $index
+        ) {
+          <li class="how-step">
+            <span class="step-number">{{ i + 1 }}</span>
+            <div class="step-copy">
+              <h4>{{ language.t(step.titleKey) }}</h4>
+              <p>
+                {{ language.t(step.descriptionKey) }}
+              </p>
+            </div>
+          </li>
+        }
+      </ol>
+    </div>
+
+    <div class="how-column">
+      <div class="how-column-header">
+        <div class="how-column-icon">
+          <img src="/assets/jobs/building-2.svg" alt="" />
+        </div>
+        <h3>
+          {{ language.t('home.howItWorks.companiesLabel') }}
+        </h3>
+      </div>
+
+      <ol class="how-steps">
+        @for (
+          step of companySteps;
+          track step.titleKey;
+          let i = $index
+        ) {
+          <li class="how-step">
+            <span class="step-number">{{ i + 1 }}</span>
+            <div class="step-copy">
+              <h4>{{ language.t(step.titleKey) }}</h4>
+              <p>
+                {{ language.t(step.descriptionKey) }}
+              </p>
+            </div>
+          </li>
+        }
+      </ol>
+    </div>
+  </div>
+</section>

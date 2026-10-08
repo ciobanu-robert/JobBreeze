@@ -85,17 +85,11 @@ export class DashboardShell implements OnDestroy {
   protected readonly language = inject(LanguageService);
   protected readonly theme = inject(ThemeService);
   protected readonly navItems = NAV_ITEMS;
-  // The mobile tab bar has room for 5 icons; settings stays sidebar-only on desktop.
   protected readonly mobileNavItems = NAV_ITEMS.filter(
     (item) => item.key !== 'settings',
   );
 
   constructor() {
-    // html gets height: 100dvh and body gets height: 100% globally (see
-    // styles.scss) — that's the actual source of truth for sizing now.
-    // This just toggles the class that scopes the position: fixed
-    // scroll-lock (styles.scss again) to mobile dashboard routes only,
-    // so the marketing/auth pages keep scrolling normally.
     afterNextRender(() => {
       document.documentElement.classList.add(
         'dashboard-shell-active',

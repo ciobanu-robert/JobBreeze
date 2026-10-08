@@ -95,9 +95,6 @@ export class JobSwipeCard {
     if (!this.interactive() || this.exiting()) {
       return;
     }
-    // Suppress native text-selection/drag so the swipe gesture works
-    // no matter where on the card (including over the description) the
-    // user presses down.
     event.preventDefault();
     this.pointerId = event.pointerId;
     this.startX = event.clientX - this.dragX();
@@ -115,9 +112,6 @@ export class JobSwipeCard {
     ) {
       return;
     }
-    // Belt-and-suspenders alongside touch-action: none — some WebKit
-    // versions still try to interpret a moving touch as a scroll intent
-    // unless the move itself is also cancelled.
     event.preventDefault();
     this.dragX.set(event.clientX - this.startX);
     this.dragY.set(

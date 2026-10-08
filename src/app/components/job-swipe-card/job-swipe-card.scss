@@ -153,12 +153,17 @@
   margin: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
+  touch-action: none;
   padding-right: 6px;
   color: var(--muted-foreground);
   font-size: 13px;
   line-height: 1.5;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
+}
+
+.swipe-card-description.dragging {
+  pointer-events: none;
 }
 
 .swipe-card-description::-webkit-scrollbar {

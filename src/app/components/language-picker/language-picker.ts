@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  OnDestroy,
   TemplateRef,
   ViewContainerRef,
   inject,
@@ -17,8 +18,6 @@ import { LanguageCode } from '../../i18n/translations';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
 
-// Tried below the trigger first, flipping to above/left as needed — CDK
-// picks whichever actually fits the viewport, recomputing live.
 const MENU_POSITIONS: ConnectedPosition[] = [
   {
     originX: 'end',
@@ -56,7 +55,7 @@ const MENU_POSITIONS: ConnectedPosition[] = [
   styleUrl: './language-picker.scss',
   templateUrl: './language-picker.html',
 })
-export class LanguagePicker {
+export class LanguagePicker implements OnDestroy {
   protected readonly language = inject(LanguageService);
   protected readonly theme = inject(ThemeService);
   protected readonly isOpen = signal(false);
@@ -73,13 +72,11 @@ export class LanguagePicker {
       'menuTemplate',
     );
 
-  // CDK's overlay container is a single element appended directly to
-  // <body>, outside the app's own component tree entirely — that's what
-  // actually fixes the popup rendering under the swipe cards on iOS
-  // Safari (a transform-compositing quirk in WebKit), and unlike moving
-  // the DOM node by hand, CDK creates it through Angular's own
-  // ViewContainerRef machinery, so bindings/change detection keep working.
   private overlayRef: OverlayRef | null = null;
+
+  ngOnDestroy(): void {
+    this.overlayRef?.dispose();
+  }
 
   protected toggle(): void {
     if (this.isOpen()) {

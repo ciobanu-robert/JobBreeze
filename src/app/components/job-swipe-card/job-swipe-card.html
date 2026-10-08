@@ -64,7 +64,10 @@
     </span>
   </div>
 
-  <p class="swipe-card-description">
+  <p
+    class="swipe-card-description"
+    [class.dragging]="dragging()"
+  >
     {{ job().description }}
   </p>
 

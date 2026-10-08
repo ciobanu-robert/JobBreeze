@@ -1,0 +1,18 @@
+<section class="benefits-section">
+  <div class="section-heading">
+    <h2>{{ language.t('home.benefitsTitle') }}</h2>
+    <p>{{ language.t('home.benefitsSubtitle') }}</p>
+  </div>
+
+  <div class="benefits-grid">
+    @for (benefit of benefits; track benefit.titleKey) {
+      <article class="benefit-card">
+        <div class="benefit-icon">
+          <img [src]="benefit.icon" alt="" />
+        </div>
+        <h3>{{ language.t(benefit.titleKey) }}</h3>
+        <p>{{ language.t(benefit.descriptionKey) }}</p>
+      </article>
+    }
+  </div>
+</section>

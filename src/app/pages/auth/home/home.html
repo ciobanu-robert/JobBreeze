@@ -1,4 +1,4 @@
-<app-page-shell>
+<app-page-shell [flushBottom]="true">
   <main>
     <section class="hero-section">
       <div class="hero-copy">
@@ -16,5 +16,10 @@
 
       <app-job-card-stack> </app-job-card-stack>
     </section>
+
+    <app-home-benefits></app-home-benefits>
+    <app-home-how-it-works></app-home-how-it-works>
   </main>
+
+  <app-site-footer></app-site-footer>
 </app-page-shell>

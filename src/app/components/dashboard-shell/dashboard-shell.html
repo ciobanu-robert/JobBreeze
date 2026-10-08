@@ -112,12 +112,5 @@
     }
   </nav>
 
-  <!-- Invisible marker: Safari has an (undocumented but well-observed)
-       heuristic where a fixed element within ~3-4px of the viewport edge,
-       at least 80% of the viewport width, and at least 3px tall makes it
-       shrink its own toolbar instead of letting it overlap that content.
-       Everything else here (dvh, safe-area-inset, the scroll lock) was
-       necessary but not sufficient on its own — this is what actually
-       stops Safari's bottom bar from covering .mobile-bottom-nav. -->
   <div class="ios-toolbar-anchor" aria-hidden="true"></div>
 </div>
