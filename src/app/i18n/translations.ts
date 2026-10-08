@@ -208,6 +208,20 @@ export const TRANSLATIONS: Record<
     'browse.emptyTitle': 'No more jobs. Come back soon!',
     'browse.refresh': 'Refresh',
 
+    'applications.title': 'Applications',
+    'applications.statTotal': 'Total',
+    'applications.statPending': 'Pending',
+    'applications.statShortlisted': 'Shortlisted',
+    'applications.statAccepted': 'Accepted',
+    'applications.statusPending': 'pending',
+    'applications.statusShortlisted': 'shortlisted',
+    'applications.statusRejected': 'rejected',
+    'applications.statusAccepted': 'accepted',
+    'applications.openChat': 'Open chat',
+    'applications.appliedOn': 'Applied on',
+    'applications.emptyTitle':
+      'You have no applications yet.',
+
     'swipeCard.like': 'Like',
     'swipeCard.nope': 'Nope',
     'swipeCard.save': 'Saved',
@@ -475,6 +489,20 @@ export const TRANSLATIONS: Record<
     'browse.emptyTitle':
       'Nu mai sunt joburi. Revino curând!',
     'browse.refresh': 'Reîncearcă',
+
+    'applications.title': 'Candidaturi',
+    'applications.statTotal': 'Total',
+    'applications.statPending': 'În așteptare',
+    'applications.statShortlisted': 'Preselectate',
+    'applications.statAccepted': 'Acceptat',
+    'applications.statusPending': 'în așteptare',
+    'applications.statusShortlisted': 'preselectat',
+    'applications.statusRejected': 'respins',
+    'applications.statusAccepted': 'acceptat',
+    'applications.openChat': 'Deschide chat',
+    'applications.appliedOn': 'Aplicat pe',
+    'applications.emptyTitle':
+      'Nu ai încă nicio candidatură.',
 
     'swipeCard.like': 'Îmi place',
     'swipeCard.nope': 'Respins',

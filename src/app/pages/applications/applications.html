@@ -1,0 +1,34 @@
+<app-dashboard-shell activeKey="applications">
+  <div class="applications-page">
+    <h1>{{ language.t('applications.title') }}</h1>
+
+    <div class="stats-grid">
+      @for (stat of stats(); track stat.labelKey) {
+        <div class="stat-card">
+          <span class="stat-label">
+            {{ language.t(stat.labelKey) }}
+          </span>
+          <span class="stat-value">
+            {{ stat.value }}
+          </span>
+        </div>
+      }
+    </div>
+
+    @if (applications().length) {
+      <div class="applications-list">
+        @for (
+          application of applications();
+          track application.id
+        ) {
+          <app-application-card [application]="application">
+          </app-application-card>
+        }
+      </div>
+    } @else {
+      <p class="empty-state">
+        {{ language.t('applications.emptyTitle') }}
+      </p>
+    }
+  </div>
+</app-dashboard-shell>

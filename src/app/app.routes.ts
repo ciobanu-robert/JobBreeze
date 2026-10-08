@@ -5,6 +5,7 @@ import { Login } from './pages/auth/login/login';
 import { Register } from './pages/auth/register/register';
 import { ResetPassword } from './pages/auth/reset-password/reset-password';
 import { Browse } from './pages/browse/browse';
+import { Applications } from './pages/applications/applications';
 import { Terms } from './pages/legal/terms/terms';
 import { Privacy } from './pages/legal/privacy/privacy';
 import { Contact } from './pages/contact/contact';
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'forgot-password', component: ForgotPassword },
   { path: 'reset-password', component: ResetPassword },
   { path: 'browse', component: Browse },
+  { path: 'applications', component: Applications },
   { path: 'terms', component: Terms },
   { path: 'privacy', component: Privacy },
   { path: 'contact', component: Contact },

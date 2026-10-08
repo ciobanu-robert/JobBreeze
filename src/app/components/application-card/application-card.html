@@ -1,0 +1,34 @@
+<article
+  class="application-card"
+  [class.dark-theme]="theme.isDarkTheme()"
+>
+  <div class="application-info">
+    <h2 class="application-title">
+      {{ application().title }}
+    </h2>
+    <p class="application-meta">
+      {{ application().company }} ·
+      {{ application().location }}
+    </p>
+    <p class="application-date">
+      {{ language.t('applications.appliedOn') }}
+      {{ appliedDate() }}
+    </p>
+    @if (application().status === 'shortlisted') {
+      <button class="open-chat" type="button">
+        <img
+          src="/assets/communication/message-circle.svg"
+          alt=""
+        />
+        {{ language.t('applications.openChat') }}
+      </button>
+    }
+  </div>
+
+  <span
+    class="status-badge"
+    [class]="'status-' + application().status"
+  >
+    {{ language.t(statusLabelKeys[application().status]) }}
+  </span>
+</article>

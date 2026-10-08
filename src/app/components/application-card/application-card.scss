@@ -1,0 +1,115 @@
+:host {
+  display: block;
+}
+
+.application-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--card);
+  box-shadow: var(--shadow-soft);
+}
+
+.application-info {
+  min-width: 0;
+}
+
+.application-title {
+  margin: 0;
+  color: var(--foreground);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.application-meta {
+  margin: 4px 0 0;
+  color: var(--muted-foreground);
+  font-size: 14px;
+}
+
+.application-date {
+  margin: 6px 0 0;
+  color: var(--muted-foreground);
+  font-size: 12px;
+}
+
+.open-chat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--foreground);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.open-chat:hover {
+  background: var(--muted);
+}
+
+.open-chat img {
+  width: 15px;
+  height: 15px;
+}
+
+.dark-theme .open-chat img {
+  filter: brightness(0) invert(1);
+}
+
+.status-badge {
+  flex-shrink: 0;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-pending {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+.status-shortlisted {
+  background: color-mix(
+    in srgb,
+    var(--primary) 18%,
+    transparent
+  );
+  color: var(--primary);
+}
+
+.status-rejected {
+  background: color-mix(
+    in srgb,
+    var(--destructive) 15%,
+    transparent
+  );
+  color: var(--destructive);
+}
+
+.status-accepted {
+  background: color-mix(
+    in srgb,
+    var(--success) 15%,
+    transparent
+  );
+  color: var(--success);
+}
+
+@media (max-width: 767px) {
+  .application-card {
+    padding: 14px 16px;
+  }
+}

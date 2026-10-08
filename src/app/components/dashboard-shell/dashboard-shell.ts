@@ -39,7 +39,7 @@ const NAV_ITEMS: DashboardNavItem[] = [
     key: 'applications',
     icon: '/assets/communication/inbox.svg',
     labelKey: 'nav.applications',
-    route: null,
+    route: '/applications',
   },
   {
     key: 'messages',
