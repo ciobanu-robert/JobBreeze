@@ -53,6 +53,7 @@
         class="action-button flag"
         type="button"
         [attr.aria-label]="language.t('swipeCard.flagAria')"
+        (click)="openReport()"
       >
         <img src="/assets/ui/flag.svg" alt="" />
       </button>
@@ -72,3 +73,11 @@
     </div>
   }
 </div>
+
+<app-report-job-dialog
+  [open]="isReportOpen()"
+  [job]="currentJob()"
+  (closed)="onReportClosed()"
+  (submitted)="onReportSubmitted()"
+>
+</app-report-job-dialog>

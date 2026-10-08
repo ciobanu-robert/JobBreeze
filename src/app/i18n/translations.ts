@@ -230,6 +230,24 @@ export const TRANSLATIONS: Record<
     'swipeCard.likeAria': 'Like this job',
     'swipeCard.flagAria': 'Report this job',
 
+    'report.title': 'Report job',
+    'report.closeAria': 'Close',
+    'report.reasonLabel': 'Reason',
+    'report.reasonPlaceholder': 'Choose a reason',
+    'report.reasonSpam': 'Spam or duplicate',
+    'report.reasonFraud': 'Scam or fraud',
+    'report.reasonInaccurate': 'Misleading information',
+    'report.reasonOffensive': 'Offensive or discriminatory',
+    'report.reasonOther': 'Other',
+    'report.detailsLabel': 'Details (optional)',
+    'report.detailsPlaceholder':
+      "Tell us what's wrong with this job",
+    'report.submit': 'Submit',
+    'report.successTitle': 'Thanks for letting us know',
+    'report.successText':
+      "Our team will review this job. We apologize for the inconvenience.",
+    'report.done': 'Done',
+
     'footer.contact': 'Contact',
     'footer.legalTerms': 'Terms of service',
     'footer.legalPrivacy': 'Privacy policy',
@@ -511,6 +529,26 @@ export const TRANSLATIONS: Record<
     'swipeCard.bookmarkAria': 'Salvează acest job',
     'swipeCard.likeAria': 'Apreciază acest job',
     'swipeCard.flagAria': 'Raportează acest job',
+
+    'report.title': 'Raportează jobul',
+    'report.closeAria': 'Închide',
+    'report.reasonLabel': 'Motiv',
+    'report.reasonPlaceholder': 'Alege un motiv',
+    'report.reasonSpam': 'Spam sau duplicat',
+    'report.reasonFraud': 'Înșelătorie sau fraudă',
+    'report.reasonInaccurate': 'Informații înșelătoare',
+    'report.reasonOffensive':
+      'Conținut ofensator sau discriminatoriu',
+    'report.reasonOther': 'Altceva',
+    'report.detailsLabel': 'Detalii (opțional)',
+    'report.detailsPlaceholder':
+      'Spune-ne ce nu e în regulă cu acest job',
+    'report.submit': 'Trimite',
+    'report.successTitle': 'Mulțumim că ne-ai anunțat',
+    'report.successText':
+      'Echipa noastră va verifica acest job. ' +
+      'Ne cerem scuze pentru inconvenientul causat.',
+    'report.done': 'Gata',
 
     'footer.contact': 'Contact',
     'footer.legalTerms': 'Termeni și condiții',

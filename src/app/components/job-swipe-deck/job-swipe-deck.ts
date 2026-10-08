@@ -8,13 +8,14 @@ import {
   viewChildren,
 } from '@angular/core';
 import { JobSwipeCard } from '../job-swipe-card/job-swipe-card';
+import { ReportJobDialog } from '../report-job-dialog/report-job-dialog';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
 import { Job } from '../../models/job';
 import { DEMO_JOBS } from './demo-jobs';
 
 @Component({
-  imports: [JobSwipeCard],
+  imports: [JobSwipeCard, ReportJobDialog],
   selector: 'app-job-swipe-deck',
   styleUrl: './job-swipe-deck.scss',
   templateUrl: './job-swipe-deck.html',
@@ -45,6 +46,12 @@ export class JobSwipeDeck {
     () => this.cards()[0],
   );
 
+  protected readonly currentJob = computed(
+    () => this.visibleJobs()[0] ?? null,
+  );
+  protected readonly isReportOpen = signal(false);
+  private reportSent = false;
+
   constructor() {
     effect(() => {
       this.allJobs();
@@ -58,5 +65,24 @@ export class JobSwipeDeck {
 
   protected refresh(): void {
     this.deckIndex.set(0);
+  }
+
+  protected openReport(): void {
+    if (this.currentJob()) {
+      this.isReportOpen.set(true);
+    }
+  }
+
+  protected onReportSubmitted(): void {
+    this.reportSent = true;
+  }
+
+  protected onReportClosed(): void {
+    this.isReportOpen.set(false);
+
+    if (this.reportSent) {
+      this.reportSent = false;
+      this.topCard()?.triggerSwipe('reject');
+    }
   }
 }
