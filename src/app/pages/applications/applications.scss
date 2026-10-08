@@ -62,14 +62,9 @@ h1 {
 }
 
 @media (max-width: 767px) {
-  :host {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    min-height: 0;
-  }
-
   .applications-page {
+    flex: 1;
+    min-height: 0;
     overflow-y: auto;
   }
 

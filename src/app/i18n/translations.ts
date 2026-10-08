@@ -245,8 +245,19 @@ export const TRANSLATIONS: Record<
     'report.submit': 'Submit',
     'report.successTitle': 'Thanks for letting us know',
     'report.successText':
-      "Our team will review this job. We apologize for the inconvenience.",
+      'Our team will review this job. We apologize for the inconvenience.',
     'report.done': 'Done',
+
+    'messages.title': 'Messages',
+    'messages.subtitle': 'Your opportunity conversations',
+    'messages.searchPlaceholder': 'Search companies...',
+    'messages.noResults': 'No conversations found',
+    'messages.you': 'You',
+    'messages.emptyThread':
+      'Select a conversation to start chatting',
+    'messages.inputPlaceholder': 'Write a message...',
+    'messages.sendAria': 'Send message',
+    'messages.backAria': 'Back to conversations',
 
     'footer.contact': 'Contact',
     'footer.legalTerms': 'Terms of service',
@@ -547,8 +558,20 @@ export const TRANSLATIONS: Record<
     'report.successTitle': 'Mulțumim că ne-ai anunțat',
     'report.successText':
       'Echipa noastră va verifica acest job. ' +
-      'Ne cerem scuze pentru inconvenientul causat.',
+      'Ne cerem scuze pentru inconvenientul cauzat.',
     'report.done': 'Gata',
+
+    'messages.title': 'Mesaje',
+    'messages.subtitle':
+      'Conversațiile tale despre oportunități',
+    'messages.searchPlaceholder': 'Caută companii...',
+    'messages.noResults': 'Nu am găsit conversații',
+    'messages.you': 'Tu',
+    'messages.emptyThread':
+      'Alege o conversație ca să începi',
+    'messages.inputPlaceholder': 'Scrie un mesaj...',
+    'messages.sendAria': 'Trimite mesajul',
+    'messages.backAria': 'Înapoi la conversații',
 
     'footer.contact': 'Contact',
     'footer.legalTerms': 'Termeni și condiții',

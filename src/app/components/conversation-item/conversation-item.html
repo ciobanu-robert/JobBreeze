@@ -1,0 +1,22 @@
+<button
+  class="conversation"
+  type="button"
+  [class.active]="active()"
+>
+  <span class="avatar">
+    {{ conversation().avatarInitials }}
+  </span>
+  <span class="conversation-body">
+    <span class="conversation-top">
+      <span class="conversation-company">
+        {{ conversation().company }}
+      </span>
+      <span class="conversation-date">
+        {{ date() }}
+      </span>
+    </span>
+    <span class="conversation-preview">
+      {{ preview() }}
+    </span>
+  </span>
+</button>

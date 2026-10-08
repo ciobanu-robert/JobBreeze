@@ -45,7 +45,7 @@ const NAV_ITEMS: DashboardNavItem[] = [
     key: 'messages',
     icon: '/assets/communication/message-square.svg',
     labelKey: 'nav.messages',
-    route: null,
+    route: '/messages',
   },
   {
     key: 'jobbyAi',
@@ -81,6 +81,7 @@ const NAV_ITEMS: DashboardNavItem[] = [
 export class DashboardShell implements OnDestroy {
   readonly activeKey = input<DashboardNavKey>('browse');
   readonly userName = input('Robert Ciobanu');
+  readonly fullBleed = input(false);
 
   protected readonly language = inject(LanguageService);
   protected readonly theme = inject(ThemeService);

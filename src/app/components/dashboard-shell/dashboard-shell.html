@@ -64,7 +64,10 @@
     </div>
   </header>
 
-  <main class="dashboard-main">
+  <main
+    class="dashboard-main"
+    [class.full-bleed]="fullBleed()"
+  >
     <ng-content></ng-content>
   </main>
 

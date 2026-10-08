@@ -1,0 +1,127 @@
+<app-dashboard-shell
+  activeKey="messages"
+  [fullBleed]="true"
+>
+  <div
+    class="messages-page"
+    [class.dark-theme]="theme.isDarkTheme()"
+    [class.has-selection]="selectedConversation() !== null"
+  >
+    <aside class="conversation-list">
+      <div class="list-header">
+        <h1>
+          {{ language.t('messages.title') }}
+        </h1>
+        <p>
+          {{ language.t('messages.subtitle') }}
+        </p>
+        <div class="search-field">
+          <img src="/assets/ui/search.svg" alt="" />
+          <input
+            type="search"
+            [placeholder]="
+              language.t('messages.searchPlaceholder')
+            "
+            [value]="search()"
+            (input)="search.set($any($event.target).value)"
+          />
+        </div>
+      </div>
+
+      <div class="list-items">
+        @for (
+          conversation of visibleConversations();
+          track conversation.id
+        ) {
+          <app-conversation-item
+            [conversation]="conversation"
+            [active]="conversation.id === selectedId()"
+            (click)="select(conversation.id)"
+          >
+          </app-conversation-item>
+        } @empty {
+          <p class="list-empty">
+            {{ language.t('messages.noResults') }}
+          </p>
+        }
+      </div>
+    </aside>
+
+    <section class="chat">
+      @if (selectedConversation(); as conversation) {
+        <header class="chat-header">
+          <button
+            class="back-button"
+            type="button"
+            [attr.aria-label]="
+              language.t('messages.backAria')
+            "
+            (click)="back()"
+          >
+            <img
+              src="/assets/navigation/arrow-left.svg"
+              alt=""
+            />
+          </button>
+          <span class="avatar">
+            {{ conversation.avatarInitials }}
+          </span>
+          <div>
+            <h2>
+              {{ conversation.company }}
+            </h2>
+            <p>
+              {{ conversation.jobTitle }}
+            </p>
+          </div>
+        </header>
+
+        <div class="chat-thread" #thread>
+          @for (
+            message of conversation.messages;
+            track message.id
+          ) {
+            <app-message-bubble [message]="message">
+            </app-message-bubble>
+          }
+        </div>
+
+        <div class="composer">
+          <textarea
+            rows="1"
+            [placeholder]="
+              language.t('messages.inputPlaceholder')
+            "
+            [value]="draft()"
+            (input)="draft.set($any($event.target).value)"
+            (keydown)="onComposerKeydown($event)"
+          ></textarea>
+          <button
+            class="send-button"
+            type="button"
+            [attr.aria-label]="
+              language.t('messages.sendAria')
+            "
+            [disabled]="!canSend()"
+            (click)="send()"
+          >
+            <img
+              src="/assets/communication/send.svg"
+              alt=""
+            />
+          </button>
+        </div>
+      } @else {
+        <div class="chat-empty">
+          <img
+            src="/assets/communication/message-square.svg"
+            alt=""
+          />
+          <p>
+            {{ language.t('messages.emptyThread') }}
+          </p>
+        </div>
+      }
+    </section>
+  </div>
+</app-dashboard-shell>
