@@ -29,9 +29,15 @@ export class ConversationItem {
     if (!last) {
       return '';
     }
+    const firstFile = last.attachments?.[0];
+    const text =
+      last.text ||
+      (firstFile
+        ? `${this.language.t('messages.attachment')}: ${firstFile.name}`
+        : '');
     return last.sender === 'me'
-      ? `${this.language.t('messages.you')}: ${last.text}`
-      : last.text;
+      ? `${this.language.t('messages.you')}: ${text}`
+      : text;
   });
 
   protected readonly date = computed(() => {

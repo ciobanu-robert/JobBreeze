@@ -1,0 +1,56 @@
+<div
+  class="chat-composer"
+  [class.dark-theme]="theme.isDarkTheme()"
+>
+  @if (pending().length || attachError()) {
+    <div class="pending-attachments">
+      @for (attachment of pending(); track attachment.id) {
+        <app-attachment-chip
+          [attachment]="attachment"
+          [removable]="true"
+          (removed)="removePending(attachment.id)"
+        >
+        </app-attachment-chip>
+      }
+      @if (attachError(); as error) {
+        <p class="attach-error">
+          {{ language.t(error) }}
+        </p>
+      }
+    </div>
+  }
+
+  <div class="composer">
+    <button
+      class="attach-button"
+      type="button"
+      [attr.aria-label]="language.t('messages.attachAria')"
+      (click)="fileInput.click()"
+    >
+      <img src="/assets/ui/paperclip.svg" alt="" />
+    </button>
+    <input
+      #fileInput
+      type="file"
+      multiple
+      hidden
+      (change)="onFilesSelected($event)"
+    />
+    <textarea
+      rows="1"
+      [placeholder]="placeholder()"
+      [value]="draft()"
+      (input)="draft.set($any($event.target).value)"
+      (keydown)="onKeydown($event)"
+    ></textarea>
+    <button
+      class="send-button"
+      type="button"
+      [attr.aria-label]="language.t('messages.sendAria')"
+      [disabled]="!canSend()"
+      (click)="send()"
+    >
+      <img src="/assets/communication/send.svg" alt="" />
+    </button>
+  </div>
+</div>

@@ -7,9 +7,10 @@ import {
 import { LanguageService } from '../../services/language.service';
 import { ChatMessage } from '../../models/conversation';
 import { formatDate } from '../../utils/date-format';
+import { AttachmentChip } from '../attachment-chip/attachment-chip';
 
 @Component({
-  imports: [],
+  imports: [AttachmentChip],
   selector: 'app-message-bubble',
   styleUrl: './message-bubble.scss',
   templateUrl: './message-bubble.html',

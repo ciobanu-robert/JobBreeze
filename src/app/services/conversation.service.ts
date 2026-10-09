@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { Application } from '../models/application';
 import {
+  ChatAttachment,
   ChatMessage,
   Conversation,
 } from '../models/conversation';
@@ -23,8 +24,6 @@ export class ConversationService {
 
   readonly conversations = this.store.asReadonly();
 
-  // Returns the chat for this application, starting an
-  // empty one if the user never talked to the company.
   openForApplication(application: Application): string {
     const existing = this.store().find(
       (conversation) =>
@@ -47,12 +46,17 @@ export class ConversationService {
     return conversation.id;
   }
 
-  send(conversationId: string, text: string): void {
+  send(
+    conversationId: string,
+    text: string,
+    attachments: ChatAttachment[] = [],
+  ): void {
     const message: ChatMessage = {
       id: crypto.randomUUID(),
       sender: 'me',
       text,
       sentAt: new Date().toISOString(),
+      ...(attachments.length ? { attachments } : {}),
     };
 
     this.store.update((list) =>

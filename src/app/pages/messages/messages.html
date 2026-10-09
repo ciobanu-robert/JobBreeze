@@ -86,31 +86,13 @@
           }
         </div>
 
-        <div class="composer">
-          <textarea
-            rows="1"
-            [placeholder]="
-              language.t('messages.inputPlaceholder')
-            "
-            [value]="draft()"
-            (input)="draft.set($any($event.target).value)"
-            (keydown)="onComposerKeydown($event)"
-          ></textarea>
-          <button
-            class="send-button"
-            type="button"
-            [attr.aria-label]="
-              language.t('messages.sendAria')
-            "
-            [disabled]="!canSend()"
-            (click)="send()"
-          >
-            <img
-              src="/assets/communication/send.svg"
-              alt=""
-            />
-          </button>
-        </div>
+        <app-chat-composer
+          [placeholder]="
+            language.t('messages.inputPlaceholder')
+          "
+          (sent)="send($event)"
+        >
+        </app-chat-composer>
       } @else {
         <div class="chat-empty">
           <img

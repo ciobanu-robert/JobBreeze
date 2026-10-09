@@ -1,10 +1,19 @@
-export type MessageSender = 'me' | 'company';
+export type MessageSender = 'me' | 'company' | 'jobby';
+
+export interface ChatAttachment {
+  id: string;
+  name: string;
+  size: number;
+  type: string;
+  url: string;
+}
 
 export interface ChatMessage {
   id: string;
   sender: MessageSender;
   text: string;
   sentAt: string;
+  attachments?: ChatAttachment[];
 }
 
 export interface Conversation {
@@ -13,8 +22,6 @@ export interface Conversation {
   company: string;
   avatarInitials: string;
   jobTitle: string;
-  // Set on chats opened before any message is sent,
-  // so they still sort by recency.
   startedAt?: string;
   messages: ChatMessage[];
 }

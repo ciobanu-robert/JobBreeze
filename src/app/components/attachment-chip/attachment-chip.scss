@@ -1,0 +1,128 @@
+:host {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--card);
+  color: var(--foreground);
+}
+
+.chip-body {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  padding-right: 6px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.chip-icon,
+.chip-thumb {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+}
+
+.chip-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--muted);
+}
+
+.chip-thumb {
+  object-fit: cover;
+}
+
+.chip-icon img,
+.chip-remove img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18)
+    saturate(10.52) hue-rotate(194deg) brightness(0.92)
+    contrast(0.96);
+}
+
+.dark-theme .chip-icon img,
+.dark-theme .chip-remove img {
+  filter: brightness(0) invert(1);
+}
+
+.chip-text {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.chip-name {
+  overflow: hidden;
+  max-width: 220px;
+  font-size: 13px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chip-size {
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+
+.chip-remove {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.chip-remove:hover {
+  background: var(--muted);
+}
+
+.chip-remove img {
+  width: 14px;
+  height: 14px;
+}
+
+.on-primary {
+  border-color: transparent;
+  background: rgb(255 255 255 / 18%);
+  color: var(--primary-foreground);
+}
+
+.on-primary .chip-icon {
+  background: rgb(255 255 255 / 22%);
+}
+
+.on-primary .chip-size {
+  color: inherit;
+  opacity: 0.75;
+}
+
+.on-primary .chip-icon img {
+  filter: brightness(0) invert(1);
+}
+
+.dark-theme.on-primary .chip-icon img {
+  filter: brightness(0);
+}

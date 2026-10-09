@@ -1,6 +1,22 @@
 <div class="bubble-row" [class.mine]="isMine()">
   <div class="bubble">
-    <p class="bubble-text">{{ message().text }}</p>
+    @if (message().attachments?.length) {
+      <div class="bubble-attachments">
+        @for (
+          attachment of message().attachments;
+          track attachment.id
+        ) {
+          <app-attachment-chip
+            [attachment]="attachment"
+            [onPrimary]="isMine()"
+          >
+          </app-attachment-chip>
+        }
+      </div>
+    }
+    @if (message().text) {
+      <p class="bubble-text">{{ message().text }}</p>
+    }
     <span class="bubble-time">{{ time() }}</span>
   </div>
 </div>

@@ -258,6 +258,29 @@ export const TRANSLATIONS: Record<
     'messages.inputPlaceholder': 'Write a message...',
     'messages.sendAria': 'Send message',
     'messages.backAria': 'Back to conversations',
+    'messages.attachAria': 'Attach files',
+    'messages.removeAttachmentAria': 'Remove attachment',
+    'messages.attachment': 'Attachment',
+    'messages.attachTooLarge':
+      'Each file must be smaller than 10 MB.',
+    'messages.attachTooMany':
+      'You can attach up to 5 files at a time.',
+
+    'jobby.title': 'Jobby AI',
+    'jobby.subtitle': 'Your AI career sidekick',
+    'jobby.newChat': 'New chat',
+    'jobby.searchPlaceholder': 'Search chats...',
+    'jobby.emptyList':
+      'Start chatting with Jobby and your conversations will show up here.',
+    'jobby.greeting':
+      "Hi! I'm Jobby. I already know your profile, so how can I help?",
+    'jobby.inputPlaceholder': 'Ask Jobby anything...',
+    'jobby.typing': 'Jobby is typing',
+    'jobby.backAria': 'Back to chats',
+    'jobby.suggestionCv': 'Can you review my CV?',
+    'jobby.suggestionInterview':
+      'Help me prepare for an interview',
+    'jobby.suggestionJobs': 'Which jobs fit me best?',
 
     'footer.contact': 'Contact',
     'footer.legalTerms': 'Terms of service',
@@ -573,6 +596,30 @@ export const TRANSLATIONS: Record<
     'messages.inputPlaceholder': 'Scrie un mesaj...',
     'messages.sendAria': 'Trimite mesajul',
     'messages.backAria': 'Înapoi la conversații',
+    'messages.attachAria': 'Atașează fișiere',
+    'messages.removeAttachmentAria': 'Elimină atașamentul',
+    'messages.attachment': 'Atașament',
+    'messages.attachTooLarge':
+      'Fiecare fișier trebuie să aibă sub 10 MB.',
+    'messages.attachTooMany':
+      'Poți atașa cel mult 5 fișiere odată.',
+
+    'jobby.title': 'Jobby AI',
+    'jobby.subtitle': 'Asistentul tău AI pentru carieră',
+    'jobby.newChat': 'Conversație nouă',
+    'jobby.searchPlaceholder': 'Caută conversații...',
+    'jobby.emptyList':
+      'Începe să vorbești cu Jobby și conversațiile tale vor apărea aici.',
+    'jobby.greeting':
+      'Salut! Sunt Jobby. Îți cunosc deja profilul. Cu ce te pot ajuta?',
+    'jobby.inputPlaceholder':
+      'Întreabă-l pe Jobby orice...',
+    'jobby.typing': 'Jobby scrie',
+    'jobby.backAria': 'Înapoi la conversații',
+    'jobby.suggestionCv': 'Poți să te uiți pe CV-ul meu?',
+    'jobby.suggestionInterview':
+      'Ajută-mă să mă pregătesc de interviu',
+    'jobby.suggestionJobs': 'Ce joburi mi se potrivesc?',
 
     'footer.contact': 'Contact',
     'footer.legalTerms': 'Termeni și condiții',

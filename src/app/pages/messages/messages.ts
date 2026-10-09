@@ -13,6 +13,10 @@ import { Conversation } from '../../models/conversation';
 import { DashboardShell } from '../../components/dashboard-shell/dashboard-shell';
 import { ConversationItem } from '../../components/conversation-item/conversation-item';
 import { MessageBubble } from '../../components/message-bubble/message-bubble';
+import {
+  ChatComposer,
+  ComposerMessage,
+} from '../../components/chat-composer/chat-composer';
 import { ConversationService } from '../../services/conversation.service';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
@@ -31,6 +35,7 @@ function lastSentAt(conversation: Conversation): string {
     DashboardShell,
     ConversationItem,
     MessageBubble,
+    ChatComposer,
   ],
   styleUrl: './messages.scss',
   templateUrl: './messages.html',
@@ -48,7 +53,6 @@ export class Messages {
     null,
   );
   protected readonly search = signal('');
-  protected readonly draft = signal('');
 
   protected readonly visibleConversations = computed(() => {
     const query = this.search().trim().toLowerCase();
@@ -69,9 +73,7 @@ export class Messages {
       ) ?? null,
   );
 
-  protected readonly canSend = computed(
-    () => this.draft().trim() !== '',
-  );
+  protected readonly composer = viewChild(ChatComposer);
 
   private readonly thread =
     viewChild<ElementRef<HTMLElement>>('thread');
@@ -90,8 +92,6 @@ export class Messages {
       this.selectedId.set(requested);
     }
 
-    // A chat opened from another page can sit far down
-    // the list, so bring it into view.
     afterNextRender(() => {
       this.listItems()
         ?.nativeElement.querySelector('.active')
@@ -109,7 +109,7 @@ export class Messages {
 
   protected select(id: string): void {
     this.selectedId.set(id);
-    this.draft.set('');
+    this.composer()?.clear();
     this.syncUrl(id);
   }
 
@@ -118,22 +118,12 @@ export class Messages {
     this.syncUrl(null);
   }
 
-  protected send(): void {
+  protected send(message: ComposerMessage): void {
     const id = this.selectedId();
-    const text = this.draft().trim();
-    if (!id || !text) {
+    if (!id) {
       return;
     }
-
-    this.chats.send(id, text);
-    this.draft.set('');
-  }
-
-  protected onComposerKeydown(event: KeyboardEvent): void {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      this.send();
-    }
+    this.chats.send(id, message.text, message.attachments);
   }
 
   private syncUrl(chat: string | null): void {

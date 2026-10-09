@@ -7,6 +7,7 @@ import { ResetPassword } from './pages/auth/reset-password/reset-password';
 import { Browse } from './pages/browse/browse';
 import { Applications } from './pages/applications/applications';
 import { Messages } from './pages/messages/messages';
+import { Jobby } from './pages/jobby/jobby';
 import { Terms } from './pages/legal/terms/terms';
 import { Privacy } from './pages/legal/privacy/privacy';
 import { Contact } from './pages/contact/contact';
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: 'browse', component: Browse },
   { path: 'applications', component: Applications },
   { path: 'messages', component: Messages },
+  { path: 'jobby', component: Jobby },
   { path: 'terms', component: Terms },
   { path: 'privacy', component: Privacy },
   { path: 'contact', component: Contact },

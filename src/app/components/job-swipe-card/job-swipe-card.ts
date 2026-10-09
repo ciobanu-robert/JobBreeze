@@ -16,11 +16,8 @@ import { Job } from '../../models/job';
 const SWIPE_THRESHOLD = 120;
 const SWIPE_UP_THRESHOLD = 100;
 const MAX_ROTATION = 12;
-// Extra travel past the screen edge so the soft shadow
-// is gone too before the card is removed.
 const EXIT_MARGIN = 48;
 const EXIT_DURATION_MS = 520;
-// Matches the snap-back transition in the stylesheet.
 const ENTER_DURATION_MS = 380;
 
 export type SwipeDirection = 'like' | 'reject' | 'save';
@@ -34,8 +31,6 @@ export type SwipeDirection = 'like' | 'reject' | 'save';
 export class JobSwipeCard implements OnInit {
   readonly job = input.required<Job>();
   readonly interactive = input(true);
-  // Set when the card is restored by undo: it flies back
-  // in from the side it left through.
   readonly enterFrom = input<SwipeDirection | null>(null);
   readonly swiped = output<SwipeDirection>();
 
@@ -48,12 +43,8 @@ export class JobSwipeCard implements OnInit {
   protected readonly dragY = signal(0);
   protected readonly dragging = signal(false);
   readonly exiting = signal<SwipeDirection | null>(null);
-  // True while a card restored by undo flies back in.
   readonly entering = signal(false);
 
-  // The action the card is committed to: dragged past the
-  // threshold (releasing now would trigger it) or already
-  // flying out. Lets the matching button light up.
   readonly activeDirection = computed(
     () =>
       this.exiting() ??
@@ -71,9 +62,6 @@ export class JobSwipeCard implements OnInit {
       if (!this.enterFrom()) {
         return;
       }
-      // Reading layout commits the off-screen start, so the
-      // change below transitions from there instead of
-      // jumping straight to the centre.
       void (this.host.nativeElement as HTMLElement)
         .offsetWidth;
       this.dragging.set(false);
@@ -91,9 +79,6 @@ export class JobSwipeCard implements OnInit {
     if (!from || typeof window === 'undefined') {
       return;
     }
-    // Start off screen with transitions off (the dragging
-    // class disables them), so the first paint is already
-    // outside the viewport.
     this.entering.set(true);
     this.dragging.set(true);
     if (from === 'save') {
@@ -160,8 +145,6 @@ export class JobSwipeCard implements OnInit {
     if (!this.interactive() || this.exiting()) {
       return;
     }
-    // Pointer capture would retarget the click away from
-    // the action buttons inside the card.
     if ((event.target as HTMLElement).closest('button')) {
       return;
     }
@@ -237,9 +220,6 @@ export class JobSwipeCard implements OnInit {
   private launch(direction: SwipeDirection): void {
     this.exiting.set(direction);
 
-    // Fly exactly far enough to clear the viewport, so the
-    // card never vanishes while still on screen, whatever
-    // the screen size.
     const rect = (
       this.host.nativeElement as HTMLElement
     ).getBoundingClientRect();

@@ -151,8 +151,6 @@ body {
   color: var(--foreground);
 }
 
-/* Chromium/Safari get the rounded webkit thumb; setting
-   scrollbar-color there would disable these selectors. */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;

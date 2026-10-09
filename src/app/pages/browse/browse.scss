@@ -10,8 +10,6 @@
   min-height: 0;
 }
 
-/* Sits above the deck so a card swiped up slides behind
-   the title and filters. */
 .browse-header {
   position: relative;
   z-index: 1;
@@ -67,11 +65,6 @@
   filter: brightness(0) invert(1);
 }
 
-/* Deliberately not a scroll container: overflow here would
-   clip swiped cards. The deck shrinks to fit instead.
-   Like the applications list, a card fades out as it
-   rises into the header; the top padding equals the fade,
-   so a resting card is never dimmed. */
 .browse-body {
   --fade: 24px;
 

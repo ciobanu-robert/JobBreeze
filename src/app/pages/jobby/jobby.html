@@ -1,0 +1,133 @@
+<app-dashboard-shell activeKey="jobbyAi" [fullBleed]="true">
+  <div
+    class="messages-page"
+    [class.dark-theme]="theme.isDarkTheme()"
+    [class.has-selection]="showChat()"
+  >
+    <aside class="conversation-list">
+      <div class="list-header">
+        <h1>
+          {{ language.t('jobby.title') }}
+        </h1>
+        <p>
+          {{ language.t('jobby.subtitle') }}
+        </p>
+        <div class="search-field">
+          <img src="/assets/ui/search.svg" alt="" />
+          <input
+            type="search"
+            [placeholder]="
+              language.t('jobby.searchPlaceholder')
+            "
+            [value]="search()"
+            (input)="search.set($any($event.target).value)"
+          />
+        </div>
+      </div>
+
+      <div class="list-items">
+        <button
+          class="new-chat"
+          type="button"
+          (click)="newChat()"
+        >
+          <img src="/assets/ui/plus.svg" alt="" />
+          {{ language.t('jobby.newChat') }}
+        </button>
+
+        @for (chat of visibleChats(); track chat.id) {
+          <button
+            class="jobby-chat"
+            type="button"
+            [class.active]="chat.id === selectedId()"
+            (click)="select(chat.id)"
+          >
+            <span class="jobby-chat-top">
+              <span class="jobby-chat-title">
+                {{ title(chat) }}
+              </span>
+              <span class="jobby-chat-date">
+                {{ date(chat) }}
+              </span>
+            </span>
+            <span class="jobby-chat-preview">
+              {{ preview(chat) }}
+            </span>
+          </button>
+        } @empty {
+          <p class="list-empty">
+            {{
+              language.t(
+                search()
+                  ? 'messages.noResults'
+                  : 'jobby.emptyList'
+              )
+            }}
+          </p>
+        }
+      </div>
+    </aside>
+
+    <section class="chat">
+      <header class="chat-header">
+        <button
+          class="back-button"
+          type="button"
+          [attr.aria-label]="language.t('jobby.backAria')"
+          (click)="back()"
+        >
+          <img
+            src="/assets/navigation/arrow-left.svg"
+            alt=""
+          />
+        </button>
+        <span class="avatar jobby-avatar">
+          <img src="/assets/communication/bot.svg" alt="" />
+        </span>
+        <div>
+          <h2>Jobby</h2>
+          <p>
+            {{ language.t('jobby.subtitle') }}
+          </p>
+        </div>
+      </header>
+
+      <div class="chat-thread" #thread>
+        @for (message of messages(); track message.id) {
+          <app-message-bubble [message]="message">
+          </app-message-bubble>
+        }
+
+        @if (isTyping()) {
+          <div
+            class="typing"
+            role="status"
+            [attr.aria-label]="language.t('jobby.typing')"
+          >
+            <span></span><span></span><span></span>
+          </div>
+        }
+
+        @if (!selectedChat()) {
+          <div class="suggestions">
+            @for (key of suggestions; track key) {
+              <button
+                class="suggestion"
+                type="button"
+                (click)="ask(key)"
+              >
+                {{ language.t(key) }}
+              </button>
+            }
+          </div>
+        }
+      </div>
+
+      <app-chat-composer
+        [placeholder]="language.t('jobby.inputPlaceholder')"
+        (sent)="send($event)"
+      >
+      </app-chat-composer>
+    </section>
+  </div>
+</app-dashboard-shell>

@@ -44,10 +44,6 @@ export class JobSwipeDeck {
     () => this.deckIndex() >= this.allJobs().length,
   );
 
-  // Only the most recent swipe can be undone, once: undo
-  // clears it, so the button stays disabled until the next
-  // swipe. The direction lets the card fly back in from
-  // the side it left through.
   private readonly lastSwipe =
     signal<SwipeDirection | null>(null);
   protected readonly canUndo = computed(
@@ -85,8 +81,6 @@ export class JobSwipeDeck {
 
   protected undo(): void {
     const direction = this.lastSwipe();
-    // A card still flying out would be counted after the
-    // undo and hide the restored card again.
     if (
       !direction ||
       this.cards().some((card) => card.exiting())

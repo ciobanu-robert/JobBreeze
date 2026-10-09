@@ -1,0 +1,107 @@
+:host {
+  display: block;
+  flex-shrink: 0;
+}
+
+.pending-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 20px 0;
+}
+
+.attach-error {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--destructive);
+  font-size: 12px;
+}
+
+.composer {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 14px 20px 20px;
+}
+
+.composer textarea {
+  flex: 1;
+  min-height: 44px;
+  max-height: 140px;
+  box-sizing: border-box;
+  padding: 11px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  outline: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font: inherit;
+  font-size: 14px;
+  resize: none;
+}
+
+.composer textarea:focus {
+  border-color: var(--primary);
+}
+
+.attach-button,
+.send-button {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.attach-button {
+  border: 1px solid var(--border);
+  background: transparent;
+}
+
+.attach-button:hover {
+  background: var(--muted);
+}
+
+.attach-button img,
+.send-button img {
+  width: 18px;
+  height: 18px;
+}
+
+.attach-button img {
+  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18)
+    saturate(10.52) hue-rotate(194deg) brightness(0.92)
+    contrast(0.96);
+}
+
+.dark-theme .attach-button img {
+  filter: brightness(0) invert(1);
+}
+
+.send-button {
+  border: 0;
+  background: var(--gradient-primary);
+}
+
+.send-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.send-button img {
+  filter: brightness(0) invert(1);
+}
+
+@media (max-width: 767px) {
+  .pending-attachments {
+    padding: 10px 16px 0;
+  }
+
+  .composer {
+    padding: 12px 16px;
+  }
+}

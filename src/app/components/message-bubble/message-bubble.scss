@@ -29,6 +29,13 @@
   color: var(--primary-foreground);
 }
 
+.bubble-attachments {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
 .bubble-text {
   margin: 0;
   font-size: 14px;

@@ -34,7 +34,6 @@
   transition: transform 0.38s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Ease-in: leaves slowly, then accelerates off screen. */
 .swipe-card.exiting {
   transition: transform var(--exit-duration)
     cubic-bezier(0.32, 0, 0.67, 0);
@@ -153,9 +152,6 @@
   background: rgb(0 201 211 / 16%);
 }
 
-/* The fade sits in the flex gap (negative margin + equal
-   padding), so the text doesn't move and is only dimmed
-   once it scrolls under an edge. */
 .swipe-card-description {
   --fade: 12px;
 

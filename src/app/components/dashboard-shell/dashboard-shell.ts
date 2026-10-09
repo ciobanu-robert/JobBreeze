@@ -51,7 +51,7 @@ const NAV_ITEMS: DashboardNavItem[] = [
     key: 'jobbyAi',
     icon: '/assets/communication/bot.svg',
     labelKey: 'nav.jobbyAi',
-    route: null,
+    route: '/jobby',
   },
   {
     key: 'profile',
