@@ -3,6 +3,7 @@ import { Conversation } from '../../models/conversation';
 export const DEMO_CONVERSATIONS: Conversation[] = [
   {
     id: 'conv-1',
+    applicationId: 'app-13',
     company: 'FinPulse',
     avatarInitials: 'F',
     jobTitle: 'Full-stack Developer',
@@ -68,6 +69,7 @@ export const DEMO_CONVERSATIONS: Conversation[] = [
   },
   {
     id: 'conv-2',
+    applicationId: 'app-14',
     company: 'PixelForge Studio',
     avatarInitials: 'PS',
     jobTitle: 'UI/UX Designer',
@@ -110,6 +112,7 @@ export const DEMO_CONVERSATIONS: Conversation[] = [
   },
   {
     id: 'conv-3',
+    applicationId: 'app-10',
     company: 'NovaTech Solutions',
     avatarInitials: 'NS',
     jobTitle: 'QA Automation Intern',
@@ -150,6 +153,7 @@ export const DEMO_CONVERSATIONS: Conversation[] = [
   },
   {
     id: 'conv-4',
+    applicationId: 'app-12',
     company: 'GreenWave Energy',
     avatarInitials: 'GE',
     jobTitle: 'Data Analyst',
@@ -188,6 +192,7 @@ export const DEMO_CONVERSATIONS: Conversation[] = [
   },
   {
     id: 'conv-5',
+    applicationId: 'app-11',
     company: 'MediCore Health',
     avatarInitials: 'MH',
     jobTitle: 'Customer Support Specialist',
@@ -205,6 +210,7 @@ export const DEMO_CONVERSATIONS: Conversation[] = [
   },
   {
     id: 'conv-6',
+    applicationId: 'app-1',
     company: 'Overpoly',
     avatarInitials: 'O',
     jobTitle: 'Senior Developer',
@@ -230,6 +236,7 @@ export const DEMO_CONVERSATIONS: Conversation[] = [
   },
   {
     id: 'conv-7',
+    applicationId: 'app-9',
     company: 'NovaTech Solutions',
     avatarInitials: 'NS',
     jobTitle: 'Senior React Developer',
@@ -316,6 +323,7 @@ export const DEMO_CONVERSATIONS: Conversation[] = [
   },
   {
     id: 'conv-8',
+    applicationId: 'app-3',
     company: 'GreenWave Energy',
     avatarInitials: 'GE',
     jobTitle: 'Inginer IoT',
@@ -350,6 +358,7 @@ export const DEMO_CONVERSATIONS: Conversation[] = [
   },
   {
     id: 'conv-9',
+    applicationId: 'app-8',
     company: 'PixelForge Studio',
     avatarInitials: 'PS',
     jobTitle: 'Flutter Developer',
@@ -390,6 +399,7 @@ export const DEMO_CONVERSATIONS: Conversation[] = [
   },
   {
     id: 'conv-10',
+    applicationId: 'app-15',
     company: 'FinPulse',
     avatarInitials: 'F',
     jobTitle: 'Security Engineer',
@@ -424,6 +434,7 @@ export const DEMO_CONVERSATIONS: Conversation[] = [
   },
   {
     id: 'conv-11',
+    applicationId: 'app-4',
     company: 'MediCore Health',
     avatarInitials: 'MH',
     jobTitle: 'HR Business Partner',
@@ -449,6 +460,7 @@ export const DEMO_CONVERSATIONS: Conversation[] = [
   },
   {
     id: 'conv-12',
+    applicationId: 'app-2',
     company: 'Overpoly',
     avatarInitials: 'O',
     jobTitle: 'UX/UI Designer',
@@ -475,6 +487,7 @@ export const DEMO_CONVERSATIONS: Conversation[] = [
   },
   {
     id: 'conv-13',
+    applicationId: 'app-7',
     company: 'GreenWave Energy',
     avatarInitials: 'GE',
     jobTitle: 'DevOps Engineer',
@@ -508,6 +521,7 @@ export const DEMO_CONVERSATIONS: Conversation[] = [
   },
   {
     id: 'conv-14',
+    applicationId: 'app-5',
     company: 'PixelForge Studio',
     avatarInitials: 'PS',
     jobTitle: 'Motion Designer',

@@ -1,34 +1,46 @@
-<app-dashboard-shell activeKey="applications">
+<app-dashboard-shell
+  activeKey="applications"
+  [fullBleed]="true"
+>
   <div class="applications-page">
-    <h1>{{ language.t('applications.title') }}</h1>
+    <header class="applications-header">
+      <div class="applications-inner">
+        <h1>{{ language.t('applications.title') }}</h1>
 
-    <div class="stats-grid">
-      @for (stat of stats(); track stat.labelKey) {
-        <div class="stat-card">
-          <span class="stat-label">
-            {{ language.t(stat.labelKey) }}
-          </span>
-          <span class="stat-value">
-            {{ stat.value }}
-          </span>
+        <div class="stats-grid">
+          @for (stat of stats(); track stat.labelKey) {
+            <div class="stat-card">
+              <span class="stat-label">
+                {{ language.t(stat.labelKey) }}
+              </span>
+              <span class="stat-value">
+                {{ stat.value }}
+              </span>
+            </div>
+          }
         </div>
+      </div>
+    </header>
+
+    <div class="applications-scroll">
+      @if (applications().length) {
+        <div class="applications-list applications-inner">
+          @for (
+            application of applications();
+            track application.id
+          ) {
+            <app-application-card
+              [application]="application"
+              (openChat)="openChat(application)"
+            >
+            </app-application-card>
+          }
+        </div>
+      } @else {
+        <p class="empty-state">
+          {{ language.t('applications.emptyTitle') }}
+        </p>
       }
     </div>
-
-    @if (applications().length) {
-      <div class="applications-list">
-        @for (
-          application of applications();
-          track application.id
-        ) {
-          <app-application-card [application]="application">
-          </app-application-card>
-        }
-      </div>
-    } @else {
-      <p class="empty-state">
-        {{ language.t('applications.emptyTitle') }}
-      </p>
-    }
   </div>
 </app-dashboard-shell>

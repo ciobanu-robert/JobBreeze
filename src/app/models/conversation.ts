@@ -9,8 +9,12 @@ export interface ChatMessage {
 
 export interface Conversation {
   id: string;
+  applicationId: string;
   company: string;
   avatarInitials: string;
   jobTitle: string;
+  // Set on chats opened before any message is sent,
+  // so they still sort by recency.
+  startedAt?: string;
   messages: ChatMessage[];
 }

@@ -1,50 +1,38 @@
+/* No overflow clipping anywhere in the deck: a swiped card
+   must stay visible until it leaves the screen. The card
+   shrinks to fit the height instead of the page scrolling. */
 :host {
   display: block;
   width: 100%;
+  height: 100%;
+  min-height: 0;
 }
 
 .swipe-deck {
   --card-width: min(100%, 440px);
-  --card-height: 580px;
+  /* Taller than before: the action row now lives inside
+     the card instead of below it. */
+  --card-height: 640px;
 
   display: flex;
+  height: 100%;
+  min-height: 0;
   flex-direction: column;
   align-items: center;
-  gap: 26px;
+  justify-content: center;
 }
 
 .card-stack {
   position: relative;
+  flex: 0 1 var(--card-height);
   width: var(--card-width);
-  height: var(--card-height);
+  min-height: 0;
 }
 
 @media (max-width: 767px) {
-  :host {
-    height: 100%;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  .swipe-deck {
-    height: 100%;
-    min-height: 0;
-    overflow: hidden;
-    gap: 14px;
-  }
-
-  .card-stack {
-    flex: 1;
-    min-height: 0;
-  }
-
-  .swipe-actions {
-    flex-shrink: 0;
-  }
-
+  .card-stack,
   .swipe-empty {
     flex: 1;
-    min-height: 0;
   }
 }
 
@@ -60,18 +48,25 @@
   pointer-events: none;
 }
 
+/* Projected into each card, so the row travels with the
+   card when it is swiped. */
 .swipe-actions {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  gap: 14px;
+  padding-top: 4px;
 }
 
 .action-button {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   width: 52px;
   height: 52px;
+  padding: 0;
   border: 1px solid var(--border);
   border-radius: 50%;
   background: var(--card);
@@ -79,11 +74,48 @@
   cursor: pointer;
   transition:
     transform 0.15s ease,
-    border-color 0.15s ease;
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
-.action-button:hover {
+/* Each action's colour: the fill and glow it takes on
+   hover, and while that action is happening. */
+.action-button.undo {
+  --tone: var(--muted-foreground);
+}
+
+.action-button.reject {
+  --tone: var(--destructive);
+}
+
+/* Gold rather than the cyan accent, which would read as
+   the same colour as the like button next to it. */
+.action-button.bookmark {
+  --tone: var(--warning);
+}
+
+.action-button.like {
+  --tone: var(--primary);
+  --tone-fill: var(--gradient-primary);
+}
+
+.action-button.flag {
+  --tone: var(--foreground);
+}
+
+.action-button.small {
+  width: 40px;
+  height: 40px;
+}
+
+.action-button:not(:disabled):hover {
   transform: translateY(-2px);
+}
+
+.action-button:disabled {
+  cursor: default;
+  opacity: 0.4;
 }
 
 .action-button img {
@@ -94,22 +126,38 @@
     contrast(0.96);
 }
 
+.action-button.small img {
+  width: 16px;
+  height: 16px;
+}
+
 .dark-theme .action-button img {
   filter: brightness(0) invert(1);
 }
 
-.action-button.reject:hover {
-  border-color: var(--destructive);
-}
-
-.action-button.like {
+/* Plain until hovered; `.active` is set while the action
+   is happening (dragged past the threshold, flying out,
+   undo returning, report dialog open). */
+.action-button:not(:disabled):hover,
+.action-button.active {
   border-color: transparent;
-  background: var(--gradient-primary);
-  box-shadow: var(--shadow-glow);
+  background: var(--tone-fill, var(--tone));
+  box-shadow: 0 14px 34px -12px
+    color-mix(in srgb, var(--tone) 65%, transparent);
 }
 
-.action-button.like img {
+.action-button:not(:disabled):hover img,
+.action-button.active img {
   filter: brightness(0) invert(1);
+}
+
+/* White is unreadable on gold, and on the light
+   foreground fill of the dark theme: use a dark icon. */
+.action-button.bookmark:not(:disabled):hover img,
+.action-button.bookmark.active img,
+.dark-theme .action-button.flag:not(:disabled):hover img,
+.dark-theme .action-button.flag.active img {
+  filter: brightness(0);
 }
 
 .swipe-empty {
@@ -117,8 +165,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 0 1 var(--card-height);
   width: var(--card-width);
-  height: var(--card-height);
+  min-height: 0;
   box-sizing: border-box;
   padding: 32px;
   border: 1px dashed var(--border);
@@ -131,6 +180,12 @@
   margin: 0 0 18px;
   color: var(--foreground);
   font-weight: 600;
+}
+
+.swipe-empty-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .refresh-button {

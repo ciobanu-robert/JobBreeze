@@ -1,9 +1,9 @@
-<app-dashboard-shell activeKey="browse">
+<app-dashboard-shell activeKey="browse" [fullBleed]="true">
   <div
     class="browse-page"
     [class.dark-theme]="theme.isDarkTheme()"
   >
-    <div class="browse-content">
+    <header class="browse-header">
       <div class="browse-topbar">
         <h1>{{ language.t('browse.title') }}</h1>
         <button
@@ -15,7 +15,9 @@
           {{ language.t('browse.filters') }}
         </button>
       </div>
+    </header>
 
+    <div class="browse-body">
       <div class="browse-deck">
         <app-job-swipe-deck [jobs]="filteredJobs()">
         </app-job-swipe-deck>

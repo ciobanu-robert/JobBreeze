@@ -3,6 +3,7 @@ import {
   computed,
   inject,
   input,
+  output,
 } from '@angular/core';
 import {
   Application,
@@ -33,6 +34,7 @@ const DATE_LOCALES: Record<LanguageCode, string> = {
 })
 export class ApplicationCard {
   readonly application = input.required<Application>();
+  readonly openChat = output<void>();
 
   protected readonly language = inject(LanguageService);
   protected readonly theme = inject(ThemeService);

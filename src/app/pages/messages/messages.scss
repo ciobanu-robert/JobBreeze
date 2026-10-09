@@ -73,13 +73,29 @@
   border-color: var(--primary);
 }
 
+/* Both scroll areas fade at the edges like the
+   applications list; the vertical padding equals the
+   fade, so nothing is dimmed until you scroll. */
+.list-items,
+.chat-thread {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fade),
+    #000 calc(100% - var(--fade)),
+    transparent
+  );
+}
+
 .list-items {
+  --fade: 16px;
+
   display: flex;
   flex: 1;
   min-height: 0;
   flex-direction: column;
   gap: 4px;
-  padding: 8px;
+  padding: var(--fade) 8px;
   overflow-y: auto;
 }
 
@@ -157,12 +173,14 @@
 }
 
 .chat-thread {
+  --fade: 20px;
+
   display: flex;
   flex: 1;
   min-height: 0;
   flex-direction: column;
   gap: 10px;
-  padding: 20px;
+  padding: var(--fade) 20px;
   overflow-y: auto;
 }
 
@@ -271,7 +289,9 @@
   }
 
   .chat-thread {
-    padding: 16px;
+    --fade: 16px;
+
+    padding: var(--fade) 16px;
   }
 
   .composer {

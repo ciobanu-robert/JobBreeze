@@ -15,7 +15,11 @@
       {{ appliedDate() }}
     </p>
     @if (application().status === 'shortlisted') {
-      <button class="open-chat" type="button">
+      <button
+        class="open-chat"
+        type="button"
+        (click)="openChat.emit()"
+      >
         <img
           src="/assets/communication/message-circle.svg"
           alt=""

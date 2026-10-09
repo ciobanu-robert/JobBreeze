@@ -1,5 +1,9 @@
 import {
   Component,
+  ElementRef,
+  OnInit,
+  afterNextRender,
+  computed,
   inject,
   input,
   output,
@@ -12,9 +16,12 @@ import { Job } from '../../models/job';
 const SWIPE_THRESHOLD = 120;
 const SWIPE_UP_THRESHOLD = 100;
 const MAX_ROTATION = 12;
-const FLY_OUT_DISTANCE = 640;
-const FLY_UP_DISTANCE = 700;
-const EXIT_DURATION_MS = 380;
+// Extra travel past the screen edge so the soft shadow
+// is gone too before the card is removed.
+const EXIT_MARGIN = 48;
+const EXIT_DURATION_MS = 520;
+// Matches the snap-back transition in the stylesheet.
+const ENTER_DURATION_MS = 380;
 
 export type SwipeDirection = 'like' | 'reject' | 'save';
 
@@ -24,23 +31,81 @@ export type SwipeDirection = 'like' | 'reject' | 'save';
   styleUrl: './job-swipe-card.scss',
   templateUrl: './job-swipe-card.html',
 })
-export class JobSwipeCard {
+export class JobSwipeCard implements OnInit {
   readonly job = input.required<Job>();
   readonly interactive = input(true);
+  // Set when the card is restored by undo: it flies back
+  // in from the side it left through.
+  readonly enterFrom = input<SwipeDirection | null>(null);
   readonly swiped = output<SwipeDirection>();
 
   protected readonly language = inject(LanguageService);
   protected readonly theme = inject(ThemeService);
+  protected readonly exitDuration = `${EXIT_DURATION_MS}ms`;
+  private readonly host = inject(ElementRef<HTMLElement>);
 
   protected readonly dragX = signal(0);
   protected readonly dragY = signal(0);
   protected readonly dragging = signal(false);
-  protected readonly exiting =
-    signal<SwipeDirection | null>(null);
+  readonly exiting = signal<SwipeDirection | null>(null);
+  // True while a card restored by undo flies back in.
+  readonly entering = signal(false);
+
+  // The action the card is committed to: dragged past the
+  // threshold (releasing now would trigger it) or already
+  // flying out. Lets the matching button light up.
+  readonly activeDirection = computed(
+    () =>
+      this.exiting() ??
+      (this.dragging() && !this.entering()
+        ? this.releaseDirection()
+        : null),
+  );
 
   private pointerId: number | null = null;
   private startX = 0;
   private startY = 0;
+
+  constructor() {
+    afterNextRender(() => {
+      if (!this.enterFrom()) {
+        return;
+      }
+      // Reading layout commits the off-screen start, so the
+      // change below transitions from there instead of
+      // jumping straight to the centre.
+      void (this.host.nativeElement as HTMLElement)
+        .offsetWidth;
+      this.dragging.set(false);
+      this.dragX.set(0);
+      this.dragY.set(0);
+      setTimeout(
+        () => this.entering.set(false),
+        ENTER_DURATION_MS,
+      );
+    });
+  }
+
+  ngOnInit(): void {
+    const from = this.enterFrom();
+    if (!from || typeof window === 'undefined') {
+      return;
+    }
+    // Start off screen with transitions off (the dragging
+    // class disables them), so the first paint is already
+    // outside the viewport.
+    this.entering.set(true);
+    this.dragging.set(true);
+    if (from === 'save') {
+      this.dragY.set(-window.innerHeight);
+    } else {
+      this.dragX.set(
+        from === 'like'
+          ? window.innerWidth
+          : -window.innerWidth,
+      );
+    }
+  }
 
   protected get rotation(): number {
     return Math.max(
@@ -95,6 +160,11 @@ export class JobSwipeCard {
     if (!this.interactive() || this.exiting()) {
       return;
     }
+    // Pointer capture would retarget the click away from
+    // the action buttons inside the card.
+    if ((event.target as HTMLElement).closest('button')) {
+      return;
+    }
     event.preventDefault();
     this.pointerId = event.pointerId;
     this.startX = event.clientX - this.dragX();
@@ -129,6 +199,16 @@ export class JobSwipeCard {
     this.dragging.set(false);
     this.pointerId = null;
 
+    const direction = this.releaseDirection();
+    if (direction) {
+      this.launch(direction);
+    } else {
+      this.dragX.set(0);
+      this.dragY.set(0);
+    }
+  }
+
+  private releaseDirection(): SwipeDirection | null {
     const dx = this.dragX();
     const dy = this.dragY();
 
@@ -136,15 +216,15 @@ export class JobSwipeCard {
       dy < -SWIPE_UP_THRESHOLD &&
       Math.abs(dy) > Math.abs(dx)
     ) {
-      this.launch('save');
-    } else if (dx > SWIPE_THRESHOLD) {
-      this.launch('like');
-    } else if (dx < -SWIPE_THRESHOLD) {
-      this.launch('reject');
-    } else {
-      this.dragX.set(0);
-      this.dragY.set(0);
+      return 'save';
     }
+    if (dx > SWIPE_THRESHOLD) {
+      return 'like';
+    }
+    if (dx < -SWIPE_THRESHOLD) {
+      return 'reject';
+    }
+    return null;
   }
 
   triggerSwipe(direction: SwipeDirection): void {
@@ -156,15 +236,32 @@ export class JobSwipeCard {
 
   private launch(direction: SwipeDirection): void {
     this.exiting.set(direction);
+
+    // Fly exactly far enough to clear the viewport, so the
+    // card never vanishes while still on screen, whatever
+    // the screen size.
+    const rect = (
+      this.host.nativeElement as HTMLElement
+    ).getBoundingClientRect();
+    const angle = (MAX_ROTATION * Math.PI) / 180;
+    const halfWidth =
+      (rect.width * Math.cos(angle) +
+        rect.height * Math.sin(angle)) /
+      2;
+    const centerX = rect.left + rect.width / 2;
+
     if (direction === 'save') {
       this.dragX.set(0);
-      this.dragY.set(-FLY_UP_DISTANCE);
-    } else {
+      this.dragY.set(-(rect.bottom + EXIT_MARGIN));
+    } else if (direction === 'like') {
       this.dragX.set(
-        direction === 'like'
-          ? FLY_OUT_DISTANCE
-          : -FLY_OUT_DISTANCE,
+        window.innerWidth -
+          centerX +
+          halfWidth +
+          EXIT_MARGIN,
       );
+    } else {
+      this.dragX.set(-(centerX + halfWidth + EXIT_MARGIN));
     }
     setTimeout(
       () => this.swiped.emit(direction),

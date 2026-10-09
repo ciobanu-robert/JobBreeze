@@ -4,6 +4,7 @@
   [class.dragging]="dragging()"
   [class.exiting]="!!exiting()"
   [class.interactive]="interactive()"
+  [style.--exit-duration]="exitDuration"
   [style.transform]="
     'translate(' +
     dragX() +
@@ -76,4 +77,6 @@
       <span>{{ tag }}</span>
     }
   </div>
+
+  <ng-content></ng-content>
 </article>

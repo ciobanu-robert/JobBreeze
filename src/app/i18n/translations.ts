@@ -44,8 +44,7 @@ export const TRANSLATIONS: Record<
 
     'home.benefitsTitle': 'Why choose JobBreeze',
     'home.benefitsSubtitle':
-      'A faster, friendlier way to find your next ' +
-      'role — or your next hire.',
+      'A faster, friendlier way to find your next role',
     'home.benefits.matching.title': "Swipe, don't scroll",
     'home.benefits.matching.description':
       'Skip endless job boards. Swipe through roles ' +
@@ -63,7 +62,7 @@ export const TRANSLATIONS: Record<
       'Talk directly, no middleman',
     'home.benefits.chat.description':
       'Match with a company and start chatting right ' +
-      'away — no recruiters, no waiting.',
+      'away with no recruiters, no waiting.',
     'home.benefits.tracking.title':
       'Save and track everything',
     'home.benefits.tracking.description':
@@ -85,7 +84,7 @@ export const TRANSLATIONS: Record<
       'Create your profile',
     'home.howItWorks.seekers.step1.description':
       'Add your skills, experience, and what you are ' +
-      'looking for — it takes just a few minutes.',
+      'looking for. It takes just a few minutes.',
     'home.howItWorks.seekers.step2.title':
       'Swipe through curated jobs',
     'home.howItWorks.seekers.step2.description':
@@ -112,7 +111,7 @@ export const TRANSLATIONS: Record<
     'home.howItWorks.companies.step3.title':
       'Review matched candidates',
     'home.howItWorks.companies.step3.description':
-      'See a curated stream of candidates who fit — ' +
+      'See a curated stream of candidates who fit with' +
       'no sorting through hundreds of resumes.',
     'home.howItWorks.companies.step4.title':
       'Hire the right fit',
@@ -120,7 +119,7 @@ export const TRANSLATIONS: Record<
       'Chat, interview, and hire directly, all from ' +
       'one dashboard.',
 
-    'cta.login': "Let's log in",
+    'cta.login': 'Log in',
     'cta.register': 'Register',
 
     'jobCard.ariaLabel': 'Example job card',
@@ -229,6 +228,7 @@ export const TRANSLATIONS: Record<
     'swipeCard.bookmarkAria': 'Save this job',
     'swipeCard.likeAria': 'Like this job',
     'swipeCard.flagAria': 'Report this job',
+    'swipeCard.undoAria': 'Undo last swipe',
 
     'report.title': 'Report job',
     'report.closeAria': 'Close',
@@ -346,7 +346,7 @@ export const TRANSLATIONS: Record<
     'home.benefitsTitle': 'De ce să alegi JobBreeze',
     'home.benefitsSubtitle':
       'Un mod mai rapid și mai prietenos de a-ți ' +
-      'găsi următorul job — sau următoarea angajare.',
+      'găsi următorul job.',
     'home.benefits.matching.title':
       'Dă swipe, nu mai derula',
     'home.benefits.matching.description':
@@ -366,7 +366,7 @@ export const TRANSLATIONS: Record<
       'Vorbești direct, fără intermediari',
     'home.benefits.chat.description':
       'Te potrivești cu o companie și poți începe ' +
-      'conversația imediat — fără recrutori, fără ' +
+      'conversația imediat. Fără recrutori, fără ' +
       'așteptare.',
     'home.benefits.tracking.title':
       'Salvezi și urmărești totul',
@@ -390,7 +390,7 @@ export const TRANSLATIONS: Record<
       'Creează-ți profilul',
     'home.howItWorks.seekers.step1.description':
       'Adaugă-ți abilitățile, experiența și ce ' +
-      'anume cauți — durează doar câteva minute.',
+      'anume cauți. Durează doar câteva minute.',
     'home.howItWorks.seekers.step2.title':
       'Vezi joburi alese pentru tine',
     'home.howItWorks.seekers.step2.description':
@@ -419,8 +419,8 @@ export const TRANSLATIONS: Record<
     'home.howItWorks.companies.step3.title':
       'Analizează candidații potriviți',
     'home.howItWorks.companies.step3.description':
-      'Vezi un flux de candidați deja filtrați — ' +
-      'fără să treci prin sute de CV-uri.',
+      'Vezi un flux de candidați deja filtrați. ' +
+      'Fără să treci prin sute de CV-uri.',
     'home.howItWorks.companies.step4.title':
       'Angajează persoana potrivită',
     'home.howItWorks.companies.step4.description':
@@ -540,6 +540,7 @@ export const TRANSLATIONS: Record<
     'swipeCard.bookmarkAria': 'Salvează acest job',
     'swipeCard.likeAria': 'Apreciază acest job',
     'swipeCard.flagAria': 'Raportează acest job',
+    'swipeCard.undoAria': 'Anulează ultimul swipe',
 
     'report.title': 'Raportează jobul',
     'report.closeAria': 'Închide',

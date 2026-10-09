@@ -1,25 +1,28 @@
 import {
   Component,
   ElementRef,
+  afterNextRender,
   afterRenderEffect,
   computed,
   inject,
   signal,
   viewChild,
 } from '@angular/core';
-import {
-  ChatMessage,
-  Conversation,
-} from '../../models/conversation';
-import { DEMO_CONVERSATIONS } from './demo-conversations';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Conversation } from '../../models/conversation';
 import { DashboardShell } from '../../components/dashboard-shell/dashboard-shell';
 import { ConversationItem } from '../../components/conversation-item/conversation-item';
 import { MessageBubble } from '../../components/message-bubble/message-bubble';
+import { ConversationService } from '../../services/conversation.service';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
 
 function lastSentAt(conversation: Conversation): string {
-  return conversation.messages.at(-1)?.sentAt ?? '';
+  return (
+    conversation.messages.at(-1)?.sentAt ??
+    conversation.startedAt ??
+    ''
+  );
 }
 
 @Component({
@@ -35,10 +38,12 @@ function lastSentAt(conversation: Conversation): string {
 export class Messages {
   protected readonly language = inject(LanguageService);
   protected readonly theme = inject(ThemeService);
+  private readonly chats = inject(ConversationService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
-  protected readonly conversations = signal<Conversation[]>(
-    DEMO_CONVERSATIONS,
-  );
+  protected readonly conversations =
+    this.chats.conversations;
   protected readonly selectedId = signal<string | null>(
     null,
   );
@@ -70,8 +75,29 @@ export class Messages {
 
   private readonly thread =
     viewChild<ElementRef<HTMLElement>>('thread');
+  private readonly listItems =
+    viewChild<ElementRef<HTMLElement>>('listItems');
 
   constructor() {
+    const requested =
+      this.route.snapshot.queryParamMap.get('chat');
+    if (
+      requested &&
+      this.conversations().some(
+        (conversation) => conversation.id === requested,
+      )
+    ) {
+      this.selectedId.set(requested);
+    }
+
+    // A chat opened from another page can sit far down
+    // the list, so bring it into view.
+    afterNextRender(() => {
+      this.listItems()
+        ?.nativeElement.querySelector('.active')
+        ?.scrollIntoView({ block: 'nearest' });
+    });
+
     afterRenderEffect(() => {
       this.selectedConversation();
       const element = this.thread()?.nativeElement;
@@ -84,10 +110,12 @@ export class Messages {
   protected select(id: string): void {
     this.selectedId.set(id);
     this.draft.set('');
+    this.syncUrl(id);
   }
 
   protected back(): void {
     this.selectedId.set(null);
+    this.syncUrl(null);
   }
 
   protected send(): void {
@@ -97,23 +125,7 @@ export class Messages {
       return;
     }
 
-    const message: ChatMessage = {
-      id: crypto.randomUUID(),
-      sender: 'me',
-      text,
-      sentAt: new Date().toISOString(),
-    };
-
-    this.conversations.update((list) =>
-      list.map((conversation) =>
-        conversation.id === id
-          ? {
-              ...conversation,
-              messages: [...conversation.messages, message],
-            }
-          : conversation,
-      ),
-    );
+    this.chats.send(id, text);
     this.draft.set('');
   }
 
@@ -122,5 +134,13 @@ export class Messages {
       event.preventDefault();
       this.send();
     }
+  }
+
+  private syncUrl(chat: string | null): void {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { chat },
+      replaceUrl: true,
+    });
   }
 }

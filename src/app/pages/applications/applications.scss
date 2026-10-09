@@ -3,13 +3,27 @@
 }
 
 .applications-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.applications-inner {
+  box-sizing: border-box;
   width: 100%;
   max-width: 880px;
   margin: 0 auto;
 }
 
+.applications-header {
+  flex-shrink: 0;
+  padding: 32px 40px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
 h1 {
-  margin: 0 0 24px;
+  margin: 0 0 20px;
   color: var(--foreground);
   font-family: 'Space Grotesk', sans-serif;
   font-size: 28px;
@@ -20,7 +34,6 @@ h1 {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
-  margin-bottom: 24px;
 }
 
 .stat-card {
@@ -49,6 +62,24 @@ h1 {
   font-weight: 700;
 }
 
+/* The padding matches the fade, so at rest the first and
+   last cards sit fully outside it. */
+.applications-scroll {
+  --fade: 24px;
+
+  flex: 1;
+  min-height: 0;
+  padding: var(--fade) 40px;
+  overflow-y: auto;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fade),
+    #000 calc(100% - var(--fade)),
+    transparent
+  );
+}
+
 .applications-list {
   display: flex;
   flex-direction: column;
@@ -64,8 +95,11 @@ h1 {
 @media (max-width: 767px) {
   .applications-page {
     flex: 1;
-    min-height: 0;
-    overflow-y: auto;
+    height: auto;
+  }
+
+  .applications-header {
+    padding: 16px;
   }
 
   h1 {
@@ -75,5 +109,11 @@ h1 {
 
   .stats-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .applications-scroll {
+    --fade: 16px;
+
+    padding: var(--fade) 16px;
   }
 }

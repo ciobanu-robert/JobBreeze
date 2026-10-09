@@ -7,7 +7,10 @@ import {
   signal,
   viewChildren,
 } from '@angular/core';
-import { JobSwipeCard } from '../job-swipe-card/job-swipe-card';
+import {
+  JobSwipeCard,
+  SwipeDirection,
+} from '../job-swipe-card/job-swipe-card';
 import { ReportJobDialog } from '../report-job-dialog/report-job-dialog';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
@@ -41,6 +44,20 @@ export class JobSwipeDeck {
     () => this.deckIndex() >= this.allJobs().length,
   );
 
+  // Only the most recent swipe can be undone, once: undo
+  // clears it, so the button stays disabled until the next
+  // swipe. The direction lets the card fly back in from
+  // the side it left through.
+  private readonly lastSwipe =
+    signal<SwipeDirection | null>(null);
+  protected readonly canUndo = computed(
+    () => this.lastSwipe() !== null,
+  );
+  private readonly restored = signal<{
+    jobId: string;
+    direction: SwipeDirection;
+  } | null>(null);
+
   private readonly cards = viewChildren(JobSwipeCard);
   protected readonly topCard = computed(
     () => this.cards()[0],
@@ -56,15 +73,45 @@ export class JobSwipeDeck {
     effect(() => {
       this.allJobs();
       this.deckIndex.set(0);
+      this.lastSwipe.set(null);
     });
   }
 
-  protected onSwiped(): void {
+  protected onSwiped(direction: SwipeDirection): void {
+    this.lastSwipe.set(direction);
+    this.restored.set(null);
     this.deckIndex.update((i) => i + 1);
+  }
+
+  protected undo(): void {
+    const direction = this.lastSwipe();
+    // A card still flying out would be counted after the
+    // undo and hide the restored card again.
+    if (
+      !direction ||
+      this.cards().some((card) => card.exiting())
+    ) {
+      return;
+    }
+    const index = this.deckIndex() - 1;
+    this.lastSwipe.set(null);
+    this.restored.set({
+      jobId: this.allJobs()[index].id,
+      direction,
+    });
+    this.deckIndex.set(index);
+  }
+
+  protected enterFrom(job: Job): SwipeDirection | null {
+    const restored = this.restored();
+    return restored?.jobId === job.id
+      ? restored.direction
+      : null;
   }
 
   protected refresh(): void {
     this.deckIndex.set(0);
+    this.lastSwipe.set(null);
   }
 
   protected openReport(): void {

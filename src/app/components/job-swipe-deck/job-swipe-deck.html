@@ -10,66 +10,108 @@
         let i = $index
       ) {
         <app-job-swipe-card
+          #card
           class="stack-item"
           [style.zIndex]="10 - i"
           [style.--depth]="i"
           [job]="job"
           [interactive]="i === 0"
-          (swiped)="onSwiped()"
-        ></app-job-swipe-card>
+          [enterFrom]="enterFrom(job)"
+          (swiped)="onSwiped($event)"
+        >
+          <div class="swipe-actions">
+            <button
+              class="action-button small undo"
+              [class.active]="card.entering()"
+              type="button"
+              [attr.aria-label]="
+                language.t('swipeCard.undoAria')
+              "
+              [disabled]="!canUndo()"
+              (click)="undo()"
+            >
+              <img src="/assets/ui/undo-2.svg" alt="" />
+            </button>
+            <button
+              class="action-button reject"
+              [class.active]="
+                card.activeDirection() === 'reject'
+              "
+              type="button"
+              [attr.aria-label]="
+                language.t('swipeCard.rejectAria')
+              "
+              (click)="card.triggerSwipe('reject')"
+            >
+              <img src="/assets/ui/x.svg" alt="" />
+            </button>
+            <button
+              class="action-button bookmark"
+              [class.active]="
+                card.activeDirection() === 'save'
+              "
+              type="button"
+              [attr.aria-label]="
+                language.t('swipeCard.bookmarkAria')
+              "
+              (click)="card.triggerSwipe('save')"
+            >
+              <img src="/assets/jobs/bookmark.svg" alt="" />
+            </button>
+            <button
+              class="action-button like"
+              [class.active]="
+                card.activeDirection() === 'like'
+              "
+              type="button"
+              [attr.aria-label]="
+                language.t('swipeCard.likeAria')
+              "
+              (click)="card.triggerSwipe('like')"
+            >
+              <img src="/assets/jobs/heart.svg" alt="" />
+            </button>
+            <button
+              class="action-button small flag"
+              [class.active]="i === 0 && isReportOpen()"
+              type="button"
+              [attr.aria-label]="
+                language.t('swipeCard.flagAria')
+              "
+              (click)="openReport()"
+            >
+              <img src="/assets/ui/flag.svg" alt="" />
+            </button>
+          </div>
+        </app-job-swipe-card>
       }
-    </div>
-
-    <div class="swipe-actions">
-      <button
-        class="action-button reject"
-        type="button"
-        [attr.aria-label]="
-          language.t('swipeCard.rejectAria')
-        "
-        (click)="topCard()?.triggerSwipe('reject')"
-      >
-        <img src="/assets/ui/x.svg" alt="" />
-      </button>
-      <button
-        class="action-button bookmark"
-        type="button"
-        [attr.aria-label]="
-          language.t('swipeCard.bookmarkAria')
-        "
-        (click)="topCard()?.triggerSwipe('save')"
-      >
-        <img src="/assets/jobs/bookmark.svg" alt="" />
-      </button>
-      <button
-        class="action-button like"
-        type="button"
-        [attr.aria-label]="language.t('swipeCard.likeAria')"
-        (click)="topCard()?.triggerSwipe('like')"
-      >
-        <img src="/assets/jobs/heart.svg" alt="" />
-      </button>
-      <button
-        class="action-button flag"
-        type="button"
-        [attr.aria-label]="language.t('swipeCard.flagAria')"
-        (click)="openReport()"
-      >
-        <img src="/assets/ui/flag.svg" alt="" />
-      </button>
     </div>
   } @else {
     <div class="swipe-empty">
       <p>
         {{ language.t('browse.emptyTitle') }}
       </p>
-      <button
-        class="refresh-button"
-        type="button"
-        (click)="refresh()"
-      >
-        {{ language.t('browse.refresh') }}
-      </button>
+      <div class="swipe-empty-actions">
+        @if (canUndo()) {
+          <button
+            class="action-button small undo"
+            type="button"
+            [attr.aria-label]="
+              language.t('swipeCard.undoAria')
+            "
+            (click)="undo()"
+          >
+            <img src="/assets/ui/undo-2.svg" alt="" />
+          </button>
+        }
+        <button
+          class="refresh-button"
+          type="button"
+          (click)="refresh()"
+        >
+          {{ language.t('browse.refresh') }}
+        </button>
+      </div>
     </div>
   }
 </div>

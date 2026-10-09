@@ -34,6 +34,12 @@
   transition: transform 0.38s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+/* Ease-in: leaves slowly, then accelerates off screen. */
+.swipe-card.exiting {
+  transition: transform var(--exit-duration)
+    cubic-bezier(0.32, 0, 0.67, 0);
+}
+
 .stamp {
   position: absolute;
   top: 50%;
@@ -52,7 +58,7 @@
 
 .stamp-like {
   left: 24px;
-  color: var(--success);
+  color: var(--primary);
   transform: translateY(-50%) rotate(-10deg);
 }
 
@@ -64,7 +70,7 @@
 
 .stamp-save {
   left: 50%;
-  color: var(--accent);
+  color: var(--warning);
   transform: translate(-50%, -50%);
 }
 
@@ -147,36 +153,33 @@
   background: rgb(0 201 211 / 16%);
 }
 
+/* The fade sits in the flex gap (negative margin + equal
+   padding), so the text doesn't move and is only dimmed
+   once it scrolls under an edge. */
 .swipe-card-description {
+  --fade: 12px;
+
   flex: 1 1 auto;
   min-height: 0;
-  margin: 0;
+  margin: calc(var(--fade) * -1) 0;
   overflow-y: auto;
   overscroll-behavior: contain;
   touch-action: none;
-  padding-right: 6px;
+  padding: var(--fade) 6px var(--fade) 0;
   color: var(--muted-foreground);
   font-size: 13px;
   line-height: 1.5;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fade),
+    #000 calc(100% - var(--fade)),
+    transparent
+  );
 }
 
 .swipe-card-description.dragging {
   pointer-events: none;
-}
-
-.swipe-card-description::-webkit-scrollbar {
-  width: 5px;
-}
-
-.swipe-card-description::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.swipe-card-description::-webkit-scrollbar-thumb {
-  border-radius: var(--radius-full);
-  background: var(--border);
 }
 
 .swipe-card-tags {

@@ -6,16 +6,19 @@
 .browse-page {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 64px);
+  height: 100%;
+  min-height: 0;
 }
 
-.browse-content {
-  display: flex;
-  width: 100%;
-  max-width: 640px;
-  flex: 1;
-  flex-direction: column;
-  margin: 0 auto;
+/* Sits above the deck so a card swiped up slides behind
+   the title and filters. */
+.browse-header {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  padding: 32px 40px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
 }
 
 .browse-topbar {
@@ -24,7 +27,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 32px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 .browse-topbar h1 {
@@ -61,39 +67,55 @@
   filter: brightness(0) invert(1);
 }
 
+/* Deliberately not a scroll container: overflow here would
+   clip swiped cards. The deck shrinks to fit instead.
+   Like the applications list, a card fades out as it
+   rises into the header; the top padding equals the fade,
+   so a resting card is never dimmed. */
+.browse-body {
+  --fade: 24px;
+
+  position: relative;
+  z-index: 0;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  padding: var(--fade) 40px 24px;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fade)
+  );
+}
+
 .browse-deck {
   display: flex;
   flex: 1;
-  align-items: center;
-  justify-content: center;
-  padding: 20px 0;
+  min-height: 0;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 @media (max-width: 767px) {
   .browse-page {
     flex: 1;
-    min-height: 0;
-    overflow: hidden;
+    height: auto;
   }
 
-  .browse-content {
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  .browse-topbar {
-    flex-shrink: 0;
-    margin-bottom: 14px;
+  .browse-header {
+    padding: 16px;
   }
 
   .browse-topbar h1 {
     font-size: 22px;
   }
 
-  .browse-deck {
-    min-height: 0;
-    overflow: hidden;
-    align-items: stretch;
-    padding: 0;
+  .browse-body {
+    --fade: 14px;
+
+    padding: var(--fade) 16px 10px;
   }
 }

@@ -4,12 +4,14 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   Application,
   ApplicationStatus,
 } from '../../models/application';
 import { DashboardShell } from '../../components/dashboard-shell/dashboard-shell';
 import { ApplicationCard } from '../../components/application-card/application-card';
+import { ConversationService } from '../../services/conversation.service';
 import { LanguageService } from '../../services/language.service';
 import { DEMO_APPLICATIONS } from './demo-applications';
 
@@ -21,6 +23,8 @@ import { DEMO_APPLICATIONS } from './demo-applications';
 })
 export class Applications {
   protected readonly language = inject(LanguageService);
+  private readonly chats = inject(ConversationService);
+  private readonly router = inject(Router);
 
   protected readonly applications = signal<Application[]>(
     DEMO_APPLICATIONS,
@@ -50,4 +54,11 @@ export class Applications {
       },
     ];
   });
+
+  protected openChat(application: Application): void {
+    const chat = this.chats.openForApplication(application);
+    this.router.navigate(['/messages'], {
+      queryParams: { chat },
+    });
+  }
 }
