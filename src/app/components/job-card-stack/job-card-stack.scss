@@ -5,7 +5,7 @@
 .job-stack {
   position: relative;
   width: 360px;
-  height: 430px;
+  height: 470px;
   margin: 0 auto;
   transform: rotate(-5deg);
 }
@@ -13,16 +13,16 @@
 .job-card,
 .job-card-back {
   position: absolute;
+  right: 30px;
+  bottom: 20px;
   box-sizing: border-box;
-  width: 290px;
-  height: 380px;
-  border: 1px solid var(--panel-border);
-  border-radius: var(--radius-3xl);
+  width: 300px;
+  height: 430px;
 }
 
 .job-card-back {
-  right: 20px;
-  bottom: 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
   background: var(--secondary);
 }
 
@@ -35,105 +35,51 @@
 }
 
 .job-card {
-  right: 42px;
-  bottom: 26px;
   z-index: 2;
+  pointer-events: none;
+}
+
+.preview-actions {
   display: flex;
-  flex-direction: column;
-  padding: 27px 23px 21px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding-top: 4px;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
   background: var(--card);
-  color: var(--card-foreground);
   box-shadow: var(--shadow-soft);
 }
 
-.job-card-top {
-  display: flex;
-  align-items: center;
-  gap: 11px;
+.action-button img {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) saturate(1) invert(0.07) sepia(0.18)
+    saturate(10.52) hue-rotate(194deg) brightness(0.92)
+    contrast(0.96);
 }
 
-.company-mark {
-  display: grid;
-  place-items: center;
-  width: 47px;
-  height: 47px;
-  border-radius: 50%;
+.dark-theme .action-button img {
+  filter: brightness(0) invert(1);
+}
+
+.action-button.like {
+  border-color: transparent;
   background: var(--gradient-primary);
-  color: var(--accent-foreground);
-  font-size: 11px;
-  font-weight: 700;
+  box-shadow: 0 14px 34px -12px
+    color-mix(in srgb, var(--primary) 65%, transparent);
 }
 
-.job-card h2 {
-  margin: 0;
-  font-size: 19px;
-}
-
-.job-card-top p {
-  margin-top: 4px;
-  color: var(--muted-foreground);
-  font-size: 13px;
-}
-
-.job-description {
-  margin-top: 31px;
-  color: var(--muted-foreground);
-  font-size: 14px;
-  line-height: 1.48;
-}
-
-.job-tags {
-  display: flex;
-  gap: 9px;
-  margin-top: 18px;
-}
-
-.job-tags span {
-  padding: 5px 8px;
-  border-radius: 7px;
-  background: var(--secondary);
-  color: var(--secondary-foreground);
-  font-size: 12px;
-}
-
-.job-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: auto;
-}
-
-.reject-button,
-.like-button {
-  display: grid;
-  place-items: center;
-  width: 47px;
-  height: 47px;
-  border: 0;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.reject-button {
-  background: var(--muted);
-}
-
-.reject-button img {
-  width: 20px;
-  height: 20px;
-  filter: brightness(0) saturate(100%) invert(30%)
-    sepia(97%) saturate(3830%) hue-rotate(341deg)
-    brightness(95%) contrast(93%);
-}
-
-.like-button {
-  background: var(--gradient-primary);
-}
-
-.like-button img {
-  width: 21px;
-  height: 21px;
-  filter: brightness(0) saturate(100%);
+.action-button.like img {
+  filter: brightness(0) invert(1);
 }
 
 @media (max-width: 480px) {

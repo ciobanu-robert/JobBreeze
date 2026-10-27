@@ -128,10 +128,10 @@ export const TRANSLATIONS: Record<
       'Join a small team building tools people use ' +
       'every day. You will have room to do thoughtful ' +
       'work and make a visible difference.',
-    'jobCard.tagRemote': 'Remote',
-    'jobCard.tagFullTime': 'Full-time',
-    'jobCard.skipAria': 'Skip job',
-    'jobCard.likeAria': 'Like job',
+    'jobCard.company': 'Lumen Studio',
+    'jobCard.location': 'Bucharest',
+    'jobCard.workType': 'Hybrid',
+    'jobCard.seniority': 'Mid-level',
 
     'auth.emailLabel': 'Email',
     'auth.passwordLabel': 'Password',
@@ -460,10 +460,10 @@ export const TRANSLATIONS: Record<
       'instrumente folosite zilnic. Vei avea spațiu ' +
       'pentru muncă atentă și pentru a face o diferență ' +
       'vizibilă.',
-    'jobCard.tagRemote': 'Remote',
-    'jobCard.tagFullTime': 'Full-time',
-    'jobCard.skipAria': 'Respinge jobul',
-    'jobCard.likeAria': 'Apreciază jobul',
+    'jobCard.company': 'Lumen Studio',
+    'jobCard.location': 'București',
+    'jobCard.workType': 'Hibrid',
+    'jobCard.seniority': 'Mid-level',
 
     'auth.emailLabel': 'Email',
     'auth.passwordLabel': 'Parolă',
