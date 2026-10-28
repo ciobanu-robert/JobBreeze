@@ -54,3 +54,28 @@ h3 {
 .add-button:hover {
   border-color: var(--primary);
 }
+
+.section-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.section-hint {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 14px;
+}
+
+.danger .section-icon {
+  background: color-mix(
+    in srgb,
+    var(--destructive) 12%,
+    transparent
+  );
+  color: var(--destructive);
+}
+
+.danger h3 {
+  color: var(--destructive);
+}

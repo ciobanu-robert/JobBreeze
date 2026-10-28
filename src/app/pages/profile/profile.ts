@@ -4,6 +4,7 @@ import {
   computed,
   signal,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { DashboardShell } from '../../components/dashboard-shell/dashboard-shell';
 import { LanguageService } from '../../services/language.service';
 import {
@@ -42,6 +43,7 @@ const TABS: TabOption[] = [
 @Component({
   selector: 'app-profile',
   imports: [
+    RouterLink,
     DashboardShell,
     ProfilePersonalTab,
     ProfileCareerTab,
@@ -58,7 +60,6 @@ export class Profile {
     signal<ProfileTab>('personal');
   protected readonly profile =
     signal<CandidateProfile>(DEMO_PROFILE);
-  protected readonly settingsOpen = signal(false);
 
   protected readonly initials = computed(() =>
     this.profile()

@@ -20,4 +20,6 @@ export class ProfileSectionHeader {
   readonly count = input<number | null>(null);
   readonly addable = input(false);
   readonly add = output<void>();
+  readonly hintKey = input<string | null>(null);
+  readonly danger = input(false);
 }

@@ -1,0 +1,317 @@
+<app-dashboard-shell activeKey="profile" [fullBleed]="true">
+  <div class="settings-page">
+    <header class="settings-header">
+      <div class="settings-topbar settings-inner">
+        <h1>
+          {{ language.t('settings.title') }}
+        </h1>
+        <a class="outline-button" routerLink="/profile">
+          <span
+            class="icon"
+            style="
+              --icon: url(/assets/navigation/arrow-left.svg);
+            "
+          >
+          </span>
+          {{ language.t('settings.backToProfile') }}
+        </a>
+      </div>
+    </header>
+
+    <div class="settings-scroll">
+      <div class="settings-inner settings-layout">
+        <nav class="settings-nav">
+          @for (section of sections; track section.key) {
+            <button
+              class="nav-button"
+              type="button"
+              [class.active]="
+                activeSection() === section.key
+              "
+              (click)="activeSection.set(section.key)"
+            >
+              <span
+                class="icon"
+                [style.--icon]="'url(' + section.icon + ')'"
+              >
+              </span>
+              {{ language.t(section.labelKey) }}
+            </button>
+          }
+        </nav>
+
+        <div class="settings-content">
+          @switch (activeSection()) {
+            @case ('account') {
+              <section class="settings-block">
+                <app-profile-section-header
+                  icon="/assets/ui/mail.svg"
+                  titleKey="settings.navAccount"
+                  hintKey="settings.accountHint"
+                >
+                </app-profile-section-header>
+                <label class="field">
+                  <span>{{
+                    language.t('settings.email')
+                  }}</span>
+                  <input
+                    type="email"
+                    [value]="settings().email"
+                  />
+                </label>
+                <button
+                  class="primary-button"
+                  type="button"
+                >
+                  {{ language.t('settings.changeEmail') }}
+                </button>
+              </section>
+            }
+
+            @case ('appearance') {
+              <section class="settings-block">
+                <app-profile-section-header
+                  icon="/assets/ui/palette.svg"
+                  titleKey="settings.navAppearance"
+                  hintKey="settings.appearanceHint"
+                >
+                </app-profile-section-header>
+
+                <div class="setting-row">
+                  <span class="row-label">
+                    {{ language.t('settings.theme') }}
+                  </span>
+                  <div class="chip-group">
+                    <button
+                      class="chip"
+                      type="button"
+                      [class.active]="!theme.isDarkTheme()"
+                      (click)="setTheme(false)"
+                    >
+                      <span
+                        class="icon"
+                        style="
+                          --icon: url(/assets/theme/sun.svg);
+                        "
+                      >
+                      </span>
+                      {{ language.t('settings.light') }}
+                    </button>
+                    <button
+                      class="chip"
+                      type="button"
+                      [class.active]="theme.isDarkTheme()"
+                      (click)="setTheme(true)"
+                    >
+                      <span
+                        class="icon"
+                        style="
+                          --icon: url(/assets/theme/moon.svg);
+                        "
+                      >
+                      </span>
+                      {{ language.t('settings.dark') }}
+                    </button>
+                  </div>
+                </div>
+
+                <div class="setting-row">
+                  <span class="row-label">
+                    <span
+                      class="icon"
+                      style="
+                        --icon: url(/assets/navigation/globe.svg);
+                      "
+                    >
+                    </span>
+                    {{ language.t('settings.language') }}
+                  </span>
+                  <div class="chip-group">
+                    @for (
+                      lang of language.languages;
+                      track lang.code
+                    ) {
+                      <button
+                        class="chip"
+                        type="button"
+                        [class.active]="
+                          language.currentLanguage() ===
+                          lang.code
+                        "
+                        (click)="
+                          language.setLanguage(lang.code)
+                        "
+                      >
+                        <img
+                          class="flag"
+                          [src]="lang.flag"
+                          alt=""
+                        />
+                        {{ lang.label }}
+                      </button>
+                    }
+                  </div>
+                </div>
+              </section>
+            }
+
+            @case ('security') {
+              <section class="settings-block">
+                <app-profile-section-header
+                  icon="/assets/ui/key-round.svg"
+                  titleKey="settings.passwordTitle"
+                  hintKey="settings.passwordHint"
+                >
+                </app-profile-section-header>
+                <label class="field">
+                  <span>
+                    {{ language.t('settings.newPassword') }}
+                  </span>
+                  <app-password-field
+                    fieldId="new-password"
+                    autocomplete="new-password"
+                  >
+                  </app-password-field>
+                </label>
+                <button
+                  class="primary-button"
+                  type="button"
+                >
+                  {{
+                    language.t('settings.changePassword')
+                  }}
+                </button>
+              </section>
+
+              <section class="settings-block">
+                <app-profile-section-header
+                  icon="/assets/ui/shield.svg"
+                  titleKey="settings.navSecurity"
+                  hintKey="settings.sessionsHint"
+                >
+                </app-profile-section-header>
+                <button
+                  class="outline-button"
+                  type="button"
+                >
+                  <span
+                    class="icon"
+                    style="
+                      --icon: url(/assets/ui/log-out.svg);
+                    "
+                  >
+                  </span>
+                  {{ language.t('settings.signOutAll') }}
+                </button>
+              </section>
+            }
+
+            @case ('notifications') {
+              <section class="settings-block">
+                <app-profile-section-header
+                  icon="/assets/ui/bell.svg"
+                  titleKey="settings.navNotifications"
+                  hintKey="settings.notificationsHint"
+                >
+                </app-profile-section-header>
+                @for (
+                  option of notificationOptions;
+                  track option.key
+                ) {
+                  <div class="setting-row">
+                    <span class="row-label">
+                      {{ language.t(option.labelKey) }}
+                    </span>
+                    <app-toggle-switch
+                      [checked]="
+                        settings().notifications[option.key]
+                      "
+                      [label]="language.t(option.labelKey)"
+                      (toggled)="
+                        toggleNotification(option.key)
+                      "
+                    >
+                    </app-toggle-switch>
+                  </div>
+                }
+              </section>
+            }
+
+            @case ('privacy') {
+              <section class="settings-block">
+                <app-profile-section-header
+                  icon="/assets/ui/lock.svg"
+                  titleKey="settings.navPrivacy"
+                  hintKey="settings.privacyHint"
+                >
+                </app-profile-section-header>
+                @for (
+                  option of privacyOptions;
+                  track option.key
+                ) {
+                  <div class="setting-row">
+                    <span class="row-label">
+                      {{ language.t(option.labelKey) }}
+                    </span>
+                    <app-toggle-switch
+                      [checked]="
+                        settings().privacy[option.key]
+                      "
+                      [label]="language.t(option.labelKey)"
+                      (toggled)="togglePrivacy(option.key)"
+                    >
+                    </app-toggle-switch>
+                  </div>
+                }
+              </section>
+            }
+
+            @case ('data') {
+              <section class="settings-block">
+                <app-profile-section-header
+                  icon="/assets/ui/download.svg"
+                  titleKey="settings.navData"
+                  hintKey="settings.dataHint"
+                >
+                </app-profile-section-header>
+                <button
+                  class="outline-button"
+                  type="button"
+                >
+                  <span
+                    class="icon"
+                    style="
+                      --icon: url(/assets/ui/download.svg);
+                    "
+                  >
+                  </span>
+                  {{ language.t('settings.downloadData') }}
+                </button>
+              </section>
+
+              <section class="settings-block">
+                <app-profile-section-header
+                  icon="/assets/ui/trash-2.svg"
+                  titleKey="settings.deleteTitle"
+                  hintKey="settings.deleteHint"
+                  [danger]="true"
+                >
+                </app-profile-section-header>
+                <button class="danger-button" type="button">
+                  <span
+                    class="icon"
+                    style="
+                      --icon: url(/assets/ui/trash-2.svg);
+                    "
+                  >
+                  </span>
+                  {{ language.t('settings.deleteAccount') }}
+                </button>
+              </section>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</app-dashboard-shell>

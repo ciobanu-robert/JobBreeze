@@ -1,4 +1,4 @@
-<div class="section-header">
+<div class="section-header" [class.danger]="danger()">
   <span class="section-icon">
     <span
       class="icon"
@@ -6,9 +6,16 @@
     >
     </span>
   </span>
-  <h3>
-    {{ language.t(titleKey()) }}
-  </h3>
+  <div class="section-title">
+    <h3>
+      {{ language.t(titleKey()) }}
+    </h3>
+    @if (hintKey(); as hint) {
+      <p class="section-hint">
+        {{ language.t(hint) }}
+      </p>
+    }
+  </div>
 
   @if (count() !== null) {
     <span class="section-count">

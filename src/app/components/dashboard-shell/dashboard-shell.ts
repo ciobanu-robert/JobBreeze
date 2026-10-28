@@ -8,8 +8,6 @@ import {
 
 import { RouterLink } from '@angular/router';
 import { BrandLogo } from '../brand-logo/brand-logo';
-import { LanguagePicker } from '../language-picker/language-picker';
-import { ThemeToggle } from '../theme-toggle/theme-toggle';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
 
@@ -61,12 +59,7 @@ const NAV_ITEMS: DashboardNavItem[] = [
 ];
 
 @Component({
-  imports: [
-    RouterLink,
-    BrandLogo,
-    LanguagePicker,
-    ThemeToggle,
-  ],
+  imports: [RouterLink, BrandLogo],
   selector: 'app-dashboard-shell',
   styleUrl: './dashboard-shell.scss',
   templateUrl: './dashboard-shell.html',

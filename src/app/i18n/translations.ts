@@ -418,6 +418,53 @@ export const TRANSLATIONS: Record<
     'profile.coverLetter': 'Cover letter',
     'profile.coverLetterHint':
       'A default letter sent with your applications.',
+
+    'settings.title': 'Settings',
+    'settings.backToProfile': 'Back to profile',
+    'settings.subtitle':
+      'Manage your account, security and data.',
+    'settings.navAccount': 'Account',
+    'settings.navAppearance': 'Appearance',
+    'settings.navSecurity': 'Security',
+    'settings.navNotifications': 'Notifications',
+    'settings.navPrivacy': 'Privacy',
+    'settings.navData': 'Your data',
+    'settings.accountHint': 'Your sign-in details.',
+    'settings.email': 'Email address',
+    'settings.changeEmail': 'Change email',
+    'settings.appearanceHint':
+      'Theme and language preferences.',
+    'settings.theme': 'Theme',
+    'settings.light': 'Light',
+    'settings.dark': 'Dark',
+    'settings.language': 'Language',
+    'settings.passwordTitle': 'Change password',
+    'settings.passwordHint': 'Keep your account protected.',
+    'settings.newPassword': 'New password',
+    'settings.changePassword': 'Change password',
+    'settings.sessionsHint':
+      'Sign out of devices you no longer use.',
+    'settings.signOutAll': 'Sign out of all devices',
+    'settings.notificationsHint':
+      'Choose what we send you.',
+    'settings.newMatches': 'New matches',
+    'settings.applicationUpdates': 'Application updates',
+    'settings.jobRecommendations': 'Job recommendations',
+    'settings.productNews': 'Product news',
+    'settings.privacyHint':
+      'Control how you appear to companies.',
+    'settings.discoverable':
+      'Let companies discover my profile',
+    'settings.showPhone':
+      'Show my phone number to companies',
+    'settings.dataHint':
+      'Download or remove everything we store.',
+    'settings.downloadData': 'Download my data',
+    'settings.deleteTitle': 'Delete account',
+    'settings.deleteHint':
+      'This removes your profile, applications and ' +
+      'chats forever.',
+    'settings.deleteAccount': 'Delete my account',
   },
   ro: {
     'header.chooseLanguage': 'Alege limba',
@@ -824,5 +871,54 @@ export const TRANSLATIONS: Record<
     'profile.coverLetter': 'Scrisoare de intenție',
     'profile.coverLetterHint':
       'O scrisoare implicită trimisă odată cu aplicările tale.',
+
+    'settings.title': 'Setări',
+    'settings.backToProfile': 'Înapoi la profil',
+    'settings.subtitle':
+      'Gestionează contul, securitatea și datele tale.',
+    'settings.navAccount': 'Cont',
+    'settings.navAppearance': 'Aspect',
+    'settings.navSecurity': 'Securitate',
+    'settings.navNotifications': 'Notificări',
+    'settings.navPrivacy': 'Confidențialitate',
+    'settings.navData': 'Datele tale',
+    'settings.accountHint': 'Datele tale de autentificare.',
+    'settings.email': 'Adresă de email',
+    'settings.changeEmail': 'Schimbă emailul',
+    'settings.appearanceHint':
+      'Preferințe pentru temă și limbă.',
+    'settings.theme': 'Temă',
+    'settings.light': 'Luminoasă',
+    'settings.dark': 'Întunecată',
+    'settings.language': 'Limbă',
+    'settings.passwordTitle': 'Schimbă parola',
+    'settings.passwordHint': 'Ține-ți contul în siguranță.',
+    'settings.newPassword': 'Parola nouă',
+    'settings.changePassword': 'Schimbă parola',
+    'settings.sessionsHint':
+      'Deconectează-te de pe dispozitivele pe care nu ' +
+      'le mai folosești.',
+    'settings.signOutAll':
+      'Deconectează-te de pe toate dispozitivele',
+    'settings.notificationsHint': 'Alege ce îți trimitem.',
+    'settings.newMatches': 'Potriviri noi',
+    'settings.applicationUpdates':
+      'Actualizări ale aplicărilor',
+    'settings.jobRecommendations': 'Recomandări de joburi',
+    'settings.productNews': 'Noutăți despre produs',
+    'settings.privacyHint':
+      'Controlează cum te văd companiile.',
+    'settings.discoverable':
+      'Permite companiilor să-mi găsească profilul',
+    'settings.showPhone':
+      'Arată numărul meu de telefon companiilor',
+    'settings.dataHint':
+      'Descarcă sau șterge tot ce stocăm despre tine.',
+    'settings.downloadData': 'Descarcă datele mele',
+    'settings.deleteTitle': 'Șterge contul',
+    'settings.deleteHint':
+      'Îți elimină definitiv profilul, aplicările și ' +
+      'conversațiile.',
+    'settings.deleteAccount': 'Șterge-mi contul',
   },
 };

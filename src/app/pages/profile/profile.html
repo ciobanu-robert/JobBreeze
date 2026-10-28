@@ -8,18 +8,14 @@
           </h1>
         </div>
         <div class="header-actions">
-          <button
-            class="outline-button"
-            type="button"
-            (click)="settingsOpen.set(true)"
-          >
+          <a class="outline-button" routerLink="/settings">
             <span
               class="icon"
               style="--icon: url(/assets/ui/settings.svg)"
             >
             </span>
             {{ language.t('nav.settings') }}
-          </button>
+          </a>
           <button
             class="save-button"
             type="button"
