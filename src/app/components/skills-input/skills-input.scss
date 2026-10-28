@@ -1,0 +1,86 @@
+:host {
+  display: block;
+}
+
+.skills-row {
+  display: flex;
+  gap: 8px;
+}
+
+.skills-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-md);
+  background: var(--card);
+  color: var(--foreground);
+  font:
+    400 15px 'Inter',
+    sans-serif;
+  outline: none;
+}
+
+.skills-row input:focus {
+  border-color: var(--ring);
+}
+
+.add-skill {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--foreground);
+  cursor: pointer;
+}
+
+.add-skill:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px 6px 12px;
+  border-radius: var(--radius-full);
+  background: color-mix(
+    in srgb,
+    var(--primary) 12%,
+    transparent
+  );
+  color: var(--primary);
+  font:
+    500 13px 'Inter',
+    sans-serif;
+}
+
+.skill-chip button {
+  display: grid;
+  place-items: center;
+  padding: 2px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.skill-chip .icon {
+  width: 12px;
+  height: 12px;
+}

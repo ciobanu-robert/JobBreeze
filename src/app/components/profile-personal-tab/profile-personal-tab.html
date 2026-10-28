@@ -1,0 +1,115 @@
+<section class="profile-section">
+  <app-profile-section-header
+    icon="/assets/ui/pencil.svg"
+    titleKey="profile.basicInfo"
+  >
+  </app-profile-section-header>
+
+  <div class="form-grid">
+    <label class="field field-full">
+      <span>
+        {{ language.t('profile.fullName') }}
+      </span>
+      <input
+        type="text"
+        [value]="profile().fullName"
+        (input)="setField('fullName', $event)"
+      />
+    </label>
+    <label class="field field-full">
+      <span>{{ language.t('profile.headline') }}</span>
+      <input
+        type="text"
+        [value]="profile().headline"
+        (input)="setField('headline', $event)"
+      />
+    </label>
+    <label class="field">
+      <span>
+        {{ language.t('profile.location') }}
+      </span>
+      <input
+        type="text"
+        [value]="profile().location"
+        (input)="setField('location', $event)"
+      />
+    </label>
+    <label class="field">
+      <span>
+        {{ language.t('profile.phone') }}
+      </span>
+      <input
+        type="tel"
+        [value]="profile().phone"
+        (input)="setField('phone', $event)"
+      />
+    </label>
+    <label class="field">
+      <span>
+        {{ language.t('profile.desiredRole') }}
+      </span>
+      <input
+        type="text"
+        [value]="profile().desiredRole"
+        (input)="setField('desiredRole', $event)"
+      />
+    </label>
+    <label class="field">
+      <span>{{ language.t('profile.years') }}</span>
+      <input
+        type="number"
+        min="0"
+        [value]="profile().yearsOfExperience"
+        (input)="setYears($event)"
+      />
+    </label>
+    <label class="field field-full">
+      <span>
+        {{ language.t('profile.about') }}
+      </span>
+      <textarea
+        rows="4"
+        [value]="profile().about"
+        (input)="setField('about', $event)"
+      ></textarea>
+    </label>
+  </div>
+</section>
+
+<section class="profile-section">
+  <app-profile-section-header
+    icon="/assets/ui/link.svg"
+    titleKey="profile.links"
+  >
+  </app-profile-section-header>
+
+  <div class="form-grid form-grid-3">
+    <label class="field">
+      <span> LinkedIn </span>
+      <input
+        type="url"
+        placeholder="https://linkedin.com/in/..."
+        [value]="profile().links.linkedin"
+        (input)="setLink('linkedin', $event)"
+      />
+    </label>
+    <label class="field">
+      <span> GitHub </span>
+      <input
+        type="url"
+        placeholder="https://github.com/..."
+        [value]="profile().links.github"
+        (input)="setLink('github', $event)"
+      />
+    </label>
+    <label class="field">
+      <span> Website </span>
+      <input
+        type="url"
+        placeholder="https://..."
+        [value]="profile().links.website"
+        (input)="setLink('website', $event)"
+      />
+    </label>
+  </div>
+</section>

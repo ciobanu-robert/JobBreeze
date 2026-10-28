@@ -346,13 +346,78 @@ export const TRANSLATIONS: Record<
     'legal.privacy.s3Heading': 'Data sharing',
     'legal.privacy.s3Body':
       'We only share your profile with companies or ' +
-      'candidates you choose to interact with — ' +
-      'never sold to third parties.',
+      'candidates you choose to interact with, ' +
+      'and it is never sold to third parties.',
     'legal.privacy.s4Heading': 'Your choices',
     'legal.privacy.s4Body':
       'You can update or delete your profile ' +
       'information at any time from your account ' +
       'settings.',
+
+    'profile.title': 'Profile',
+    'profile.save': 'Save profile',
+    'profile.changePhoto': 'Change photo',
+    'profile.tabPersonal': 'Personal details',
+    'profile.tabCareer': 'Career & skills',
+    'profile.tabDocuments': 'CV & documents',
+    'profile.add': 'Add',
+    'profile.basicInfo': 'Basic info',
+    'profile.fullName': 'Full name',
+    'profile.headline': 'Headline',
+    'profile.location': 'Location',
+    'profile.phone': 'Phone',
+    'profile.desiredRole': 'Desired role',
+    'profile.years': 'Years of experience',
+    'profile.about': 'About',
+    'profile.links': 'Links',
+    'profile.experience': 'Experience',
+    'profile.education': 'Education',
+    'profile.projects': 'Projects',
+    'profile.certifications': 'Certifications',
+    'profile.skills': 'Skills',
+    'profile.experienceHint':
+      'Add the roles you have worked in.',
+    'profile.educationHint':
+      'Add your studies, from high school to university.',
+    'profile.projectsHint':
+      "Show what you've built. Personal or " +
+      'academic projects count too.',
+    'profile.certificationsHint':
+      'Optional: add diplomas or online certificates.',
+    'profile.role': 'Role',
+    'profile.company': 'Company',
+    'profile.school': 'School',
+    'profile.degree': 'Degree & field',
+    'profile.projectName': 'Project name',
+    'profile.technologies': 'Technologies',
+    'profile.certificationName': 'Certification',
+    'profile.issuer': 'Issued by',
+    'profile.startDate': 'Start date',
+    'profile.endDate': 'End date',
+    'profile.current': 'Ongoing',
+    'profile.present': 'Present',
+    'profile.description': 'Description',
+    'profile.cancel': 'Cancel',
+    'profile.saveEntry': 'Save',
+    'profile.edit': 'Edit',
+    'profile.delete': 'Delete',
+    'profile.skillPlaceholder':
+      'Add a skill and press Enter',
+    'profile.addSkill': 'Add skill',
+    'profile.removeSkill': 'Remove',
+    'profile.cv': 'CV',
+    'profile.cvDropTitle':
+      'Drag your CV here or click to upload',
+    'profile.cvDropHint': 'PDF, DOC or DOCX · max 5 MB',
+    'profile.cvUploaded':
+      'Recruiters will see this file when you apply.',
+    'profile.cvReplace': 'Replace',
+    'profile.cvInvalidType':
+      'Only PDF, DOC or DOCX files are allowed.',
+    'profile.cvTooLarge': 'The file is larger than 5 MB.',
+    'profile.coverLetter': 'Cover letter',
+    'profile.coverLetterHint':
+      'A default letter sent with your applications.',
   },
   ro: {
     'header.chooseLanguage': 'Alege limba',
@@ -688,11 +753,76 @@ export const TRANSLATIONS: Record<
     'legal.privacy.s3Heading': 'Partajarea datelor',
     'legal.privacy.s3Body':
       'Îți partajăm profilul doar cu companiile sau ' +
-      'candidații cu care alegi să interacționezi — ' +
-      'nu îl vindem niciodată către terți.',
+      'candidații cu care alegi să interacționezi, ' +
+      'și nu îl vindem niciodată către terți.',
     'legal.privacy.s4Heading': 'Alegerile tale',
     'legal.privacy.s4Body':
       'Poți actualiza sau șterge informațiile din ' +
       'profil oricând, din setările contului.',
+
+    'profile.title': 'Profil',
+    'profile.save': 'Salvează profilul',
+    'profile.changePhoto': 'Schimbă fotografia',
+    'profile.tabPersonal': 'Date personale',
+    'profile.tabCareer': 'Carieră și competențe',
+    'profile.tabDocuments': 'CV și documente',
+    'profile.add': 'Adaugă',
+    'profile.basicInfo': 'Informații de bază',
+    'profile.fullName': 'Nume complet',
+    'profile.headline': 'Titlu profesional',
+    'profile.location': 'Locație',
+    'profile.phone': 'Telefon',
+    'profile.desiredRole': 'Rol dorit',
+    'profile.years': 'Ani de experiență',
+    'profile.about': 'Despre mine',
+    'profile.links': 'Linkuri',
+    'profile.experience': 'Experiență',
+    'profile.education': 'Educație',
+    'profile.projects': 'Proiecte',
+    'profile.certifications': 'Certificări',
+    'profile.skills': 'Competențe',
+    'profile.experienceHint':
+      'Adaugă rolurile în care ai lucrat.',
+    'profile.educationHint':
+      'Adaugă studiile tale, de la liceu la facultate.',
+    'profile.projectsHint':
+      'Arată ce ai construit. Contează și ' +
+      'proiectele personale sau academice.',
+    'profile.certificationsHint':
+      'Opțional: adaugă diplome sau certificate online.',
+    'profile.role': 'Rol',
+    'profile.company': 'Companie',
+    'profile.school': 'Instituție',
+    'profile.degree': 'Diplomă și specializare',
+    'profile.projectName': 'Numele proiectului',
+    'profile.technologies': 'Tehnologii',
+    'profile.certificationName': 'Certificare',
+    'profile.issuer': 'Emisă de',
+    'profile.startDate': 'Data începerii',
+    'profile.endDate': 'Data încheierii',
+    'profile.current': 'În desfășurare',
+    'profile.present': 'Prezent',
+    'profile.description': 'Descriere',
+    'profile.cancel': 'Anulează',
+    'profile.saveEntry': 'Salvează',
+    'profile.edit': 'Editează',
+    'profile.delete': 'Șterge',
+    'profile.skillPlaceholder':
+      'Adaugă o competență și apasă Enter',
+    'profile.addSkill': 'Adaugă competența',
+    'profile.removeSkill': 'Elimină',
+    'profile.cv': 'CV',
+    'profile.cvDropTitle':
+      'Trage CV-ul aici sau apasă pentru a-l încărca',
+    'profile.cvDropHint': 'PDF, DOC sau DOCX · max 5 MB',
+    'profile.cvUploaded':
+      'Recrutorii vor vedea acest fișier când aplici.',
+    'profile.cvReplace': 'Înlocuiește',
+    'profile.cvInvalidType':
+      'Sunt acceptate doar fișiere PDF, DOC sau DOCX.',
+    'profile.cvTooLarge': 'Fișierul depășește 5 MB.',
+    'profile.coverLetter': 'Scrisoare de intenție',
+    'profile.coverLetterHint':
+      'O scrisoare implicită trimisă odată cu aplicările tale.',
   },
 };

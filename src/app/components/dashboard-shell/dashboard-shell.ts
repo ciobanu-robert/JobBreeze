@@ -18,8 +18,7 @@ export type DashboardNavKey =
   | 'applications'
   | 'messages'
   | 'jobbyAi'
-  | 'profile'
-  | 'settings';
+  | 'profile';
 
 interface DashboardNavItem {
   key: DashboardNavKey;
@@ -57,13 +56,7 @@ const NAV_ITEMS: DashboardNavItem[] = [
     key: 'profile',
     icon: '/assets/jobs/user.svg',
     labelKey: 'nav.profile',
-    route: null,
-  },
-  {
-    key: 'settings',
-    icon: '/assets/ui/settings.svg',
-    labelKey: 'nav.settings',
-    route: null,
+    route: '/profile',
   },
 ];
 
@@ -86,9 +79,6 @@ export class DashboardShell implements OnDestroy {
   protected readonly language = inject(LanguageService);
   protected readonly theme = inject(ThemeService);
   protected readonly navItems = NAV_ITEMS;
-  protected readonly mobileNavItems = NAV_ITEMS.filter(
-    (item) => item.key !== 'settings',
-  );
 
   constructor() {
     afterNextRender(() => {

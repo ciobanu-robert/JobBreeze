@@ -1,0 +1,45 @@
+<div class="skills-row">
+  <input
+    type="text"
+    [placeholder]="language.t('profile.skillPlaceholder')"
+    [value]="draft()"
+    (input)="draft.set($any($event.target).value)"
+    (keydown.enter)="addSkill()"
+  />
+  <button
+    class="add-skill"
+    type="button"
+    [attr.aria-label]="language.t('profile.addSkill')"
+    [disabled]="!draft().trim()"
+    (click)="addSkill()"
+  >
+    <span
+      class="icon"
+      style="--icon: url(/assets/ui/plus.svg)"
+    >
+    </span>
+  </button>
+</div>
+
+@if (skills().length) {
+  <ul class="skill-list">
+    @for (skill of skills(); track skill) {
+      <li class="skill-chip">
+        {{ skill }}
+        <button
+          type="button"
+          [attr.aria-label]="
+            language.t('profile.removeSkill') + ' ' + skill
+          "
+          (click)="removeSkill(skill)"
+        >
+          <span
+            class="icon"
+            style="--icon: url(/assets/ui/x.svg)"
+          >
+          </span>
+        </button>
+      </li>
+    }
+  </ul>
+}

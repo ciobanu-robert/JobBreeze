@@ -1,0 +1,137 @@
+<app-dashboard-shell activeKey="profile" [fullBleed]="true">
+  <div class="profile-page">
+    <header class="profile-header">
+      <div class="profile-topbar profile-inner">
+        <div>
+          <h1>
+            {{ language.t('profile.title') }}
+          </h1>
+        </div>
+        <div class="header-actions">
+          <button
+            class="outline-button"
+            type="button"
+            (click)="settingsOpen.set(true)"
+          >
+            <span
+              class="icon"
+              style="--icon: url(/assets/ui/settings.svg)"
+            >
+            </span>
+            {{ language.t('nav.settings') }}
+          </button>
+          <button
+            class="save-button"
+            type="button"
+            (click)="save()"
+          >
+            <span
+              class="icon"
+              style="--icon: url(/assets/ui/save.svg)"
+            >
+            </span>
+            {{ language.t('profile.save') }}
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="profile-scroll">
+      <div class="profile-inner">
+        <section class="profile-hero">
+          <div class="avatar">
+            <span class="avatar-initials">
+              {{ initials() }}
+            </span>
+            <button
+              class="avatar-upload"
+              type="button"
+              [attr.aria-label]="
+                language.t('profile.changePhoto')
+              "
+            >
+              <span
+                class="icon"
+                style="--icon: url(/assets/ui/camera.svg)"
+              >
+              </span>
+            </button>
+          </div>
+          <div class="hero-info">
+            <h2>
+              {{ profile().fullName }}
+            </h2>
+            <p class="hero-headline">
+              {{ profile().headline }}
+            </p>
+            <div class="hero-meta">
+              <span>
+                <span
+                  class="icon"
+                  style="
+                    --icon: url(/assets/navigation/map-pin.svg);
+                  "
+                >
+                </span>
+                {{ profile().location }}
+              </span>
+              <span>
+                <span
+                  class="icon"
+                  style="
+                    --icon: url(/assets/jobs/briefcase.svg);
+                  "
+                >
+                </span>
+
+                {{ profile().desiredRole }}
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <nav class="profile-tabs" role="tablist">
+          @for (tab of tabs; track tab.key) {
+            <button
+              class="tab"
+              type="button"
+              role="tab"
+              [class.active]="activeTab() === tab.key"
+              [attr.aria-selected]="activeTab() === tab.key"
+              (click)="activeTab.set(tab.key)"
+            >
+              <span
+                class="icon"
+                [style.--icon]="'url(' + tab.icon + ')'"
+              >
+              </span>
+              {{ language.t(tab.labelKey) }}
+            </button>
+          }
+        </nav>
+
+        @switch (activeTab()) {
+          @case ('personal') {
+            <app-profile-personal-tab
+              [profile]="profile()"
+              (changed)="updateProfile($event)"
+            >
+            </app-profile-personal-tab>
+          }
+          @case ('career') {
+            <app-profile-career-tab
+              [profile]="profile()"
+              (changed)="updateProfile($event)"
+            ></app-profile-career-tab>
+          }
+          @case ('documents') {
+            <app-profile-documents-tab
+              [profile]="profile()"
+              (changed)="updateProfile($event)"
+            ></app-profile-documents-tab>
+          }
+        }
+      </div>
+    </div>
+  </div>
+</app-dashboard-shell>

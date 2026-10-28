@@ -1,0 +1,48 @@
+@for (section of sections; track section.kind) {
+  <section class="profile-section">
+    <app-profile-section-header
+      [icon]="section.icon"
+      [titleKey]="section.titleKey"
+      [count]="profile()[section.kind].length"
+      [addable]="true"
+      (add)="addEntry(section.kind)"
+    >
+    </app-profile-section-header>
+
+    @for (
+      entry of profile()[section.kind];
+      track entry.id
+    ) {
+      <app-profile-entry-card
+        [entry]="entry"
+        [editing]="editingId() === entry.id"
+        [titleLabelKey]="section.titleLabelKey"
+        [subtitleLabelKey]="section.subtitleLabelKey"
+        (editRequested)="editingId.set(entry.id)"
+        (removed)="removeEntry(section.kind, entry.id)"
+        (saved)="saveEntry(section.kind, $event)"
+        (cancelled)="cancelEdit(section.kind, entry)"
+      >
+      </app-profile-entry-card>
+    } @empty {
+      <p class="section-hint">
+        {{ language.t(section.hintKey) }}
+      </p>
+    }
+  </section>
+}
+
+<section class="profile-section">
+  <app-profile-section-header
+    icon="/assets/jobs/wrench.svg"
+    titleKey="profile.skills"
+    [count]="profile().skills.length"
+  >
+  </app-profile-section-header>
+
+  <app-skills-input
+    [skills]="profile().skills"
+    (changed)="setSkills($event)"
+  >
+  </app-skills-input>
+</section>

@@ -1,0 +1,135 @@
+@if (editing()) {
+  <form
+    class="entry-form"
+    (submit)="$event.preventDefault(); submit()"
+  >
+    <div class="form-grid">
+      <label class="field field-full">
+        <span>
+          {{ language.t(titleLabelKey()) }}
+        </span>
+        <input
+          type="text"
+          [value]="draft().title"
+          (input)="setField('title', $event)"
+        />
+      </label>
+      <label class="field field-full">
+        <span>
+          {{ language.t(subtitleLabelKey()) }}
+        </span>
+        <input
+          type="text"
+          [value]="draft().subtitle"
+          (input)="setField('subtitle', $event)"
+        />
+      </label>
+      <label class="field">
+        <span>
+          {{ language.t('profile.startDate') }}
+        </span>
+        <input
+          type="month"
+          [value]="draft().startDate"
+          (input)="setField('startDate', $event)"
+        />
+      </label>
+      <label class="field">
+        <span>
+          {{ language.t('profile.endDate') }}
+        </span>
+        <input
+          type="month"
+          [value]="draft().endDate ?? ''"
+          [disabled]="draft().endDate === null"
+          (input)="setEndDate($event)"
+        />
+      </label>
+      <label class="ongoing-toggle field-full">
+        <input
+          type="checkbox"
+          [checked]="draft().endDate === null"
+          (change)="toggleOngoing($event)"
+        />
+        {{ language.t('profile.current') }}
+      </label>
+      <label class="field field-full">
+        <span>
+          {{ language.t('profile.description') }}
+        </span>
+        <textarea
+          rows="3"
+          [value]="draft().description"
+          (input)="setField('description', $event)"
+        ></textarea>
+      </label>
+    </div>
+
+    <div class="form-actions">
+      <button
+        class="ghost-button"
+        type="button"
+        (click)="cancelled.emit()"
+      >
+        {{ language.t('profile.cancel') }}
+      </button>
+      <button
+        class="primary-button"
+        type="submit"
+        [disabled]="!canSave()"
+      >
+        {{ language.t('profile.saveEntry') }}
+      </button>
+    </div>
+  </form>
+} @else {
+  <article class="entry">
+    <div class="entry-body">
+      <h4>
+        {{ entry().title }}
+      </h4>
+      @if (entry().subtitle) {
+        <p class="entry-subtitle">
+          {{ entry().subtitle }}
+        </p>
+      }
+      @if (period()) {
+        <p class="entry-period">
+          {{ period() }}
+        </p>
+      }
+      @if (entry().description) {
+        <p class="entry-description">
+          {{ entry().description }}
+        </p>
+      }
+    </div>
+
+    <div class="entry-actions">
+      <button
+        class="icon-button"
+        type="button"
+        [attr.aria-label]="language.t('profile.edit')"
+        (click)="editRequested.emit()"
+      >
+        <span
+          class="icon"
+          style="--icon: url(/assets/ui/pencil.svg)"
+        >
+        </span>
+      </button>
+      <button
+        class="icon-button danger"
+        type="button"
+        [attr.aria-label]="language.t('profile.delete')"
+        (click)="removed.emit()"
+      >
+        <span
+          class="icon"
+          style="--icon: url(/assets/ui/trash-2.svg)"
+        >
+        </span>
+      </button>
+    </div>
+  </article>
+}

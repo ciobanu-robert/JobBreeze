@@ -11,6 +11,7 @@ import { Jobby } from './pages/jobby/jobby';
 import { Terms } from './pages/legal/terms/terms';
 import { Privacy } from './pages/legal/privacy/privacy';
 import { Contact } from './pages/contact/contact';
+import { Profile } from './pages/profile/profile';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -22,6 +23,7 @@ export const routes: Routes = [
   { path: 'applications', component: Applications },
   { path: 'messages', component: Messages },
   { path: 'jobby', component: Jobby },
+  { path: 'profile', component: Profile },
   { path: 'terms', component: Terms },
   { path: 'privacy', component: Privacy },
   { path: 'contact', component: Contact },

@@ -1,0 +1,32 @@
+<div class="section-header">
+  <span class="section-icon">
+    <span
+      class="icon"
+      [style.--icon]="'url(' + icon() + ')'"
+    >
+    </span>
+  </span>
+  <h3>
+    {{ language.t(titleKey()) }}
+  </h3>
+
+  @if (count() !== null) {
+    <span class="section-count">
+      {{ count() }}
+    </span>
+  }
+  @if (addable()) {
+    <button
+      class="add-button"
+      type="button"
+      (click)="add.emit()"
+    >
+      <span
+        class="icon"
+        style="--icon: url(/assets/ui/plus.svg)"
+      >
+      </span>
+      {{ language.t('profile.add') }}
+    </button>
+  }
+</div>
