@@ -1,0 +1,76 @@
+<input
+  #fileInput
+  type="file"
+  accept=".pdf,.doc,.docx"
+  hidden
+  (change)="onFileSelected($event)"
+/>
+
+@if (fileName(); as name) {
+  <div class="cv-file">
+    <span class="file-icon">
+      <span
+        class="icon"
+        style="--icon: url(/assets/ui/file-text.svg)"
+      >
+      </span>
+    </span>
+    <div class="file-info">
+      <p class="file-name">
+        {{ name }}
+      </p>
+      <p class="file-hint">
+        {{ language.t('profile.cvUploaded') }}
+      </p>
+    </div>
+    <button
+      class="ghost-button"
+      type="button"
+      (click)="fileInput.click()"
+    >
+      {{ language.t('profile.cvReplace') }}
+    </button>
+    <button
+      class="icon-button"
+      type="button"
+      [attr.aria-label]="language.t('profile.delete')"
+      (click)="remove()"
+    >
+      <span
+        class="icon"
+        style="--icon: url(/assets/ui/trash-2.svg)"
+      >
+      </span>
+    </button>
+  </div>
+} @else {
+  <button
+    class="drop-zone"
+    type="button"
+    [class.dragging]="dragging()"
+    (click)="fileInput.click()"
+    (dragover)="onDragOver($event)"
+    (dragleave)="dragging.set(false)"
+    (drop)="onDrop($event)"
+  >
+    <span class="drop-icon">
+      <span
+        class="icon"
+        style="--icon: url(/assets/ui/upload.svg)"
+      >
+      </span>
+    </span>
+    <span class="drop-title">
+      {{ language.t('profile.cvDropTitle') }}
+    </span>
+    <span class="drop-hint">
+      {{ language.t('profile.cvDropHint') }}
+    </span>
+  </button>
+}
+
+@if (cvError(); as error) {
+  <p class="cv-error">
+    {{ language.t(error) }}
+  </p>
+}

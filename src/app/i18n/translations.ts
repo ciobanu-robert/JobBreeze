@@ -465,6 +465,25 @@ export const TRANSLATIONS: Record<
       'This removes your profile, applications and ' +
       'chats forever.',
     'settings.deleteAccount': 'Delete my account',
+
+    'onboarding.step': 'Step',
+    'onboarding.of': 'of',
+    'onboarding.cvTitle': 'Upload your CV',
+    'onboarding.personalTitle': 'Personal info',
+    'onboarding.backgroundTitle': 'Background',
+    'onboarding.coverTitle': 'Cover letter',
+    'onboarding.extract': 'Extract data with Jobby',
+    'onboarding.extracting': 'Jobby is reading your CV…',
+    'onboarding.extracted':
+      'Done! Jobby filled in your profile. ' +
+      'Check the next steps.',
+    'onboarding.coverPlaceholder':
+      "Write about who you are, what drives you, what you're " +
+      'looking for…',
+    'onboarding.back': 'Back',
+    'onboarding.skip': 'Skip',
+    'onboarding.next': 'Next',
+    'onboarding.finish': 'Finish',
   },
   ro: {
     'header.chooseLanguage': 'Alege limba',
@@ -920,5 +939,23 @@ export const TRANSLATIONS: Record<
       'Îți elimină definitiv profilul, aplicările și ' +
       'conversațiile.',
     'settings.deleteAccount': 'Șterge-mi contul',
+
+    'onboarding.step': 'Pasul',
+    'onboarding.of': 'din',
+    'onboarding.cvTitle': 'Încarcă-ți CV-ul',
+    'onboarding.personalTitle': 'Date personale',
+    'onboarding.backgroundTitle': 'Experiență',
+    'onboarding.coverTitle': 'Scrisoare de intenție',
+    'onboarding.extract': 'Extrage datele cu Jobby',
+    'onboarding.extracting': 'Jobby îți citește CV-ul…',
+    'onboarding.extracted':
+      'Gata! Jobby ți-a completat profilul. ' +
+      'Verifică pașii următori.',
+    'onboarding.coverPlaceholder':
+      'Scrie cine ești, ce te motivează și ce cauți…',
+    'onboarding.back': 'Înapoi',
+    'onboarding.skip': 'Sari peste',
+    'onboarding.next': 'Continuă',
+    'onboarding.finish': 'Finalizează',
   },
 };

@@ -27,7 +27,7 @@ export class Register {
 
   protected createAccount(): void {
     if (this.role() === 'seeker') {
-      this.router.navigateByUrl('/browse');
+      this.router.navigateByUrl('/onboarding');
     }
   }
 }

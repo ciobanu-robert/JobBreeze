@@ -13,11 +13,13 @@ import { Privacy } from './pages/legal/privacy/privacy';
 import { Contact } from './pages/contact/contact';
 import { Profile } from './pages/profile/profile';
 import { Settings } from './pages/settings/settings';
+import { Onboarding } from './pages/onboarding/onboarding';
 
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'login', component: Login },
   { path: 'register', component: Register },
+  { path: 'onboarding', component: Onboarding },
   { path: 'forgot-password', component: ForgotPassword },
   { path: 'reset-password', component: ResetPassword },
   { path: 'browse', component: Browse },

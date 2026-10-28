@@ -14,8 +14,7 @@ import {
 import { ProfilePersonalTab } from '../../components/profile-personal-tab/profile-personal-tab';
 import { ProfileCareerTab } from '../../components/profile-career-tab/profile-career-tab';
 import { ProfileDocumentsTab } from '../../components/profile-documents-tab/profile-documents-tab';
-import { DEMO_PROFILE } from './demo-profile';
-
+import { ProfileService } from '../../services/profile.service';
 interface TabOption {
   key: ProfileTab;
   icon: string;
@@ -58,8 +57,8 @@ export class Profile {
   protected readonly tabs = TABS;
   protected readonly activeTab =
     signal<ProfileTab>('personal');
-  protected readonly profile =
-    signal<CandidateProfile>(DEMO_PROFILE);
+  private readonly profileService = inject(ProfileService);
+  protected readonly profile = this.profileService.profile;
 
   protected readonly initials = computed(() =>
     this.profile()
@@ -73,10 +72,7 @@ export class Profile {
   protected updateProfile(
     changes: Partial<CandidateProfile>,
   ): void {
-    this.profile.update((current) => ({
-      ...current,
-      ...changes,
-    }));
+    this.profileService.update(changes);
   }
 
   protected save(): void {}

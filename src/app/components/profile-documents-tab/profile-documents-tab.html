@@ -1,11 +1,3 @@
-<input
-  #fileInput
-  type="file"
-  accept=".pdf, .doc, .docx"
-  hidden
-  (change)="onFileSelected($event)"
-/>
-
 <section class="profile-section">
   <app-profile-section-header
     icon="/assets/ui/file-text.svg"
@@ -13,74 +5,12 @@
   >
   </app-profile-section-header>
 
-  @if (profile().cvFileName; as fileName) {
-    <div class="cv-file">
-      <span class="file-icon">
-        <span
-          class="icon"
-          style="--icon: url(/assets/ui/file-text.svg)"
-        >
-        </span>
-      </span>
-      <div class="file-info">
-        <p class="file-name">
-          {{ fileName }}
-        </p>
-        <p class="file-hint">
-          {{ language.t('profile.cvUploaded') }}
-        </p>
-      </div>
-      <button
-        class="ghost-button"
-        type="button"
-        (click)="fileInput.click()"
-      >
-        {{ language.t('profile.cvReplace') }}
-      </button>
-      <button
-        class="icon-button danger"
-        type="button"
-        [attr.aria-label]="language.t('profile.delete')"
-        (click)="removeCv()"
-      >
-        <span
-          class="icon"
-          style="--icon: url(/assets/ui/trash-2.svg)"
-        >
-        </span>
-      </button>
-    </div>
-  } @else {
-    <button
-      class="drop-zone"
-      type="button"
-      [class.dragging]="dragging()"
-      (click)="fileInput.click()"
-      (dragover)="onDragOver($event)"
-      (dragleave)="dragging.set(false)"
-      (drop)="onDrop($event)"
-    >
-      <span class="drop-icon">
-        <span
-          class="icon"
-          style="--icon: url(/assets/ui/upload.svg)"
-        >
-        </span>
-      </span>
-      <span class="drop-title">
-        {{ language.t('profile.cvDropTitle') }}
-      </span>
-      <span class="drop-hint">
-        {{ language.t('profile.cvDropHint') }}
-      </span>
-    </button>
-  }
-
-  @if (cvError(); as error) {
-    <p class="cv-error">
-      {{ language.t(error) }}
-    </p>
-  }
+  <app-cv-upload
+    [fileName]="profile().cvFileName"
+    (selected)="changed.emit({ cvFileName: $event })"
+    (removed)="changed.emit({ cvFileName: null })"
+  >
+  </app-cv-upload>
 </section>
 
 <section class="profile-section">

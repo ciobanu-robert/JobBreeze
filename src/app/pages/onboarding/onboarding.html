@@ -1,0 +1,133 @@
+<div class="onboarding-page">
+  <section class="onboarding-card">
+    <header class="onboarding-head">
+      <p class="step-label">
+        {{ language.t('onboarding.step') }} {{ step() + 1 }}
+        {{ language.t('onboarding.of') }}
+        {{ stepTitles.length }}
+      </p>
+      <h1>{{ language.t(stepTitles[step()]) }}</h1>
+
+      <div class="progress">
+        @for (
+          title of stepTitles;
+          track title;
+          let index = $index
+        ) {
+          <span
+            class="progress-bar"
+            [class.done]="index <= step()"
+          >
+          </span>
+        }
+      </div>
+    </header>
+
+    <div class="step-content">
+      @switch (step()) {
+        @case (0) {
+          <app-cv-upload
+            [fileName]="draft().cvFileName"
+            (selected)="updateDraft({ cvFileName: $event })"
+            (removed)="updateDraft({ cvFileName: null })"
+          >
+          </app-cv-upload>
+          <button
+            class="extract-button"
+            type="button"
+            [disabled]="!draft().cvFileName || extracting()"
+            (click)="extractWithJobby()"
+          >
+            <span
+              class="icon"
+              [class.spinning]="extracting()"
+              [style.--icon]="
+                extracting()
+                  ? 'url(/assets/ui/loader-circle.svg)'
+                  : 'url(/assets/communication/sparkles.svg)'
+              "
+            >
+            </span>
+            {{
+              language.t(
+                extracting()
+                  ? 'onboarding.extracting'
+                  : 'onboarding.extract'
+              )
+            }}
+          </button>
+          @if (extracted()) {
+            <p class="extract-note">
+              {{ language.t('onboarding.extracted') }}
+            </p>
+          }
+        }
+        @case (1) {
+          <app-profile-personal-tab
+            [profile]="draft()"
+            (changed)="updateDraft($event)"
+          >
+          </app-profile-personal-tab>
+        }
+        @case (2) {
+          <app-profile-career-tab
+            [profile]="draft()"
+            (changed)="updateDraft($event)"
+          >
+          </app-profile-career-tab>
+        }
+        @case (3) {
+          <label class="field">
+            <span>
+              {{ language.t('profile.coverLetter') }}
+            </span>
+            <textarea
+              rows="10"
+              [placeholder]="
+                language.t('onboarding.coverPlaceholder')
+              "
+              [value]="draft().coverLetter"
+              (input)="setCoverLetter($event)"
+            ></textarea>
+          </label>
+        }
+      }
+    </div>
+
+    <footer class="onboarding-actions">
+      <button
+        class="ghost-button"
+        type="button"
+        [disabled]="step() === 0"
+        (click)="back()"
+      >
+        {{ language.t('onboarding.back') }}
+      </button>
+      <div class="actions-right">
+        @if (step() === backgroundStep) {
+          <button
+            class="ghost-button"
+            type="button"
+            (click)="skip()"
+          >
+            {{ language.t('onboarding.skip') }}
+          </button>
+        }
+        <button
+          class="primary-button"
+          type="button"
+          [disabled]="!canContinue()"
+          (click)="next()"
+        >
+          {{
+            language.t(
+              isLastStep()
+                ? 'onboarding.finish'
+                : 'onboarding.next'
+            )
+          }}
+        </button>
+      </div>
+    </footer>
+  </section>
+</div>
