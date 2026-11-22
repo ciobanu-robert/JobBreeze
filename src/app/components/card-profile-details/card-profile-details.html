@@ -1,3 +1,35 @@
+@if (job(); as job) {
+  @if (job.description) {
+    <section class="detail-block">
+      <h3>
+        <span
+          class="icon"
+          style="--icon: url(/assets/jobs/briefcase.svg)"
+        ></span>
+        {{ language.t('cardProfile.aboutJob') }}
+      </h3>
+      <p class="detail-text">{{ job.description }}</p>
+    </section>
+  }
+
+  @if (job.tags.length) {
+    <section class="detail-block">
+      <h3>
+        <span
+          class="icon"
+          style="--icon: url(/assets/jobs/wrench.svg)"
+        ></span>
+        {{ language.t('company.tags') }}
+      </h3>
+      <div class="detail-pills">
+        @for (tag of job.tags; track tag) {
+          <span class="detail-pill">{{ tag }}</span>
+        }
+      </div>
+    </section>
+  }
+}
+
 @if (candidate(); as profile) {
   @if (part() === 'front' && profile.about) {
     <section class="detail-block">

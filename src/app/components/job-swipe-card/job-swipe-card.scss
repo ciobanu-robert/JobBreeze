@@ -288,26 +288,6 @@
   );
 }
 
-.swipe-card-description p {
-  margin: 0;
-}
-
 .swipe-card-description.dragging {
   pointer-events: none;
-}
-
-.swipe-card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: auto;
-}
-
-.swipe-card-tags span {
-  padding: 5px 11px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-full);
-  color: var(--foreground);
-  font-size: 12px;
-  font-weight: 600;
 }

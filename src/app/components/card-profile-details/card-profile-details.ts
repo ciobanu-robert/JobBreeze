@@ -10,6 +10,7 @@ import {
   ProfileEntryKind,
 } from '../../models/profile';
 import { CompanyProfile } from '../../models/company';
+import { Job } from '../../models/job';
 import { ChatAttachment } from '../../models/conversation';
 import { PROFILE_ENTRY_SECTIONS } from '../profile-career-tab/profile-career-tab';
 import { ProfileEntryCard } from '../profile-entry-card/profile-entry-card';
@@ -42,6 +43,7 @@ export class CardProfileDetails {
   readonly candidate = input<CandidateProfile>();
   readonly company = input<CompanyProfile>();
   readonly jobLocation = input('');
+  readonly job = input<Job>();
   readonly part = input<CardPart>('back');
 
   protected readonly sections = computed(() =>

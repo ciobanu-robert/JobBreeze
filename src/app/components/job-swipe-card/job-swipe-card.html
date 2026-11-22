@@ -73,24 +73,15 @@
           class="swipe-card-description"
           [class.dragging]="dragging()"
         >
-          @if (job().candidateProfile; as candidate) {
-            <app-card-profile-details
-              part="front"
-              [candidate]="candidate"
-            >
-            </app-card-profile-details>
-          } @else {
-            <p>{{ job().description }}</p>
-          }
+          <app-card-profile-details
+            part="front"
+            [candidate]="job().candidateProfile"
+            [job]="
+              job().candidateProfile ? undefined : job()
+            "
+          >
+          </app-card-profile-details>
         </div>
-
-        @if (!job().candidateProfile) {
-          <div class="swipe-card-tags">
-            @for (tag of job().tags; track tag) {
-              <span>{{ tag }}</span>
-            }
-          </div>
-        }
       </div>
     </div>
 
