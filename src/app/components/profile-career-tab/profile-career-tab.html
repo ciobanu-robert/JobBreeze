@@ -46,3 +46,20 @@
   >
   </app-skills-input>
 </section>
+
+<section class="profile-section">
+  <app-profile-section-header
+    icon="/assets/navigation/globe.svg"
+    titleKey="profile.languages"
+    [count]="profile().languages.length"
+  >
+  </app-profile-section-header>
+
+  <app-skills-input
+    placeholderKey="profile.languagePlaceholder"
+    addLabelKey="profile.addLanguage"
+    [skills]="profile().languages"
+    (changed)="setLanguages($event)"
+  >
+  </app-skills-input>
+</section>

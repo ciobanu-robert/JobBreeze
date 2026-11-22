@@ -15,7 +15,7 @@ import { ProfileEntryCard } from '../profile-entry-card/profile-entry-card';
 import { ProfileSectionHeader } from '../profile-section-header/profile-section-header';
 import { SkillsInput } from '../skills-input/skills-input';
 
-interface EntrySection {
+export interface EntrySection {
   kind: ProfileEntryKind;
   icon: string;
   titleKey: string;
@@ -24,7 +24,7 @@ interface EntrySection {
   subtitleLabelKey: string;
 }
 
-const SECTIONS: EntrySection[] = [
+export const PROFILE_ENTRY_SECTIONS: EntrySection[] = [
   {
     kind: 'experience',
     icon: '/assets/jobs/briefcase.svg',
@@ -75,7 +75,7 @@ export class ProfileCareerTab {
   readonly profile = input.required<CandidateProfile>();
   readonly changed = output<Partial<CandidateProfile>>();
 
-  protected readonly sections = SECTIONS;
+  protected readonly sections = PROFILE_ENTRY_SECTIONS;
   protected readonly editingId = signal<string | null>(
     null,
   );
@@ -133,5 +133,9 @@ export class ProfileCareerTab {
 
   protected setSkills(skills: string[]): void {
     this.changed.emit({ skills });
+  }
+
+  protected setLanguages(languages: string[]): void {
+    this.changed.emit({ languages });
   }
 }

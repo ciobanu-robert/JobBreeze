@@ -19,6 +19,7 @@ export const EMPTY_PROFILE: CandidateProfile = {
   projects: [],
   certifications: [],
   skills: [],
+  languages: [],
   cvFileName: null,
   coverLetter: '',
 };

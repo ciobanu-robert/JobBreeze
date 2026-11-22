@@ -1,0 +1,148 @@
+@if (editing()) {
+  <form
+    class="entry-form"
+    (submit)="$event.preventDefault(); submit()"
+  >
+    <div class="form-grid">
+      <label class="field field-full">
+        <span>{{ language.t('company.jobTitle') }}</span>
+        <input
+          type="text"
+          [value]="draft().title"
+          (input)="setField('title', $event)"
+        />
+      </label>
+      <label class="field">
+        <span>{{ language.t('profile.location') }}</span>
+        <input
+          type="text"
+          [value]="draft().location"
+          (input)="setField('location', $event)"
+        />
+      </label>
+      <label class="field">
+        <span>{{ language.t('company.salary') }}</span>
+        <input
+          type="text"
+          placeholder="€3000-4000"
+          [value]="draft().salary"
+          (input)="setField('salary', $event)"
+        />
+      </label>
+
+      <div class="form-grid form-grid-3 field-full">
+        @for (select of selects; track select.field) {
+          <label class="field">
+            <span>{{ language.t(select.labelKey) }}</span>
+            <select
+              (change)="setField(select.field, $event)"
+            >
+              @for (
+                option of select.options;
+                track option.value
+              ) {
+                <option
+                  [value]="option.value"
+                  [selected]="
+                    draft()[select.field] === option.value
+                  "
+                >
+                  {{ language.t(option.labelKey) }}
+                </option>
+              }
+            </select>
+          </label>
+        }
+      </div>
+
+      <label class="field field-full">
+        <span>{{ language.t('profile.description') }}</span>
+        <textarea
+          rows="4"
+          [value]="draft().description"
+          (input)="setField('description', $event)"
+        ></textarea>
+      </label>
+      <div class="tags-field field-full">
+        <p class="tags-label">
+          {{ language.t('company.tags') }}
+        </p>
+        <app-skills-input
+          [skills]="draft().tags"
+          (changed)="setTags($event)"
+        >
+        </app-skills-input>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button
+        class="ghost-button"
+        type="button"
+        (click)="cancelled.emit()"
+      >
+        {{ language.t('profile.cancel') }}
+      </button>
+      <button
+        class="primary-button"
+        type="submit"
+        [disabled]="!canSave()"
+      >
+        {{ language.t('company.publish') }}
+      </button>
+    </div>
+  </form>
+} @else {
+  <article class="entry">
+    <div class="entry-body">
+      <div class="entry-heading">
+        <h4>{{ job().title }}</h4>
+        @if (job().salary) {
+          <span class="salary-pill">
+            {{ job().salary }}
+          </span>
+        }
+      </div>
+      <p class="entry-subtitle">{{ meta() }}</p>
+      @if (job().description) {
+        <p class="entry-description">
+          {{ job().description }}
+        </p>
+      }
+      @if (job().tags.length) {
+        <div class="entry-tags">
+          @for (tag of job().tags; track tag) {
+            <span>{{ tag }}</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="entry-actions">
+      <button
+        class="icon-button"
+        type="button"
+        [attr.aria-label]="language.t('profile.edit')"
+        (click)="editRequested.emit()"
+      >
+        <span
+          class="icon"
+          style="--icon: url(/assets/ui/pencil.svg)"
+        >
+        </span>
+      </button>
+      <button
+        class="icon-button danger"
+        type="button"
+        [attr.aria-label]="language.t('profile.delete')"
+        (click)="removed.emit()"
+      >
+        <span
+          class="icon"
+          style="--icon: url(/assets/ui/trash-2.svg)"
+        >
+        </span>
+      </button>
+    </div>
+  </article>
+}

@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+.section-hint {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 14px;
+}
+
+app-job-post-card + app-job-post-card {
+  margin-top: 24px;
+}

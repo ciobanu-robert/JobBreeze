@@ -101,6 +101,10 @@
   margin-top: -7px;
 }
 
+.role-options.three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .role-option {
   min-height: 40px;
   border: 1px solid var(--border);
@@ -123,7 +127,8 @@
 }
 
 @media (max-width: 520px) {
-  .role-options {
+  .role-options,
+  .role-options.three {
     grid-template-columns: 1fr;
   }
 }

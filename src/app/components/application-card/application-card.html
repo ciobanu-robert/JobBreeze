@@ -27,6 +27,28 @@
         {{ language.t('applications.openChat') }}
       </button>
     }
+    @if (
+      showDecision() && application().status === 'pending'
+    ) {
+      <div class="decision-actions">
+        <button
+          class="open-chat"
+          type="button"
+          (click)="decided.emit('rejected')"
+        >
+          <img src="/assets/ui/x.svg" alt="" />
+          {{ language.t('candidates.reject') }}
+        </button>
+        <button
+          class="open-chat"
+          type="button"
+          (click)="decided.emit('shortlisted')"
+        >
+          <img src="/assets/ui/check.svg" alt="" />
+          {{ language.t('candidates.shortlist') }}
+        </button>
+      </div>
+    }
   </div>
 
   <span

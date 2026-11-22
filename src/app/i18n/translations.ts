@@ -151,6 +151,10 @@ export const TRANSLATIONS: Record<
     'auth.roleLabel': 'I am a',
     'auth.roleSeeker': 'Job seeker',
     'auth.roleCompany': 'Hiring company',
+    'auth.roleAdmin': 'Admin',
+    'auth.demoRoleLabel': 'Sign in as (demo)',
+    'auth.demoRoleSeeker': 'Seeker',
+    'auth.demoRoleCompany': 'Company',
     'auth.createAccount': 'Create account',
     'auth.haveAccount': 'Already have an account?',
 
@@ -180,6 +184,8 @@ export const TRANSLATIONS: Record<
     'nav.signOut': 'Sign out',
     'nav.collapseSidebar': 'Collapse sidebar',
     'nav.expandSidebar': 'Expand sidebar',
+    'nav.candidates': 'Candidates',
+    'nav.shortlisted': 'Shortlisted',
 
     'browse.title': 'Browse jobs',
     'browse.filters': 'Filters',
@@ -207,6 +213,26 @@ export const TRANSLATIONS: Record<
     'browse.emptyTitle': 'No more jobs. Come back soon!',
     'browse.refresh': 'Refresh',
 
+    'candidates.title': 'Discover candidates',
+    'candidates.applications': 'applications',
+    'candidates.shortlist': 'Shortlist',
+    'candidates.reject': 'Reject',
+    'candidates.yearsExperience': 'years experience',
+    'candidates.emptySwipe':
+      "You've reviewed every candidate.",
+    'candidates.filtersTitle': 'Candidate filters',
+    'candidates.filtersJobLabel': 'Job',
+    'candidates.filtersAllJobs': 'All jobs',
+    'candidates.filtersStatusLabel': 'Status',
+    'candidates.filtersAnyStatus': 'Any status',
+    'candidates.filtersExperienceLabel': 'Experience',
+    'candidates.filtersAnyExperience': 'Any experience',
+    'candidates.experienceEntry': '0–1 years',
+    'candidates.experienceMid': '2–4 years',
+    'candidates.experienceSenior': '5+ years',
+    'candidates.filtersSkillLabel': 'Skill',
+    'candidates.filtersSkillPlaceholder': 'e.g. React',
+
     'applications.title': 'Applications',
     'applications.statTotal': 'Total',
     'applications.statPending': 'Pending',
@@ -220,6 +246,13 @@ export const TRANSLATIONS: Record<
     'applications.appliedOn': 'Applied on',
     'applications.emptyTitle':
       'You have no applications yet.',
+    'shortlisted.title': 'Shortlisted candidates',
+    'shortlisted.statShortlisted': 'Shortlisted',
+    'shortlisted.statJobs': 'Open roles',
+    'shortlisted.statPending': 'To review',
+    'shortlisted.statRejected': 'Rejected',
+    'shortlisted.emptyTitle':
+      'No shortlisted candidates yet. Swipe right on the candidates you like.',
 
     'swipeCard.like': 'Like',
     'swipeCard.nope': 'Nope',
@@ -229,6 +262,14 @@ export const TRANSLATIONS: Record<
     'swipeCard.likeAria': 'Like this job',
     'swipeCard.flagAria': 'Report this job',
     'swipeCard.undoAria': 'Undo last swipe',
+    'swipeCard.viewProfile': 'More',
+    'swipeCard.backToCard': 'Back',
+    'cardProfile.about': 'About',
+    'cardProfile.founded': 'Founded in',
+    'cardProfile.languages': 'Languages',
+    'cardProfile.benefits': 'Benefits',
+    'cardProfile.contact': 'Contact & links',
+    'cardProfile.employees': 'employees',
 
     'report.title': 'Report job',
     'report.closeAria': 'Close',
@@ -247,6 +288,11 @@ export const TRANSLATIONS: Record<
     'report.successText':
       'Our team will review this job. We apologize for the inconvenience.',
     'report.done': 'Done',
+    'report.titleCandidate': 'Report candidate',
+    'report.detailsPlaceholderCandidate':
+      "Tell us what's wrong with this profile",
+    'report.successTextCandidate':
+      'Our team will review this profile. We apologize for the inconvenience.',
 
     'messages.title': 'Messages',
     'messages.subtitle': 'Your opportunity conversations',
@@ -404,6 +450,10 @@ export const TRANSLATIONS: Record<
     'profile.skillPlaceholder':
       'Add a skill and press Enter',
     'profile.addSkill': 'Add skill',
+    'profile.languages': 'Languages',
+    'profile.languagePlaceholder':
+      'e.g. English C1, then press Enter',
+    'profile.addLanguage': 'Add language',
     'profile.removeSkill': 'Remove',
     'profile.cv': 'CV',
     'profile.cvDropTitle':
@@ -418,6 +468,27 @@ export const TRANSLATIONS: Record<
     'profile.coverLetter': 'Cover letter',
     'profile.coverLetterHint':
       'A default letter sent with your applications.',
+    'profile.tabCompany': 'Company details',
+    'profile.tabJobs': 'Job postings',
+    'company.info': 'Company info',
+    'company.name': 'Company name',
+    'company.industry': 'Industry',
+    'company.location': 'Headquarters',
+    'company.size': 'Company size',
+    'company.about': 'About the company',
+    'company.openJobs': 'open positions',
+    'company.jobs': 'Open positions',
+    'company.jobsHint':
+      'No jobs yet. Add your first posting to start receiving candidates.',
+    'company.jobTitle': 'Job title',
+    'company.salary': 'Salary range',
+    'company.tags': 'Required skills',
+    'company.publish': 'Publish job',
+    'company.founded': 'Founded in',
+    'company.benefits': 'Benefits',
+    'company.benefitPlaceholder':
+      'Add a benefit and press Enter',
+    'company.addBenefit': 'Add benefit',
 
     'settings.title': 'Settings',
     'settings.backToProfile': 'Back to profile',
@@ -615,6 +686,10 @@ export const TRANSLATIONS: Record<
     'auth.roleLabel': 'Sunt',
     'auth.roleSeeker': 'Căutător de job',
     'auth.roleCompany': 'Companie angajatoare',
+    'auth.roleAdmin': 'Admin',
+    'auth.demoRoleLabel': 'Intră ca (demo)',
+    'auth.demoRoleSeeker': 'Candidat',
+    'auth.demoRoleCompany': 'Companie',
     'auth.createAccount': 'Creează cont',
     'auth.haveAccount': 'Ai deja un cont?',
 
@@ -645,6 +720,8 @@ export const TRANSLATIONS: Record<
     'nav.signOut': 'Deconectare',
     'nav.collapseSidebar': 'Restrânge meniul',
     'nav.expandSidebar': 'Extinde meniul',
+    'nav.candidates': 'Candidați',
+    'nav.shortlisted': 'Preselectați',
 
     'browse.title': 'Explorează joburi',
     'browse.filters': 'Filtre',
@@ -673,6 +750,25 @@ export const TRANSLATIONS: Record<
       'Nu mai sunt joburi. Revino curând!',
     'browse.refresh': 'Reîncearcă',
 
+    'candidates.title': 'Descoperă candidați',
+    'candidates.applications': 'candidaturi',
+    'candidates.shortlist': 'Preselectează',
+    'candidates.reject': 'Respinge',
+    'candidates.yearsExperience': 'ani experiență',
+    'candidates.emptySwipe': 'Ai evaluat toți candidații.',
+    'candidates.filtersTitle': 'Filtre candidați',
+    'candidates.filtersJobLabel': 'Job',
+    'candidates.filtersAllJobs': 'Toate joburile',
+    'candidates.filtersStatusLabel': 'Status',
+    'candidates.filtersAnyStatus': 'Orice status',
+    'candidates.filtersExperienceLabel': 'Experiență',
+    'candidates.filtersAnyExperience': 'Orice experiență',
+    'candidates.experienceEntry': '0–1 ani',
+    'candidates.experienceMid': '2–4 ani',
+    'candidates.experienceSenior': '5+ ani',
+    'candidates.filtersSkillLabel': 'Competență',
+    'candidates.filtersSkillPlaceholder': 'ex. React',
+
     'applications.title': 'Candidaturi',
     'applications.statTotal': 'Total',
     'applications.statPending': 'În așteptare',
@@ -686,6 +782,13 @@ export const TRANSLATIONS: Record<
     'applications.appliedOn': 'Aplicat pe',
     'applications.emptyTitle':
       'Nu ai încă nicio candidatură.',
+    'shortlisted.title': 'Candidați preselectați',
+    'shortlisted.statShortlisted': 'Preselectați',
+    'shortlisted.statJobs': 'Posturi',
+    'shortlisted.statPending': 'De evaluat',
+    'shortlisted.statRejected': 'Respinși',
+    'shortlisted.emptyTitle':
+      'Niciun candidat preselectat încă. Dă swipe la dreapta pe candidații care îți plac.',
 
     'swipeCard.like': 'Îmi place',
     'swipeCard.nope': 'Respins',
@@ -695,6 +798,14 @@ export const TRANSLATIONS: Record<
     'swipeCard.likeAria': 'Apreciază acest job',
     'swipeCard.flagAria': 'Raportează acest job',
     'swipeCard.undoAria': 'Anulează ultimul swipe',
+    'swipeCard.viewProfile': 'Mai mult',
+    'swipeCard.backToCard': 'Înapoi',
+    'cardProfile.about': 'Despre',
+    'cardProfile.founded': 'Fondată în',
+    'cardProfile.languages': 'Limbi străine',
+    'cardProfile.benefits': 'Beneficii',
+    'cardProfile.contact': 'Contact și linkuri',
+    'cardProfile.employees': 'angajați',
 
     'report.title': 'Raportează jobul',
     'report.closeAria': 'Închide',
@@ -715,6 +826,11 @@ export const TRANSLATIONS: Record<
       'Echipa noastră va verifica acest job. ' +
       'Ne cerem scuze pentru inconvenientul cauzat.',
     'report.done': 'Gata',
+    'report.titleCandidate': 'Raportează candidatul',
+    'report.detailsPlaceholderCandidate':
+      'Spune-ne ce nu e în regulă cu acest profil',
+    'report.successTextCandidate':
+      'Echipa noastră va analiza acest profil. Ne cerem scuze pentru neplăcere.',
 
     'messages.title': 'Mesaje',
     'messages.subtitle':
@@ -876,6 +992,10 @@ export const TRANSLATIONS: Record<
     'profile.skillPlaceholder':
       'Adaugă o competență și apasă Enter',
     'profile.addSkill': 'Adaugă competența',
+    'profile.languages': 'Limbi străine',
+    'profile.languagePlaceholder':
+      'ex. Engleză C1, apoi apasă Enter',
+    'profile.addLanguage': 'Adaugă limbă',
     'profile.removeSkill': 'Elimină',
     'profile.cv': 'CV',
     'profile.cvDropTitle':
@@ -890,6 +1010,27 @@ export const TRANSLATIONS: Record<
     'profile.coverLetter': 'Scrisoare de intenție',
     'profile.coverLetterHint':
       'O scrisoare implicită trimisă odată cu aplicările tale.',
+    'profile.tabCompany': 'Detalii companie',
+    'profile.tabJobs': 'Joburi publicate',
+    'company.info': 'Informații companie',
+    'company.name': 'Numele companiei',
+    'company.industry': 'Domeniu de activitate',
+    'company.location': 'Sediu',
+    'company.size': 'Număr de angajați',
+    'company.about': 'Despre companie',
+    'company.openJobs': 'posturi deschise',
+    'company.jobs': 'Posturi deschise',
+    'company.jobsHint':
+      'Niciun job încă. Adaugă primul anunț ca să începi să primești candidați.',
+    'company.jobTitle': 'Titlul postului',
+    'company.salary': 'Interval salarial',
+    'company.tags': 'Competențe cerute',
+    'company.publish': 'Publică jobul',
+    'company.founded': 'Anul fondării',
+    'company.benefits': 'Beneficii',
+    'company.benefitPlaceholder':
+      'Adaugă un beneficiu și apasă Enter',
+    'company.addBenefit': 'Adaugă beneficiu',
 
     'settings.title': 'Setări',
     'settings.backToProfile': 'Înapoi la profil',

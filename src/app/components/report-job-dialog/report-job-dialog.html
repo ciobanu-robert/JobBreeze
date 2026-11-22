@@ -26,7 +26,13 @@
             {{ language.t('report.successTitle') }}
           </h2>
           <p>
-            {{ language.t('report.successText') }}
+            {{
+              language.t(
+                session.isCompany()
+                  ? 'report.successTextCandidate'
+                  : 'report.successText'
+              )
+            }}
           </p>
           <button
             class="submit-button"
@@ -38,7 +44,13 @@
         </div>
       } @else {
         <h2 id="report-title">
-          {{ language.t('report.title') }}
+          {{
+            language.t(
+              session.isCompany()
+                ? 'report.titleCandidate'
+                : 'report.title'
+            )
+          }}
         </h2>
 
         @if (job(); as currentJob) {
@@ -84,7 +96,11 @@
             rows="4"
             [attr.maxlength]="detailsMaxLength"
             [placeholder]="
-              language.t('report.detailsPlaceholder')
+              language.t(
+                session.isCompany()
+                  ? 'report.detailsPlaceholderCandidate'
+                  : 'report.detailsPlaceholder'
+              )
             "
             [value]="details()"
             (input)="details.set($any($event.target).value)"

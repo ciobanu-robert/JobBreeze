@@ -63,6 +63,11 @@
   height: 15px;
 }
 
+.decision-actions {
+  display: flex;
+  gap: 4px;
+}
+
 .dark-theme .open-chat img {
   filter: brightness(0) invert(1);
 }

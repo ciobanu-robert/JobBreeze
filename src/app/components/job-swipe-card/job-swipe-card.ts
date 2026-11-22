@@ -12,6 +12,7 @@ import {
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
 import { Job } from '../../models/job';
+import { CardProfileDetails } from '../card-profile-details/card-profile-details';
 
 const SWIPE_THRESHOLD = 120;
 const SWIPE_UP_THRESHOLD = 100;
@@ -23,7 +24,7 @@ const ENTER_DURATION_MS = 380;
 export type SwipeDirection = 'like' | 'reject' | 'save';
 
 @Component({
-  imports: [],
+  imports: [CardProfileDetails],
   selector: 'app-job-swipe-card',
   styleUrl: './job-swipe-card.scss',
   templateUrl: './job-swipe-card.html',
@@ -44,6 +45,7 @@ export class JobSwipeCard implements OnInit {
   protected readonly dragging = signal(false);
   readonly exiting = signal<SwipeDirection | null>(null);
   readonly entering = signal(false);
+  readonly flipped = signal(false);
 
   readonly activeDirection = computed(
     () =>
@@ -51,6 +53,27 @@ export class JobSwipeCard implements OnInit {
       (this.dragging() && !this.entering()
         ? this.releaseDirection()
         : null),
+  );
+
+  protected readonly backHeader = computed(() => {
+    const { candidateProfile, companyProfile } = this.job();
+    if (candidateProfile) {
+      return {
+        name: candidateProfile.fullName,
+        subtitle: candidateProfile.headline,
+      };
+    }
+    if (companyProfile) {
+      return {
+        name: companyProfile.name,
+        subtitle: companyProfile.industry,
+      };
+    }
+    return null;
+  });
+
+  protected readonly canFlip = computed(
+    () => this.interactive() && !!this.backHeader(),
   );
 
   private pointerId: number | null = null;
@@ -145,7 +168,9 @@ export class JobSwipeCard implements OnInit {
     if (!this.interactive() || this.exiting()) {
       return;
     }
-    if ((event.target as HTMLElement).closest('button')) {
+    if (
+      (event.target as HTMLElement).closest('button, a')
+    ) {
       return;
     }
     event.preventDefault();

@@ -4,22 +4,131 @@
 }
 
 .swipe-card {
+  --flip-duration: 1s;
+
   position: relative;
-  display: flex;
+  display: grid;
   box-sizing: border-box;
   height: 100%;
-  flex-direction: column;
-  gap: 14px;
-  padding: 22px;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  color: var(--card-foreground);
+  perspective: 2000px;
+  touch-action: none;
+  user-select: none;
+  overscroll-behavior: none;
+}
+
+.card-flipper {
+  display: grid;
+  grid-column: 1;
+  grid-row: 1 / -1;
+  grid-template-rows: subgrid;
+  transform-style: preserve-3d;
+  transition: transform var(--flip-duration)
+    cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.card-flipper.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  display: grid;
+  grid-column: 1;
+  grid-row: 1 / -1;
+  grid-template-rows: subgrid;
+  box-sizing: border-box;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--radius-2xl);
   background: var(--card);
-  color: var(--card-foreground);
   box-shadow: var(--shadow-soft);
-  touch-action: none;
-  user-select: none;
-  overscroll-behavior: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.face-body {
+  display: flex;
+  grid-row: 1;
+  min-height: 0;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px 22px 14px;
+}
+
+.card-actions {
+  grid-column: 1;
+  grid-row: 2;
+  padding: 0 22px 22px;
+  transform: translateZ(1px);
+  transition: transform 0s linear
+    calc(var(--flip-duration) / 2);
+}
+
+.flipped .card-actions {
+  transform: rotateY(180deg) translateZ(1px);
+}
+
+.flip-button {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  align-self: flex-start;
+  gap: 6px;
+  margin-left: auto;
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--card);
+  color: var(--foreground);
+  cursor: pointer;
+  font:
+    600 12px 'Inter',
+    sans-serif;
+  white-space: nowrap;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.flip-button:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.flip-button .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.profile-scroll {
+  --fade: 12px;
+
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: calc(var(--fade) * -1) 0;
+  padding: var(--fade) 6px var(--fade) 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fade),
+    #000 calc(100% - var(--fade)),
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swipe-card {
+    --flip-duration: 0.01s;
+  }
 }
 
 .swipe-card.interactive {
@@ -41,6 +150,7 @@
 
 .stamp {
   position: absolute;
+  z-index: 3;
   top: 50%;
   padding: 6px 14px;
   border: 3px solid currentcolor;
@@ -92,6 +202,10 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: 18px;
   font-weight: 700;
+}
+
+.swipe-card-top > div:not(.company-mark) {
+  min-width: 0;
 }
 
 .swipe-card-top h2 {
@@ -172,6 +286,10 @@
     #000 calc(100% - var(--fade)),
     transparent
   );
+}
+
+.swipe-card-description p {
+  margin: 0;
 }
 
 .swipe-card-description.dragging {

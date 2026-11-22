@@ -1,5 +1,5 @@
 export type ProfileTab =
-  'personal' | 'career' | 'documents';
+  'personal' | 'career' | 'documents' | 'company' | 'jobs';
 
 export type ProfileEntryKind =
   | 'experience'
@@ -37,6 +37,7 @@ export interface CandidateProfile {
   projects: ProfileEntry[];
   certifications: ProfileEntry[];
   skills: string[];
+  languages: string[];
   cvFileName: string | null;
   coverLetter: string;
 }

@@ -1,0 +1,70 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  color: var(--muted-foreground);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h3 .icon {
+  width: 14px;
+  height: 14px;
+  color: var(--primary);
+}
+
+.detail-text {
+  margin: 0;
+  color: var(--foreground);
+  font-size: 14px;
+  line-height: 1.55;
+  white-space: pre-line;
+}
+
+.detail-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detail-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.detail-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  color: var(--foreground);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.detail-pill .icon {
+  width: 13px;
+  height: 13px;
+  color: var(--muted-foreground);
+}
+
+a.detail-pill:hover {
+  color: var(--primary);
+}
+
+a.detail-pill:hover .icon {
+  color: var(--primary);
+}

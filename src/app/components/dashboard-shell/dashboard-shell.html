@@ -6,7 +6,7 @@
     <app-brand-logo class="sidebar-brand"> </app-brand-logo>
 
     <nav class="sidebar-nav" aria-label="Main navigation">
-      @for (item of navItems; track item.key) {
+      @for (item of navItems(); track item.key) {
         @if (item.route) {
           <a
             class="nav-item"
@@ -35,7 +35,7 @@
     <div class="sidebar-spacer"></div>
 
     <div class="sidebar-footer">
-      <p class="sidebar-user">{{ userName() }}</p>
+      <p class="sidebar-user">{{ session.userName() }}</p>
       <button class="sign-out" type="button">
         <img src="/assets/ui/log-out.svg" alt="" />
         <span>
@@ -69,7 +69,7 @@
     class="mobile-bottom-nav"
     aria-label="Main navigation"
   >
-    @for (item of navItems; track item.key) {
+    @for (item of navItems(); track item.key) {
       @if (item.route) {
         <a
           class="mobile-nav-item"

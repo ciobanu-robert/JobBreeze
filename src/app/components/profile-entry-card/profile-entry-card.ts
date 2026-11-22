@@ -24,6 +24,7 @@ export class ProfileEntryCard {
 
   readonly entry = input.required<ProfileEntry>();
   readonly editing = input(false);
+  readonly showActions = input(true);
   readonly titleLabelKey = input.required<string>();
   readonly subtitleLabelKey = input.required<string>();
   readonly editRequested = output<void>();

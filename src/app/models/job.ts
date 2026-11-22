@@ -1,3 +1,6 @@
+import { CompanyProfile } from './company';
+import { CandidateProfile } from './profile';
+
 export interface Job {
   id: string;
   avatarInitial: string;
@@ -10,4 +13,6 @@ export interface Job {
   salary: string;
   description: string;
   tags: string[];
+  candidateProfile?: CandidateProfile;
+  companyProfile?: CompanyProfile;
 }

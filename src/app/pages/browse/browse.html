@@ -2,10 +2,22 @@
   <div
     class="browse-page"
     [class.dark-theme]="theme.isDarkTheme()"
+    [class.company]="session.isCompany()"
   >
     <header class="browse-header">
       <div class="browse-topbar">
-        <h1>{{ language.t('browse.title') }}</h1>
+        @if (session.isCompany()) {
+          <div>
+            <h1>{{ language.t('candidates.title') }}</h1>
+            <p class="browse-subtitle">
+              {{ session.companyName }} ·
+              {{ filteredCandidates().length }}
+              {{ language.t('candidates.applications') }}
+            </p>
+          </div>
+        } @else {
+          <h1>{{ language.t('browse.title') }}</h1>
+        }
         <button
           class="filters-button"
           type="button"
@@ -19,7 +31,20 @@
 
     <div class="browse-body">
       <div class="browse-deck">
-        <app-job-swipe-deck [jobs]="filteredJobs()">
+        <app-job-swipe-deck
+          [jobs]="
+            session.isCompany()
+              ? candidateCards()
+              : filteredJobs()
+          "
+          [emptyTitleKey]="
+            session.isCompany()
+              ? 'candidates.emptySwipe'
+              : 'browse.emptyTitle'
+          "
+          (swiped)="onCardSwiped($event)"
+          (undone)="onCardUndone($event)"
+        >
         </app-job-swipe-deck>
       </div>
     </div>
@@ -28,7 +53,10 @@
   <app-filters-panel
     [open]="isFiltersOpen()"
     [filters]="filters()"
+    [candidateFilters]="candidateFilters()"
+    [jobTitles]="jobTitles"
     (closed)="isFiltersOpen.set(false)"
     (applied)="filters.set($event)"
+    (candidatesApplied)="candidateFilters.set($event)"
   ></app-filters-panel>
 </app-dashboard-shell>

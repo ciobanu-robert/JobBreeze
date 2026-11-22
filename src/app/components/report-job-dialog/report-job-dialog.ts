@@ -13,6 +13,7 @@ import {
   ReportReason,
 } from '../../models/job-report';
 import { LanguageService } from '../../services/language.service';
+import { SessionService } from '../../services/session.service';
 import { ThemeService } from '../../services/theme.service';
 import { Job } from '../../models/job';
 
@@ -48,6 +49,8 @@ export class ReportJobDialog {
   readonly job = input<Job | null>(null);
   readonly closed = output<void>();
   readonly submitted = output<JobReport>();
+
+  protected readonly session = inject(SessionService);
 
   protected readonly language = inject(LanguageService);
   protected readonly theme = inject(ThemeService);

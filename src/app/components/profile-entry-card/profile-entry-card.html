@@ -105,31 +105,33 @@
       }
     </div>
 
-    <div class="entry-actions">
-      <button
-        class="icon-button"
-        type="button"
-        [attr.aria-label]="language.t('profile.edit')"
-        (click)="editRequested.emit()"
-      >
-        <span
-          class="icon"
-          style="--icon: url(/assets/ui/pencil.svg)"
+    @if (showActions()) {
+      <div class="entry-actions">
+        <button
+          class="icon-button"
+          type="button"
+          [attr.aria-label]="language.t('profile.edit')"
+          (click)="editRequested.emit()"
         >
-        </span>
-      </button>
-      <button
-        class="icon-button danger"
-        type="button"
-        [attr.aria-label]="language.t('profile.delete')"
-        (click)="removed.emit()"
-      >
-        <span
-          class="icon"
-          style="--icon: url(/assets/ui/trash-2.svg)"
+          <span
+            class="icon"
+            style="--icon: url(/assets/ui/pencil.svg)"
+          >
+          </span>
+        </button>
+        <button
+          class="icon-button danger"
+          type="button"
+          [attr.aria-label]="language.t('profile.delete')"
+          (click)="removed.emit()"
         >
-        </span>
-      </button>
-    </div>
+          <span
+            class="icon"
+            style="--icon: url(/assets/ui/trash-2.svg)"
+          >
+          </span>
+        </button>
+      </div>
+    }
   </article>
 }

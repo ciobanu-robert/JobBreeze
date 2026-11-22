@@ -1,0 +1,26 @@
+<section class="profile-section">
+  <app-profile-section-header
+    icon="/assets/jobs/briefcase.svg"
+    titleKey="company.jobs"
+    [count]="jobs().length"
+    [addable]="true"
+    (add)="addJob()"
+  >
+  </app-profile-section-header>
+
+  @for (job of jobs(); track job.id) {
+    <app-job-post-card
+      [job]="job"
+      [editing]="editingId() === job.id"
+      (editRequested)="editingId.set(job.id)"
+      (removed)="removeJob(job.id)"
+      (saved)="saveJob($event)"
+      (cancelled)="cancelEdit(job)"
+    >
+    </app-job-post-card>
+  } @empty {
+    <p class="section-hint">
+      {{ language.t('company.jobsHint') }}
+    </p>
+  }
+</section>

@@ -4,6 +4,7 @@ import {
   effect,
   inject,
   input,
+  output,
   signal,
   viewChildren,
 } from '@angular/core';
@@ -17,6 +18,11 @@ import { ThemeService } from '../../services/theme.service';
 import { Job } from '../../models/job';
 import { DEMO_JOBS } from './demo-jobs';
 
+export interface SwipeEvent {
+  id: string;
+  direction: SwipeDirection;
+}
+
 @Component({
   imports: [JobSwipeCard, ReportJobDialog],
   selector: 'app-job-swipe-deck',
@@ -25,6 +31,9 @@ import { DEMO_JOBS } from './demo-jobs';
 })
 export class JobSwipeDeck {
   readonly jobs = input<Job[] | null>(null);
+  readonly emptyTitleKey = input('browse.emptyTitle');
+  readonly swiped = output<SwipeEvent>();
+  readonly undone = output<string>();
 
   protected readonly language = inject(LanguageService);
   protected readonly theme = inject(ThemeService);
@@ -74,6 +83,8 @@ export class JobSwipeDeck {
   }
 
   protected onSwiped(direction: SwipeDirection): void {
+    const job = this.allJobs()[this.deckIndex()];
+    this.swiped.emit({ id: job.id, direction });
     this.lastSwipe.set(direction);
     this.restored.set(null);
     this.deckIndex.update((i) => i + 1);
@@ -88,6 +99,7 @@ export class JobSwipeDeck {
       return;
     }
     const index = this.deckIndex() - 1;
+    this.undone.emit(this.allJobs()[index].id);
     this.lastSwipe.set(null);
     this.restored.set({
       jobId: this.allJobs()[index].id,

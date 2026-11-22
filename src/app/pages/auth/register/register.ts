@@ -5,6 +5,7 @@ import { PageShell } from '../../../components/page-shell/page-shell';
 import { PasswordField } from '../../../components/password-field/password-field';
 import { SocialLoginButtons } from '../../../components/social-login-buttons/social-login-buttons';
 import { LanguageService } from '../../../services/language.service';
+import { SessionService } from '../../../services/session.service';
 
 @Component({
   selector: 'app-register',
@@ -24,10 +25,12 @@ export class Register {
     'seeker',
   );
   private readonly router = inject(Router);
+  private readonly session = inject(SessionService);
 
   protected createAccount(): void {
-    if (this.role() === 'seeker') {
-      this.router.navigateByUrl('/onboarding');
-    }
+    this.session.setRole(this.role());
+    this.router.navigateByUrl(
+      this.role() === 'seeker' ? '/onboarding' : '/browse',
+    );
   }
 }

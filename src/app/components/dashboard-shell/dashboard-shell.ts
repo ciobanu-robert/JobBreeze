@@ -2,6 +2,7 @@ import {
   Component,
   OnDestroy,
   afterNextRender,
+  computed,
   inject,
   input,
 } from '@angular/core';
@@ -10,6 +11,7 @@ import { RouterLink } from '@angular/router';
 import { BrandLogo } from '../brand-logo/brand-logo';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
+import { SessionService } from '../../services/session.service';
 
 export type DashboardNavKey =
   | 'browse'
@@ -23,6 +25,9 @@ interface DashboardNavItem {
   icon: string;
   labelKey: string;
   route: string | null;
+  company?: Partial<
+    Pick<DashboardNavItem, 'icon' | 'labelKey' | 'route'>
+  >;
 }
 
 const NAV_ITEMS: DashboardNavItem[] = [
@@ -31,12 +36,17 @@ const NAV_ITEMS: DashboardNavItem[] = [
     icon: '/assets/navigation/compass.svg',
     labelKey: 'nav.browse',
     route: '/browse',
+    company: { labelKey: 'nav.candidates' },
   },
   {
     key: 'applications',
     icon: '/assets/communication/inbox.svg',
     labelKey: 'nav.applications',
     route: '/applications',
+    company: {
+      icon: '/assets/ui/check.svg',
+      labelKey: 'nav.shortlisted',
+    },
   },
   {
     key: 'messages',
@@ -66,12 +76,19 @@ const NAV_ITEMS: DashboardNavItem[] = [
 })
 export class DashboardShell implements OnDestroy {
   readonly activeKey = input<DashboardNavKey>('browse');
-  readonly userName = input('Robert Ciobanu');
   readonly fullBleed = input(false);
 
   protected readonly language = inject(LanguageService);
   protected readonly theme = inject(ThemeService);
-  protected readonly navItems = NAV_ITEMS;
+  protected readonly session = inject(SessionService);
+  protected readonly navItems = computed(() =>
+    this.session.isCompany()
+      ? NAV_ITEMS.map((item) => ({
+          ...item,
+          ...item.company,
+        }))
+      : NAV_ITEMS,
+  );
 
   constructor() {
     afterNextRender(() => {

@@ -18,6 +18,10 @@ export class SkillsInput {
 
   readonly skills = input.required<string[]>();
   readonly changed = output<string[]>();
+  readonly placeholderKey = input(
+    'profile.skillPlaceholder',
+  );
+  readonly addLabelKey = input('profile.addSkill');
 
   protected readonly draft = signal('');
 

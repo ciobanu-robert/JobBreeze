@@ -1,7 +1,7 @@
 <div class="skills-row">
   <input
     type="text"
-    [placeholder]="language.t('profile.skillPlaceholder')"
+    [placeholder]="language.t(placeholderKey())"
     [value]="draft()"
     (input)="draft.set($any($event.target).value)"
     (keydown.enter)="addSkill()"
@@ -9,7 +9,7 @@
   <button
     class="add-skill"
     type="button"
-    [attr.aria-label]="language.t('profile.addSkill')"
+    [attr.aria-label]="language.t(addLabelKey())"
     [disabled]="!draft().trim()"
     (click)="addSkill()"
   >

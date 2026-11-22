@@ -9,6 +9,22 @@
       </p>
 
       <form class="auth-form">
+        <span class="auth-role-label">
+          {{ language.t('auth.demoRoleLabel') }}
+        </span>
+        <div class="role-options three">
+          @for (option of roles; track option.value) {
+            <button
+              class="role-option"
+              type="button"
+              [class.active]="role() === option.value"
+              (click)="role.set(option.value)"
+            >
+              {{ language.t(option.labelKey) }}
+            </button>
+          }
+        </div>
+
         <div class="auth-field">
           <label for="login-email">
             {{ language.t('auth.emailLabel') }}

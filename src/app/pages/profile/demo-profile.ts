@@ -58,6 +58,7 @@ export const DEMO_PROFILE: CandidateProfile = {
     'Figma',
     'Vitest',
   ],
+  languages: ['Română', 'Engleză C1'],
   cvFileName: null,
   coverLetter:
     'Bună ziua,\n\n' +

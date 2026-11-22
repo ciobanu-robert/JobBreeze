@@ -54,40 +54,77 @@
             </button>
           </div>
           <div class="hero-info">
-            <h2>
-              {{ profile().fullName }}
-            </h2>
-            <p class="hero-headline">
-              {{ profile().headline }}
-            </p>
-            <div class="hero-meta">
-              <span>
-                <span
-                  class="icon"
-                  style="
-                    --icon: url(/assets/navigation/map-pin.svg);
-                  "
-                >
+            @if (session.isCompany()) {
+              <h2>{{ company().name }}</h2>
+              <p class="hero-headline">
+                {{ company().industry }}
+              </p>
+              <div class="hero-meta">
+                <span>
+                  <span
+                    class="icon"
+                    style="
+                      --icon: url(/assets/navigation/map-pin.svg);
+                    "
+                  >
+                  </span>
+                  {{ company().location }}
                 </span>
-                {{ profile().location }}
-              </span>
-              <span>
-                <span
-                  class="icon"
-                  style="
-                    --icon: url(/assets/jobs/briefcase.svg);
-                  "
-                >
+                <span>
+                  <span
+                    class="icon"
+                    style="
+                      --icon: url(/assets/jobs/users.svg);
+                    "
+                  >
+                  </span>
+                  {{ company().size }}
                 </span>
-
-                {{ profile().desiredRole }}
-              </span>
-            </div>
+                <span>
+                  <span
+                    class="icon"
+                    style="
+                      --icon: url(/assets/jobs/briefcase.svg);
+                    "
+                  >
+                  </span>
+                  {{ companyJobs().length }}
+                  {{ language.t('company.openJobs') }}
+                </span>
+              </div>
+            } @else {
+              <h2>{{ profile().fullName }}</h2>
+              <p class="hero-headline">
+                {{ profile().headline }}
+              </p>
+              <div class="hero-meta">
+                <span>
+                  <span
+                    class="icon"
+                    style="
+                      --icon: url(/assets/navigation/map-pin.svg);
+                    "
+                  >
+                  </span>
+                  {{ profile().location }}
+                </span>
+                <span>
+                  <span
+                    class="icon"
+                    style="
+                      --icon: url(/assets/jobs/briefcase.svg);
+                    "
+                  >
+                  </span>
+                  {{ profile().desiredRole }}
+                </span>
+              </div>
+            }
           </div>
         </section>
 
         <nav class="profile-tabs" role="tablist">
-          @for (tab of tabs; track tab.key) {
+          @for (tab of tabs(); track tab.key) {
             <button
               class="tab"
               type="button"
@@ -125,6 +162,19 @@
               [profile]="profile()"
               (changed)="updateProfile($event)"
             ></app-profile-documents-tab>
+          }
+          @case ('company') {
+            <app-profile-company-tab
+              [profile]="company()"
+              (changed)="updateCompany($event)"
+            ></app-profile-company-tab>
+          }
+          @case ('jobs') {
+            <app-profile-jobs-tab
+              [jobs]="companyJobs()"
+              [companyName]="company().name"
+              (changed)="setJobs($event)"
+            ></app-profile-jobs-tab>
           }
         }
       </div>

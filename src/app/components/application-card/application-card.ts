@@ -34,7 +34,9 @@ const DATE_LOCALES: Record<LanguageCode, string> = {
 })
 export class ApplicationCard {
   readonly application = input.required<Application>();
+  readonly showDecision = input(false);
   readonly openChat = output<void>();
+  readonly decided = output<'shortlisted' | 'rejected'>();
 
   protected readonly language = inject(LanguageService);
   protected readonly theme = inject(ThemeService);

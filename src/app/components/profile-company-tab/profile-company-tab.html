@@ -1,0 +1,107 @@
+<section class="profile-section">
+  <app-profile-section-header
+    icon="/assets/jobs/building-2.svg"
+    titleKey="company.info"
+  >
+  </app-profile-section-header>
+
+  <div class="form-grid">
+    <label class="field field-full">
+      <span>{{ language.t('company.name') }}</span>
+      <input
+        type="text"
+        [value]="profile().name"
+        (input)="setField('name', $event)"
+      />
+    </label>
+    <label class="field">
+      <span>{{ language.t('company.industry') }}</span>
+      <input
+        type="text"
+        [value]="profile().industry"
+        (input)="setField('industry', $event)"
+      />
+    </label>
+    <label class="field">
+      <span>{{ language.t('company.founded') }}</span>
+      <input
+        type="text"
+        inputmode="numeric"
+        placeholder="2016"
+        [value]="profile().founded"
+        (input)="setField('founded', $event)"
+      />
+    </label>
+    <label class="field">
+      <span>{{ language.t('company.location') }}</span>
+      <input
+        type="text"
+        [value]="profile().location"
+        (input)="setField('location', $event)"
+      />
+    </label>
+    <label class="field">
+      <span>{{ language.t('company.size') }}</span>
+      <input
+        type="text"
+        placeholder="50-200"
+        [value]="profile().size"
+        (input)="setField('size', $event)"
+      />
+    </label>
+    <label class="field field-full">
+      <span>{{ language.t('company.about') }}</span>
+      <textarea
+        rows="4"
+        [value]="profile().about"
+        (input)="setField('about', $event)"
+      ></textarea>
+    </label>
+  </div>
+</section>
+
+<section class="profile-section">
+  <app-profile-section-header
+    icon="/assets/jobs/award.svg"
+    titleKey="company.benefits"
+    [count]="profile().benefits.length"
+  >
+  </app-profile-section-header>
+
+  <app-skills-input
+    placeholderKey="company.benefitPlaceholder"
+    addLabelKey="company.addBenefit"
+    [skills]="profile().benefits"
+    (changed)="setBenefits($event)"
+  >
+  </app-skills-input>
+</section>
+
+<section class="profile-section">
+  <app-profile-section-header
+    icon="/assets/ui/link.svg"
+    titleKey="profile.links"
+  >
+  </app-profile-section-header>
+
+  <div class="form-grid">
+    <label class="field">
+      <span>LinkedIn</span>
+      <input
+        type="url"
+        placeholder="https://linkedin.com/company/..."
+        [value]="profile().links.linkedin"
+        (input)="setLink('linkedin', $event)"
+      />
+    </label>
+    <label class="field">
+      <span>Website</span>
+      <input
+        type="url"
+        placeholder="https://..."
+        [value]="profile().links.website"
+        (input)="setLink('website', $event)"
+      />
+    </label>
+  </div>
+</section>

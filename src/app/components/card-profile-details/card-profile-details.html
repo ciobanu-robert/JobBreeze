@@ -1,0 +1,256 @@
+@if (candidate(); as profile) {
+  @if (part() === 'front' && profile.about) {
+    <section class="detail-block">
+      <h3>
+        <span
+          class="icon"
+          style="--icon: url(/assets/jobs/user.svg)"
+        ></span>
+        {{ language.t('cardProfile.about') }}
+      </h3>
+      <p class="detail-text">{{ profile.about }}</p>
+    </section>
+  }
+
+  @if (part() === 'back' && profile.desiredRole) {
+    <section class="detail-block">
+      <h3>
+        <span
+          class="icon"
+          style="
+            --icon: url(/assets/navigation/compass.svg);
+          "
+        ></span>
+        {{ language.t('profile.desiredRole') }}
+      </h3>
+      <p class="detail-text">{{ profile.desiredRole }}</p>
+    </section>
+  }
+
+  @for (section of sections(); track section.kind) {
+    @if (profile[section.kind].length) {
+      <section class="detail-block">
+        <h3>
+          <span
+            class="icon"
+            [style.--icon]="'url(' + section.icon + ')'"
+          ></span>
+          {{ language.t(section.titleKey) }}
+        </h3>
+        <div class="detail-entries">
+          @for (
+            entry of profile[section.kind];
+            track entry.id
+          ) {
+            <app-profile-entry-card
+              [entry]="entry"
+              [showActions]="false"
+              [titleLabelKey]="section.titleLabelKey"
+              [subtitleLabelKey]="section.subtitleLabelKey"
+            >
+            </app-profile-entry-card>
+          }
+        </div>
+      </section>
+    }
+  }
+
+  @if (part() === 'back') {
+    @if (profile.skills.length) {
+      <section class="detail-block">
+        <h3>
+          <span
+            class="icon"
+            style="--icon: url(/assets/jobs/wrench.svg)"
+          ></span>
+          {{ language.t('profile.skills') }}
+        </h3>
+        <div class="detail-pills">
+          @for (skill of profile.skills; track skill) {
+            <span class="detail-pill">{{ skill }}</span>
+          }
+        </div>
+      </section>
+    }
+
+    @if (profile.languages.length) {
+      <section class="detail-block">
+        <h3>
+          <span
+            class="icon"
+            style="
+              --icon: url(/assets/navigation/globe.svg);
+            "
+          ></span>
+          {{ language.t('cardProfile.languages') }}
+        </h3>
+        <div class="detail-pills">
+          @for (item of profile.languages; track item) {
+            <span class="detail-pill">{{ item }}</span>
+          }
+        </div>
+      </section>
+    }
+
+    @if (profile.phone || links().length) {
+      <section class="detail-block">
+        <h3>
+          <span
+            class="icon"
+            style="--icon: url(/assets/ui/link.svg)"
+          ></span>
+          {{ language.t('cardProfile.contact') }}
+        </h3>
+        <div class="detail-pills">
+          @if (profile.phone) {
+            <a
+              class="detail-pill"
+              [href]="'tel:' + profile.phone"
+            >
+              <span
+                class="icon"
+                style="--icon: url(/assets/ui/phone.svg)"
+              ></span>
+              {{ profile.phone }}
+            </a>
+          }
+          @for (link of links(); track link.label) {
+            <a
+              class="detail-pill"
+              target="_blank"
+              rel="noopener"
+              [href]="link.url"
+            >
+              <span
+                class="icon"
+                style="--icon: url(/assets/ui/link.svg)"
+              ></span>
+              {{ link.label }}
+            </a>
+          }
+        </div>
+      </section>
+    }
+
+    @if (cv(); as file) {
+      <section class="detail-block">
+        <h3>
+          <span
+            class="icon"
+            style="--icon: url(/assets/ui/file-text.svg)"
+          ></span>
+          {{ language.t('profile.cv') }}
+        </h3>
+        <app-attachment-chip [attachment]="file">
+        </app-attachment-chip>
+      </section>
+    }
+
+    @if (profile.coverLetter) {
+      <section class="detail-block">
+        <h3>
+          <span
+            class="icon"
+            style="--icon: url(/assets/ui/pencil.svg)"
+          ></span>
+          {{ language.t('profile.coverLetter') }}
+        </h3>
+        <p class="detail-text">{{ profile.coverLetter }}</p>
+      </section>
+    }
+  }
+}
+
+@if (company(); as profile) {
+  @if (part() === 'back') {
+    @if (profile.about) {
+      <section class="detail-block">
+        <h3>
+          <span
+            class="icon"
+            style="--icon: url(/assets/jobs/building-2.svg)"
+          ></span>
+          {{ language.t('company.about') }}
+        </h3>
+        <p class="detail-text">{{ profile.about }}</p>
+      </section>
+    }
+
+    <section class="detail-block">
+      <h3>
+        <span
+          class="icon"
+          style="--icon: url(/assets/jobs/users.svg)"
+        ></span>
+        {{ language.t('company.info') }}
+      </h3>
+      <div class="detail-pills">
+        @if (showHeadquarters()) {
+          <span class="detail-pill">
+            <span
+              class="icon"
+              style="
+                --icon: url(/assets/navigation/map-pin.svg);
+              "
+            ></span>
+            {{ profile.location }}
+          </span>
+        }
+        @if (profile.size) {
+          <span class="detail-pill">
+            <span
+              class="icon"
+              style="--icon: url(/assets/jobs/users.svg)"
+            ></span>
+            {{ profile.size }}
+            {{ language.t('cardProfile.employees') }}
+          </span>
+        }
+        @if (profile.founded) {
+          <span class="detail-pill">
+            <span
+              class="icon"
+              style="--icon: url(/assets/ui/calendar.svg)"
+            ></span>
+            {{ language.t('cardProfile.founded') }}
+            {{ profile.founded }}
+          </span>
+        }
+        @for (link of links(); track link.label) {
+          <a
+            class="detail-pill"
+            target="_blank"
+            rel="noopener"
+            [href]="link.url"
+          >
+            <span
+              class="icon"
+              style="--icon: url(/assets/ui/link.svg)"
+            ></span>
+            {{ link.label }}
+          </a>
+        }
+      </div>
+    </section>
+
+    @if (profile.benefits.length) {
+      <section class="detail-block">
+        <h3>
+          <span
+            class="icon"
+            style="--icon: url(/assets/jobs/award.svg)"
+          ></span>
+          {{ language.t('cardProfile.benefits') }}
+        </h3>
+        <div class="detail-pills">
+          @for (
+            benefit of profile.benefits;
+            track benefit
+          ) {
+            <span class="detail-pill">{{ benefit }}</span>
+          }
+        </div>
+      </section>
+    }
+  }
+}

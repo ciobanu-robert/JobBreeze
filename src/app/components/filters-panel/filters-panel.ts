@@ -9,6 +9,13 @@ import {
 } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
+import { SessionService } from '../../services/session.service';
+import { CandidateStatus } from '../../models/candidate';
+import {
+  CandidateFilters,
+  EMPTY_CANDIDATE_FILTERS,
+  ExperienceRange,
+} from '../../models/candidate-filters';
 import {
   EMPTY_JOB_FILTERS,
   JobFilters,
@@ -25,9 +32,15 @@ export class FiltersPanel {
   readonly filters = input<JobFilters>(EMPTY_JOB_FILTERS);
   readonly closed = output<void>();
   readonly applied = output<JobFilters>();
+  readonly candidateFilters = input<CandidateFilters>(
+    EMPTY_CANDIDATE_FILTERS,
+  );
+  readonly jobTitles = input<string[]>([]);
+  readonly candidatesApplied = output<CandidateFilters>();
 
   protected readonly language = inject(LanguageService);
   protected readonly theme = inject(ThemeService);
+  protected readonly session = inject(SessionService);
 
   protected readonly location = signal('');
   protected readonly remoteMode = signal('');
@@ -36,10 +49,26 @@ export class FiltersPanel {
   protected readonly salaryMin = signal<number | null>(
     null,
   );
+  protected readonly jobTitle = signal('');
+  protected readonly status = signal<CandidateStatus | ''>(
+    '',
+  );
+  protected readonly experience =
+    signal<ExperienceRange>('');
+  protected readonly skill = signal('');
 
   constructor() {
     effect(() => {
       if (!this.open()) {
+        return;
+      }
+      if (this.session.isCompany()) {
+        const current = this.candidateFilters();
+        this.jobTitle.set(current.jobTitle);
+        this.status.set(current.status);
+        this.location.set(current.location);
+        this.experience.set(current.experience);
+        this.skill.set(current.skill);
         return;
       }
       const current = this.filters();
@@ -61,9 +90,24 @@ export class FiltersPanel {
     this.contract.set('');
     this.seniority.set('');
     this.salaryMin.set(null);
+    this.jobTitle.set('');
+    this.status.set('');
+    this.experience.set('');
+    this.skill.set('');
   }
 
   protected apply(): void {
+    if (this.session.isCompany()) {
+      this.candidatesApplied.emit({
+        jobTitle: this.jobTitle(),
+        status: this.status(),
+        location: this.location().trim(),
+        experience: this.experience(),
+        skill: this.skill().trim(),
+      });
+      this.closed.emit();
+      return;
+    }
     this.applied.emit({
       location: this.location().trim(),
       remoteMode: this.remoteMode(),

@@ -92,7 +92,22 @@
   margin: 0 auto;
 }
 
+.browse-page.company .browse-topbar,
+.browse-page.company .browse-deck {
+  max-width: 880px;
+}
+
+.browse-subtitle {
+  margin: 6px 0 0;
+  color: var(--muted-foreground);
+  font-size: 15px;
+}
+
 @media (max-width: 767px) {
+  .browse-subtitle {
+    font-size: 13px;
+  }
+
   .browse-page {
     flex: 1;
     height: auto;

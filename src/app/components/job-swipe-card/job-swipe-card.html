@@ -19,6 +19,123 @@
   (pointerup)="onPointerUp($event)"
   (pointercancel)="onPointerUp($event)"
 >
+  <div class="card-flipper" [class.flipped]="flipped()">
+    <div class="card-face card-front" [inert]="flipped()">
+      <div class="face-body">
+        <div class="swipe-card-top">
+          <div class="company-mark">
+            {{ job().avatarInitial }}
+          </div>
+          <div>
+            <h2>{{ job().title }}</h2>
+            <p>{{ job().company }}</p>
+          </div>
+          @if (canFlip()) {
+            <button
+              class="flip-button"
+              type="button"
+              (click)="flipped.set(true)"
+            >
+              <span
+                class="icon"
+                style="
+                  --icon: url(/assets/ui/refresh-cw.svg);
+                "
+              ></span>
+              {{ language.t('swipeCard.viewProfile') }}
+            </button>
+          }
+        </div>
+
+        <div class="job-meta">
+          <span class="meta-pill">
+            <img
+              src="/assets/navigation/map-pin.svg"
+              alt=""
+            />
+            {{ job().location }}
+          </span>
+          <span class="meta-pill">
+            <img src="/assets/jobs/briefcase.svg" alt="" />
+            {{ job().workType }}
+          </span>
+          @if (job().seniority) {
+            <span class="meta-pill">
+              {{ job().seniority }}
+            </span>
+          }
+          <span class="salary-pill">
+            {{ job().salary }}
+          </span>
+        </div>
+
+        <div
+          class="swipe-card-description"
+          [class.dragging]="dragging()"
+        >
+          @if (job().candidateProfile; as candidate) {
+            <app-card-profile-details
+              part="front"
+              [candidate]="candidate"
+            >
+            </app-card-profile-details>
+          } @else {
+            <p>{{ job().description }}</p>
+          }
+        </div>
+
+        @if (!job().candidateProfile) {
+          <div class="swipe-card-tags">
+            @for (tag of job().tags; track tag) {
+              <span>{{ tag }}</span>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    @if (backHeader(); as header) {
+      <div class="card-face card-back" [inert]="!flipped()">
+        <div class="face-body">
+          <div class="swipe-card-top">
+            <div class="company-mark">
+              {{ header.name.charAt(0) }}
+            </div>
+            <div>
+              <h2>{{ header.name }}</h2>
+              <p>{{ header.subtitle }}</p>
+            </div>
+            <button
+              class="flip-button"
+              type="button"
+              (click)="flipped.set(false)"
+            >
+              <span
+                class="icon"
+                style="
+                  --icon: url(/assets/navigation/arrow-left.svg);
+                "
+              ></span>
+              {{ language.t('swipeCard.backToCard') }}
+            </button>
+          </div>
+
+          <app-card-profile-details
+            class="profile-scroll"
+            [candidate]="job().candidateProfile"
+            [company]="job().companyProfile"
+            [jobLocation]="job().location"
+          >
+          </app-card-profile-details>
+        </div>
+      </div>
+    }
+
+    <div class="card-actions">
+      <ng-content></ng-content>
+    </div>
+  </div>
+
   <span
     class="stamp stamp-like"
     [style.opacity]="likeOpacity"
@@ -37,46 +154,4 @@
   >
     {{ language.t('swipeCard.save') }}
   </span>
-
-  <div class="swipe-card-top">
-    <div class="company-mark">
-      {{ job().avatarInitial }}
-    </div>
-    <div>
-      <h2>{{ job().title }}</h2>
-      <p>{{ job().company }}</p>
-    </div>
-  </div>
-
-  <div class="job-meta">
-    <span class="meta-pill">
-      <img src="/assets/navigation/map-pin.svg" alt="" />
-      {{ job().location }}
-    </span>
-    <span class="meta-pill">
-      <img src="/assets/jobs/briefcase.svg" alt="" />
-      {{ job().workType }}
-    </span>
-    <span class="meta-pill">
-      {{ job().seniority }}
-    </span>
-    <span class="salary-pill">
-      {{ job().salary }}
-    </span>
-  </div>
-
-  <p
-    class="swipe-card-description"
-    [class.dragging]="dragging()"
-  >
-    {{ job().description }}
-  </p>
-
-  <div class="swipe-card-tags">
-    @for (tag of job().tags; track tag) {
-      <span>{{ tag }}</span>
-    }
-  </div>
-
-  <ng-content></ng-content>
 </article>
